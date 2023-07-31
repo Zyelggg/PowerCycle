@@ -19,10 +19,13 @@ module.exports = (sequelize, DataTypes) => {
         
     });
 
-    // User has many bikes that they have ridden
-    User.associate = models => {
-        User.hasMany(models.Ridden, {foreignKey: 'userId'})
-    }
+    User.associate = (models) => {
+        User.hasMany(models.Tutorial, {
+            foreignKey: "userId",
+            as: "subUsers",
+            onDelete: "cascade"
+        });
+    };
 
     return User;
 }
