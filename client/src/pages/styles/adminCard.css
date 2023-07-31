@@ -1,0 +1,85 @@
+body {
+  overflow: auto;
+}
+
+.main-wrap {
+  background-color: white;  
+  border-radius: 15px;
+  padding: 50px;
+  padding-top: 20px;
+  padding-bottom: 50px;
+  margin-top: 150px;
+  margin-left: 200px;
+}
+
+.main-title {
+  color: black;
+  font-size: 1.8em !important;
+}
+
+.main-tf {
+  color: black !important;
+}
+
+.available {
+  color: #ADD980;
+}
+
+.back {
+  float: right;
+}
+
+.main-icon {
+  color: black !important;
+  margin-right: 10px;
+  height: 70px;
+  width: 70px;
+}
+
+.edit-btn {
+  color: #F2C086 !important;
+}
+
+::placeholder {
+  color: black !important;
+  opacity: 1;
+}
+
+.main-btn {
+  background-color: #F2C086 !important;
+  color: black !important;
+}
+
+.topheader {
+  font-size: 1.6em !important;
+}
+
+.changeicon {
+  float:right ; 
+  background-color: white !important;
+  color: black !important;
+}
+
+.addCard {
+  background-color: #ADD980;
+  padding: 20px;
+  border-radius: 15px;
+}
+
+.retrieveCard {
+  background-color: #8A0072;
+  padding: 20px;
+  border-radius: 15px;
+}
+
+.updateCard {
+  background-color: #FFB157;
+  padding: 20px;
+  border-radius: 15px;
+}
+
+.deleteCard {
+  background-color: #FF5E5E;
+  padding: 20px;
+  border-radius: 15px;
+}
