@@ -1,0 +1,66 @@
+.css-1oqqzyl-MuiContainer-root {
+    padding-right: 0px!important;
+    padding-left: 0px!important;
+}
+
+
+.landing-banner {
+    background:   linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)),url("https://media.istockphoto.com/id/1050437392/photo/woman-feet-on-bycikle-pedal-in-sunset-light.jpg?s=1024x1024&w=is&k=20&c=YMElcoWzLAkxyU6jY2hj19CgpAXy2M3vGK0742HNC5g=");
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center center;
+    min-height: 500px;
+}
+
+.pic-icon {
+    width: 100%;
+    max-width: 200px;
+    max-height: 200px;
+    margin:auto;
+    display: block;
+}
+.landing-content {
+    padding: 60px 40px!important;
+}
+
+.wrap-div {
+    background-color: white;
+    margin-top: 20px;
+    padding: 40px;
+}
+
+.main-btn {
+    background-color: #F2C086!important;
+    border-radius: 10px!important;
+    width: 100%;
+    color: black!important;
+}
+
+.Footer {
+    background-color:#212121 ;
+    padding: 20px;
+}
+
+.leaflet-container {
+    height:600px;
+    background-color: red;
+}
+
+.title-wrap {
+    padding:20px;
+    margin-top: 20px!important;
+}
+
+.home-btn {
+    float:unset;
+}
+
+@media screen and (max-width: 700px) {
+    h3 {
+        font-size: 2.5rem!important;
+    }
+    
+    h4 {
+        font-size : 2rem!important;
+    }
+}

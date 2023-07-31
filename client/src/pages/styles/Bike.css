@@ -1,0 +1,106 @@
+.main-wrap {
+    background-color: white;
+    border-radius: 15px;
+    padding: 20px;
+    padding-top: 10px;
+    margin-top: 30px;
+    min-height: 300px;
+
+}
+
+.admin-wrap {
+    margin-top:80px;
+    margin-left:220px;
+    margin-right: 20px;
+}
+
+.main-title {
+    color: black;
+    font-size: 1.8em !important;
+}
+
+.topheader {
+    font-size: 1.6em !important;
+}
+
+.changeicon {
+    float:right ; 
+    background-color: white !important;
+    color: black !important;
+}
+
+.addCard {
+    background-color: #ADD980;
+    padding: 20px;
+    border-radius: 15px;
+}
+
+.retrieveCard {
+    background-color: #8A0072;
+    padding: 20px;
+    border-radius: 15px;
+}
+
+.updateCard {
+    background-color: #FFB157;
+    padding: 20px;
+    border-radius: 15px;
+}
+
+.deleteCard {
+    background-color: #FF5E5E;
+    padding: 20px;
+    border-radius: 15px;
+}
+
+.noti-icon {
+    width: 15%;
+    margin: auto;
+    padding: 20px;
+}
+
+.noti-btn {
+    width: 100%;
+}
+
+
+.css-1t1j96h-MuiPaper-root-MuiDialog-paper {
+    border-radius: 15px !important;
+    padding: 15px !important;
+}
+
+.css-sghohy-MuiButtonBase-root-MuiButton-root {
+    background-color: #F2C086!important;
+    float: right;
+    min-width: 100px!important;
+}
+
+.css-qx01tc-MuiButtonBase-root-MuiButton-root {
+    min-width: 100px!important;
+    
+}
+
+.css-10jndm7-JoyAspectRatio-content {
+    max-width: 50%;
+    max-height: 50%;
+}
+
+
+@media screen and (max-width: 700px) {
+
+
+    .admin-wrap {
+        margin-top: 20px;
+        margin-left: 20px;
+    }
+
+    .css-sghohy-MuiButtonBase-root-MuiButton-root {
+        width: 100% ;
+    }
+
+    .css-qx01tc-MuiButtonBase-root-MuiButton-root {
+        width: 100%;
+        margin: 0px!important;
+        margin-top: 10px!important;
+    }
+}
