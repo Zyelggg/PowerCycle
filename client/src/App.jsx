@@ -8,11 +8,30 @@ import EditBikeStop from './pages/EditBikeStop';
 import Home from './pages/Home';
 import BikeService from './pages/BikeService';
 import QRCode from './pages/QRCode';
+import UserContext from "./contexts/UserContext";
+import http from "./http";
+import Register from "./pages/Register";
+import Login from "./pages/Login";
+import Verification from "./pages/verification";
+import Userdetails from "./pages/userdetails";
+import Securitydetails from "./pages/securitydetails";
 import './App.css';
 import logo from './pages/images/powerlogo.png';
-import { Container, AppBar, Toolbar, Typography } from '@mui/material';
+import human from "./pages/images/humanicon.png";
+
+import {Button,
+  Container,
+  Dialog,
+  DialogTitle,
+  DialogContent,
+  DialogActions,
+  DialogContentText,} from '@mui/material';
 import { BrowserRouter as Router, Routes, Route, Link } from 'react-router-dom';
 import React, { useEffect, useState } from 'react'
+import Dropdown from "react-bootstrap/Dropdown";
+
+import "bootstrap/dist/css/bootstrap.min.css";
+
 
 function App() {
   const [user, setUser] = useState(null);
