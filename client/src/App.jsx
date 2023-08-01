@@ -1,13 +1,25 @@
-import BikeDash from './pages/BikeDash';
-import Bikes from './pages/Bikes';
-import BikeStop from './pages/BikeStop';
-import AddBikes from './pages/AddBikes';
-import AddBikeStop from './pages/AddBikeStop';
-import EditBikes from './pages/EditBikes';
-import EditBikeStop from './pages/EditBikeStop';
-import Home from './pages/Home';
-import BikeService from './pages/BikeService';
-import QRCode from './pages/QRCode';
+import BikeDash from "./pages/BikeDash";
+import Bikes from "./pages/Bikes";
+import BikeStop from "./pages/BikeStop";
+import AddBikes from "./pages/AddBikes";
+import AddBikeStop from "./pages/AddBikeStop";
+import EditBikes from "./pages/EditBikes";
+import EditBikeStop from "./pages/EditBikeStop";
+import Home from "./pages/Home";
+import BikeService from "./pages/BikeService";
+import RewardManagement from './pages/RewardManagement';
+import AddReward from './pages/AddReward';
+import EditReward from './pages/EditReward';
+import RetrieveReward from './pages/RetrieveReward';
+import DeleteReward from './pages/DeleteReward';
+import UserManagement from './pages/UserManagement';
+import AdminManagement from './pages/AdminManagement';
+import AddAdmin from './pages/AddAdmin';
+import EditAdmin from './pages/EditAdmin';
+import RetrieveAdmin from './pages/RetrieveAdmin';
+import DeleteAdmin from './pages/DeleteAdmin';
+import AdminHome from './pages/AdminHome';
+import QRCode from "./pages/QRCode";
 import UserContext from "./contexts/UserContext";
 import http from "./http";
 import Register from "./pages/Register";
@@ -19,23 +31,24 @@ import './App.css';
 //logo
 import {logOut} from 'react-icons-kit/feather/logOut'
 import { Icon } from "react-icons-kit";
-import logo from './pages/images/powerlogo.png';
+import logo from "./pages/images/powerlogo.png";
 import human from "./pages/images/humanicon.png";
 import {userX} from 'react-icons-kit/feather/userX'
 
-import {Button,
+import {
+  Button,
   Container,
   Dialog,
   DialogTitle,
   DialogContent,
   DialogActions,
-  DialogContentText,} from '@mui/material';
-import { BrowserRouter as Router, Routes, Route, Link } from 'react-router-dom';
-import React, { useEffect, useState } from 'react'
+  DialogContentText,
+} from "@mui/material";
+import { BrowserRouter as Router, Routes, Route, Link } from "react-router-dom";
+import React, { useEffect, useState } from "react";
 import Dropdown from "react-bootstrap/Dropdown";
 
 import "bootstrap/dist/css/bootstrap.min.css";
-
 
 function App() {
   const [user, setUser] = useState(null);
@@ -107,12 +120,11 @@ function App() {
     localStorage.clear();
     sessionStorage.clear();
     window.location = "/";
-  }; 
+  };
 
   return (
-
     /* User Side Navigation */
-    
+
     // <Router>
     //     <nav className="navigation">
     //       <Link to="/home" className="brand-name">
@@ -150,7 +162,7 @@ function App() {
     //       </div>
     //     </nav>
     //     <Container>
-          
+
     //     </Container>
     //   </Router>
     <UserContext.Provider value={{ user, setUser }}>
@@ -254,9 +266,7 @@ function App() {
                       </Dropdown.Toggle>
 
                       <Dropdown.Menu>
-                        <Dropdown.Item href="/register">
-                          Register
-                        </Dropdown.Item>
+                        <Dropdown.Item href="/register">Register</Dropdown.Item>
                         <Dropdown.Item href="/login">Login</Dropdown.Item>
                       </Dropdown.Menu>
                     </Dropdown>
@@ -269,12 +279,12 @@ function App() {
         <Dialog open={open} onClose={handleClose}>
           <img
             src="https://cdn-icons-png.flaticon.com/512/3588/3588294.png"
-            style={{ height: "50px", width: "50px",margin:"auto" }}
+            style={{ height: "50px", width: "50px", margin: "auto" }}
             alt="warning"
             className="noti-icon"
           />
 
-          <DialogTitle >Delete Account</DialogTitle>
+          <DialogTitle>Delete Account</DialogTitle>
           <DialogContent>
             <DialogContentText>
               Are you sure you want to delete this Account?
@@ -284,7 +294,7 @@ function App() {
             <Button
               variant="contained"
               color="error"
-              style={{margin:"auto"}}
+              style={{ margin: "auto" }}
               onClick={deleteAccount}
             >
               Delete
@@ -294,7 +304,7 @@ function App() {
             <Button
               variant="contained"
               color="inherit"
-              style={{margin:"auto"}}
+              style={{ margin: "auto" }}
               onClick={handleClose}
             >
               Cancel
@@ -305,7 +315,7 @@ function App() {
         <Dialog open={isDeleted} onClose={handleClose}>
           <img
             src="https://upload.wikimedia.org/wikipedia/commons/thumb/7/73/Flat_tick_icon.svg/768px-Flat_tick_icon.svg.png"
-            style={{ height: "50px", width: "50px",margin:"auto" }}
+            style={{ height: "50px", width: "50px", margin: "auto" }}
           />
 
           <DialogTitle>Account has been deleted</DialogTitle>
@@ -313,8 +323,8 @@ function App() {
 
         <Container>
           <Routes>
-          <Route path="/home" element={<Home />} />
-            <Route path="/" element={ <BikeDash/>}/>
+            <Route path="/home" element={<Home />} />
+            <Route path="/" element={<BikeDash />} />
             <Route path="/bikeservice" element={<BikeService />} />
             <Route path="/bike" element={<Bikes />} />
             <Route path="/bikestop" element={<BikeStop />} />
@@ -323,6 +333,18 @@ function App() {
             <Route path="/addbikestop" element={<AddBikeStop />} />
             <Route path="/editbike/:id" element={<EditBikes />} />
             <Route path="/editbikestop/:id" element={<EditBikeStop />} />
+            <Route path={"/reward"} element={<RewardManagement />} />
+            <Route path={"/addreward"} element={<AddReward />} />
+            <Route path={"/getreward"} element={<RetrieveReward />} />
+            <Route path={"/editreward/:id"} element={<EditReward />} />
+            <Route path={"/delreward"} element={<DeleteReward />} />
+            <Route path={"/user"} element={<UserManagement />} />
+            <Route path={"/adminhome"} element={<AdminHome />} />
+            <Route path={"/admin"} element={<AdminManagement />} />
+            <Route path={"/addadmin"} element={<AddAdmin />} />
+            <Route path={"/getadmin"} element={<RetrieveAdmin />} />
+            <Route path={"/editadmin/:id"} element={<EditAdmin />} />
+            <Route path={"/deladmin"} element={<DeleteAdmin />} />
             <Route path="/qrcode" element={<QRCode />} />
             <Route path={"/register"} element={<Register />} />
             <Route path={"/login"} element={<Login />} />
@@ -336,7 +358,7 @@ function App() {
         </Container>
       </Router>
     </UserContext.Provider>
- 
+
     /* Admin Side Navigation */
     // <Router>
     //   <AppBar className='sidebar'>
@@ -406,9 +428,6 @@ function App() {
     //   </Container>
 
     // </Router>
-
-
-
   );
 }
 export default App;
