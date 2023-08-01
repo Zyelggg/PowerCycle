@@ -16,8 +16,12 @@ import Verification from "./pages/verification";
 import Userdetails from "./pages/userdetails";
 import Securitydetails from "./pages/securitydetails";
 import './App.css';
+//logo
+import {logOut} from 'react-icons-kit/feather/logOut'
+import { Icon } from "react-icons-kit";
 import logo from './pages/images/powerlogo.png';
 import human from "./pages/images/humanicon.png";
+import {userX} from 'react-icons-kit/feather/userX'
 
 import {Button,
   Container,
@@ -228,9 +232,9 @@ function App() {
                         <Dropdown.Item href="/userdetails/:id">
                           User Details
                         </Dropdown.Item>
-                        <Dropdown.Item onClick={logout}>logout</Dropdown.Item>
+                        <Dropdown.Item onClick={logout}>logout<Icon style={{paddingLeft:"5px"}} icon={logOut}></Icon> </Dropdown.Item>
                         <Dropdown.Item onClick={handleOpen}>
-                          Delete account
+                          Delete account<Icon style={{paddingLeft:"5px"}}icon={userX}></Icon>
                         </Dropdown.Item>
                       </Dropdown.Menu>
                     </Dropdown>
