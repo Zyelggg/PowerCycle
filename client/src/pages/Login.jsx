@@ -143,7 +143,7 @@ function Login() {
 
             <div style={{ inline: true }}>
               <p
-                style={{ color: "white", fontSize: "10px", marginTop: "15px" }}
+                style={{ color: "white", fontSize: "10px",  }}
               >
                 Remember Me
               </p>
