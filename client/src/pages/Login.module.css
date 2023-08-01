@@ -139,6 +139,9 @@ h2{
     text-align: center;
     margin-top: 20px;
 }
+.forgotpass{
+    font-size: 10px !important;
+}
 .forgotpass:hover{
     text-decoration: underline;
     color:greenyellow

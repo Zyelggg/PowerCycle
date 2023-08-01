@@ -19,13 +19,13 @@ module.exports = (sequelize, DataTypes) => {
         
     });
 
-    // User.associate = (models) => {
-    //     User.hasMany(models.Bike, {
-    //         foreignKey: "userId",
-    //         as: "subUsers",
-    //         onDelete: "cascade"
-    //     });
-    // };
+    User.associate = (models) => {
+        User.hasMany(models.Bike, {
+            foreignKey: "userId",
+            as: "subUsers",
+            onDelete: "cascade"
+        });
+    };
 
     return User;
 }

@@ -157,7 +157,7 @@ function Login() {
                 marginLeft: "auto",
                 color: "white",
                 textDecoration: "none",
-                fontSize: "10px",
+                
                 cursor: "pointer",
               }}
             >

@@ -222,10 +222,10 @@ function App() {
 
                       <Dropdown.Menu>
                         <Dropdown.Item>More...</Dropdown.Item>
-                        <Dropdown.Item href="#/securitydetails/:id">
+                        <Dropdown.Item href="/securitydetails/:id">
                           Security Details
                         </Dropdown.Item>
-                        <Dropdown.Item href="#/userdetails/:id">
+                        <Dropdown.Item href="/userdetails/:id">
                           User Details
                         </Dropdown.Item>
                         <Dropdown.Item onClick={logout}>logout</Dropdown.Item>
@@ -250,10 +250,10 @@ function App() {
                       </Dropdown.Toggle>
 
                       <Dropdown.Menu>
-                        <Dropdown.Item href="#/register">
+                        <Dropdown.Item href="/register">
                           Register
                         </Dropdown.Item>
-                        <Dropdown.Item href="#/login">Login</Dropdown.Item>
+                        <Dropdown.Item href="/login">Login</Dropdown.Item>
                       </Dropdown.Menu>
                     </Dropdown>
                   </li>
@@ -332,7 +332,7 @@ function App() {
         </Container>
       </Router>
     </UserContext.Provider>
-
+ 
     /* Admin Side Navigation */
     // <Router>
     //   <AppBar className='sidebar'>
