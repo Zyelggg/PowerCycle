@@ -1,3 +1,4 @@
+module.exports = (sequelize, DataTypes) => {
 const FeedbackReply = sequelize.define("FeedbackReply", {
     id: {
       type: DataTypes.INTEGER,
@@ -9,7 +10,10 @@ const FeedbackReply = sequelize.define("FeedbackReply", {
       allowNull: false,
     },
   });
-  
+
+  return FeedbackReply
+
+}
   // Define a relationship between Feedback and FeedbackReply models
   Feedback.hasOne(FeedbackReply, { as: "reply", foreignKey: "feedbackId" });
   FeedbackReply.belongsTo(Feedback, { as: "feedback", foreignKey: "feedbackId" });

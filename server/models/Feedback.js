@@ -1,3 +1,4 @@
+module.exports = (sequelize, DataTypes) => {
 const Feedback = sequelize.define("Feedback", {
     id: {
       type: DataTypes.INTEGER,
@@ -26,3 +27,6 @@ const Feedback = sequelize.define("Feedback", {
     }
     
   });
+
+  return Feedback
+}
