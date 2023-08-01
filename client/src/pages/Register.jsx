@@ -315,7 +315,7 @@ function Register() {
                 style={{
                   cursor: "pointer",
                   color: "white",
-                  fontSize:"10px"
+                  
                 }}
                 href="./login"
               >

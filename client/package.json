@@ -20,7 +20,7 @@
     "axios": "^1.2.6",
     "cdbreact": "^1.5.18",
     "dayjs": "^1.11.7",
-    "firebase": "^10.1.0",
+    "firebase": "^9.23.0",
     "formik": "^2.4.2",
     "leaflet": "^1.9.4",
     "otp-input-react": "^0.3.0",
