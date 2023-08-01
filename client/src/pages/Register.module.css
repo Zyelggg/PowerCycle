@@ -120,7 +120,7 @@ input{
 .errorText{
     color:red;
     width:45%;
-    font-size: 10px;
+    font-size: 10px !important;
     font: 'Roboto';
 }
 .inp{
