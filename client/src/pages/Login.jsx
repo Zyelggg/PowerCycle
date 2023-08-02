@@ -12,7 +12,6 @@ import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import UserContext from "../contexts/UserContext";
 import ggle from "./images/googleicon.png";
-import Cookies from 'js-cookie';
 
 function Login() {
   
