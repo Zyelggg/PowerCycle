@@ -36,6 +36,9 @@ app.use("/file", fileRoute);
 const userRoute = require('./routes/user');
 app.use("/user", userRoute);
 
+const riddenRoute = require('./routes/ridden');
+app.use("/ridden", riddenRoute);
+
 //models seq
 const db = require('./models');
 db.sequelize.sync({ alter: true }).then(() => {
