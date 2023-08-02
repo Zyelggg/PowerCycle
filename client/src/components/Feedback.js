@@ -1,6 +1,6 @@
 import React, { useState,useEffect } from "react";
-import "./styles/Feedback.css";
-// import Reviews from "../components/Reviews";
+import "./Feedback.css";
+import Reviews from "./Reviews";
 
 
 const Feedback = () => {
@@ -134,4 +134,4 @@ const Feedback = () => {
   );
 };
 
-export default Feedback
+export default Feedback;
