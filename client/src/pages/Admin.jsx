@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import "./Admin.css";
 import Modal from "react-modal";
-import Loader from "./Loader";
+import Loader from "../components/Loader";
 
 
 const Admin = () => {
