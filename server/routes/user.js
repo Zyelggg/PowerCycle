@@ -120,7 +120,8 @@ router.get("/auth", validateToken, (req, res) => {
     };
     res.json({
         user: userInfo,
-        userid: req.user.id
+        userid: req.user.id,
+        useremail:req.user.email
     });
 });
 
