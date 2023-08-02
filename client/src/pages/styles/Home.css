@@ -55,6 +55,16 @@
     float:unset;
 }
 
+
+.user-records {
+    background-color: black;
+    border-radius: 15px;
+    padding: 20px;
+    margin-top: 20px;
+    margin-left:20px;
+    margin-right: 20px;
+}
+
 @media screen and (max-width: 700px) {
     h3 {
         font-size: 2.5rem!important;
