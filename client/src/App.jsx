@@ -19,7 +19,7 @@ import AddAdmin from './pages/AddAdmin';
 import EditAdmin from './pages/EditAdmin';
 import RetrieveAdmin from './pages/RetrieveAdmin';
 import DeleteAdmin from './pages/DeleteAdmin';
-// import AdminHome from './pages/AdminHome';
+import AdminHome from './pages/AdminHome';
 import QRCode from "./pages/QRCode";
 import UserContext from "./contexts/UserContext";
 import http from "./http";
@@ -229,6 +229,11 @@ function App() {
                   Add Payment
                 </Link>
               </li>
+              <li>
+                <Link to="/adminHome" onClick={handleLinkClick} className="navlink">
+                  Admin
+                </Link>
+              </li>
               
               {user && (
                 <>
@@ -346,7 +351,7 @@ function App() {
             <Route path={"/delreward"} element={<DeleteReward />} />
             <Route path={"/user"} element={<UserManagement />} />
             <Route path={"/getuser"} element={<RetrieveUser />} />
-            {/* <Route path={"/adminhome"} element={<AdminHome />} /> */}
+            <Route path={"/adminhome"} element={<AdminHome />} />
             <Route path={"/admin"} element={<AdminManagement />} />
             <Route path={"/addadmin"} element={<AddAdmin />} />
             <Route path={"/getadmin"} element={<RetrieveAdmin />} />
