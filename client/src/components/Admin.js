@@ -16,7 +16,7 @@ const Admin = () => {
   }, []);
 
   const fetchFeedbacks = () => {
-    fetch("http://localhost:3001/replies")
+    fetch("http://localhost:3001/feedback/replies")
       .then((response) => response.json())
       .then((data) => {
         setFeedbacks(data);
@@ -37,7 +37,7 @@ const Admin = () => {
     }
 
     // Assuming you have an API endpoint to handle reply submission, e.g., /submit-reply/:feedbackId
-    fetch(`http://localhost:3001/${edit?'update-reply':'submit-reply'}/${selectedFeedbackId}`, {
+    fetch(`http://localhost:3001/feedback/${edit?'update-reply':'submit-reply'}/${selectedFeedbackId}`, {
       method: `${edit?'PUT':'POST'}`,
       headers: {
         "Content-Type": "application/json",
@@ -65,7 +65,7 @@ const Admin = () => {
 
   const handleUpdateStatus = (feedbackId, newStatus) => {
     setIsLoading(true)
-    fetch(`http://localhost:3001/update-feedback-status/${feedbackId}`, {
+    fetch(`http://localhost:3001/feedback/update-feedback-status/${feedbackId}`, {
       method: "PUT",
       headers: {
         "Content-Type": "application/json", // Set the correct content type
@@ -103,7 +103,7 @@ const Admin = () => {
       setIsLoading(true)
   
       // Assuming you have an API endpoint to handle feedback deletion, e.g., /delete-reply/:feedbackId
-      fetch(`http://localhost:3001/delete-feedback/${id}`, {
+      fetch(`http://localhost:3001/feedback/delete-feedback/${id}`, {
         method: "DELETE",
       })
         .then((response) => response.json())
