@@ -131,7 +131,7 @@ input{
     box-shadow: #1c1c1c;
     outline: none;
     margin-left:20px;
-    
+    background-color: white;
 }
 
 .textwrap{
