@@ -167,11 +167,11 @@ function EditUser() {
             error={formik.touched.phone && Boolean(formik.errors.phone)}
             helperText={formik.touched.phone && formik.errors.phone}
           />
-          <InputLabel id="repairs-label">Admin Role</InputLabel>
+          <InputLabel id="admin-label">Admin Role</InputLabel>
           <Select
             fullWidth
             margin="normal"
-            labelId="repairs-label"
+            labelId="admin-label"
             id="admin"
             name="admin"
             value={formik.values.admin}
