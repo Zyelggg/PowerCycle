@@ -28,6 +28,7 @@ import Login from "./pages/Login";
 import Verification from "./pages/verification";
 import Userdetails from "./pages/userdetails";
 import Securitydetails from "./pages/securitydetails";
+import UserHistory from "./pages/UserHistory";
 import "./App.css";
 import logo from "./pages/images/powerlogo.png";
 import human from "./pages/images/humanicon.png";
@@ -62,7 +63,7 @@ function App() {
 
 
   // const isAdmin = user && user.role === False;
-  const isAdmin = true;
+  const isAdmin = false;
   // Function to handle link click and close the navigation menu
   const handleLinkClick = () => {
     setIsNavExpanded(false);
@@ -167,10 +168,8 @@ function App() {
             <Route path={"/login"} element={<Login />} />
             <Route path={"/verification"} element={<Verification />} />
             <Route path={"/userdetails/:id"} element={<Userdetails />} />
-            <Route
-              path={"/securitydetails/:id"}
-              element={<Securitydetails />}
-            />
+            <Route path={"/userhistory/:id"} element={< UserHistory/>} />
+            <Route path={"/securitydetails/:id"} element={<Securitydetails />} />
           </Routes>
         </Container>
       </Router>
