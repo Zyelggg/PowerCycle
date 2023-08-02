@@ -13,7 +13,10 @@ import EditReward from './pages/EditReward';
 import RetrieveReward from './pages/RetrieveReward';
 import DeleteReward from './pages/DeleteReward';
 import UserManagement from './pages/UserManagement';
+import AddUser from "./pages/AddUser";
 import RetrieveUser from "./pages/RetrieveUser";
+import DeleteUser from './pages/DeleteUser';
+import EditUser from './pages/EditUser';
 import AdminManagement from './pages/AdminManagement';
 import AddAdmin from './pages/AddAdmin';
 import EditAdmin from './pages/EditAdmin';
@@ -156,7 +159,10 @@ function App() {
             <Route path={"/editreward/:id"} element={<EditReward />} />
             <Route path={"/delreward"} element={<DeleteReward />} />
             <Route path={"/user"} element={<UserManagement />} />
+            <Route path={"/adduser"} element={<AddUser />} />
             <Route path={"/getuser"} element={<RetrieveUser />} />
+            <Route path={"/edituser/:id"} element={<EditUser />} />
+            <Route path={"/deluser"} element={<DeleteUser />} />
             {/* <Route path={"/adminhome"} element={<AdminHome />} /> */}
             <Route path={"/admin"} element={<AdminManagement />} />
             <Route path={"/addadmin"} element={<AddAdmin />} />
