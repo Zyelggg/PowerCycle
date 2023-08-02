@@ -25,7 +25,7 @@ const Feedback = () => {
     };
 
     // Send the feedbackData to the server using fetch or axios
-    fetch("http://localhost:5000/submit-feedback", {
+    fetch("http://localhost:3001/feedback/submit-feedback", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -56,7 +56,7 @@ const Feedback = () => {
 
   const fetchFeedbacks = async () => {
     try {
-      const response = await fetch("http://localhost:3001/feedbacks");
+      const response = await fetch("http://localhost:3001/feedback/feedbacks");
       if (!response.ok) {
         throw new Error("Network response was not ok");
       }
