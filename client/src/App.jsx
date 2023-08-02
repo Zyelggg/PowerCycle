@@ -28,6 +28,9 @@ import UserContext from "./contexts/UserContext";
 import http from "./http";
 import Register from "./pages/Register";
 import Login from "./pages/Login";
+import FAQ from "./pages/FAQ";
+import About from "./pages/About";
+import Feedback from "./pages/Feedback";
 import Verification from "./pages/verification";
 import Userdetails from "./pages/userdetails";
 import Securitydetails from "./pages/securitydetails";
@@ -173,6 +176,9 @@ function App() {
             <Route path={"/register"} element={<Register />} />
             <Route path={"/login"} element={<Login />} />
             <Route path={"/verification"} element={<Verification />} />
+            <Route path={"/about"} element={<About />} />
+            <Route path={"/faqs"} element={<FAQ />} />
+            <Route path={"/feedback"} element={<Feedback />} />
             <Route path={"/userdetails/:id"} element={<Userdetails />} />
             <Route path={"/userhistory/:id"} element={< UserHistory/>} />
             <Route path={"/securitydetails/:id"} element={<Securitydetails />} />

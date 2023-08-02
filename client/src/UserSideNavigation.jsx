@@ -56,10 +56,13 @@ const UserSideNavigation = ({ handleLinkClick }) => {
                 <Link to="/bikeservice" onClick={handleLinkClick}>Bicycles</Link>
               </li>
               <li>
-                <Link to="/" onClick={handleLinkClick}>About</Link>
+                <Link to="/about" onClick={handleLinkClick}>About</Link>
               </li>
               <li>
-                <Link to="/" onClick={handleLinkClick}>FAQ</Link>
+                <Link to="/faqs" onClick={handleLinkClick}>FAQ</Link>
+              </li>
+              <li>
+                <Link to="/feedback" onClick={handleLinkClick}>Feedback</Link>
               </li>
             </ul>
           </div>
