@@ -26,8 +26,6 @@ import FAQ from "./pages/FAQ";
 // import AdminHome from './pages/AdminHome';
 import QRCode from "./pages/QRCode";
 import UserContext from "./contexts/UserContext";
-import Feedback from "./components/Feedback";
-import UserHistory from "./pages/UserHistory"
 import http from "./http";
 import Register from "./pages/Register";
 import Login from "./pages/Login";
@@ -36,6 +34,7 @@ import Userdetails from "./pages/userdetails";
 import Securitydetails from "./pages/securitydetails";
 import UserHistory from "./pages/UserHistory";
 import RidingBike from "./pages/RidingBike";
+import RideComplete from "./pages/RideComplete";
 import "./App.css";
 import logo from "./pages/images/powerlogo.png";
 import human from "./pages/images/humanicon.png";
@@ -319,6 +318,8 @@ function App() {
             <Route path={"/editadmin/:id"} element={<EditAdmin />} />
             <Route path={"/deladmin"} element={<DeleteAdmin />} />
             <Route path="/qrcode" element={<QRCode />} />
+            <Route path="/ridecomplete" element={<RideComplete />} />
+            <Route path="/ridingbike" element={<RidingBike />} />
             <Route path={"/register"} element={<Register />} />
             <Route path={"/login"} element={<Login />} />
             <Route path={"/verification"} element={<Verification />} />

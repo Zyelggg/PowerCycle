@@ -10,17 +10,17 @@ import twitter from './images/twitter.png'
 import logo from './images/powerlogo.png';
 import http from "../http";
 
-function RidingBike() {
+function RideComplete() {
     const navigate = useNavigate();
 
-    const sampleData = {
-        userId: 1,
-        mileage: 50.7,
-        electricity: 8.3,
-        bikeId: 1,
-    };
     const [user, setUser] = useState(null);
     const [userDetail, setuserDetail] = useState({});
+    
+    const queryParams = new URLSearchParams(location.search);
+    const userId = queryParams.get('userId');
+    const mileage = queryParams.get('mileage');
+    const electricity = queryParams.get('electricity');
+    const bikeId = queryParams.get('bikeId');
 
     useEffect(() => {
         if (localStorage.getItem("accessToken")) {
@@ -42,36 +42,14 @@ function RidingBike() {
                             console.log(data);
                         });
                 });
+
+
         }
     }, []);
 
 
-    const onSubmit = () => {
-        console.log("work")
-
-        http.post("/ridden", sampleData)
-            .then((res) => {
-                console.log("Backend Response:", res.status, res.data);
-                    navigate(`/ridecomplete?userId=${sampleData.userId}&mileage=${sampleData.mileage}&electricity=${sampleData.electricity}&bikeId=${sampleData.bikeId}`);
-
-            })
-            .catch((error) => {
-                console.error('Error submitting data:', error);
-            });
-    };
-
     const handleScanButtonClick = () => {
-        console.log("work")
-
-        http.post("/ridden", sampleData)
-            .then((res) => {
-                console.log("Backend Response:", res.status, res.data);
-                    navigate(`/ridecomplete?userId=${sampleData.userId}&mileage=${sampleData.mileage}&electricity=${sampleData.electricity}&bikeId=${sampleData.bikeId}`);
-
-            })
-            .catch((error) => {
-                console.error('Error submitting data:', error);
-            });
+        console.log("Pause")
     }
 
     return (
@@ -83,27 +61,24 @@ function RidingBike() {
                 </Container>
 
             </Box>
-            {/* Render the sampleData if it is available */}
-            <div className="user-records">
-                <Typography variant='h4' style={{ marginBottom: "20px", color: "white" }}>You are now riding bike #123</Typography>
 
-                <img src={ebike} alt="image" style={{ width: "40px%" }} className='bike-image' />
+
+            <div className="user-records">
+
                 <div className='white-wrapper'>
-                    <h2>User ID: {sampleData.userId}</h2>
-                    <p>Mileage: {sampleData.mileage}</p>
-                    <p>Electricity: {sampleData.electricity}</p>
-                    <p>Bike ID: {sampleData.bikeId}</p>
+                    <Typography variant='h4' style={{ marginBottom: "20px" }}>Congratulations</Typography>
+
+                    <img src={ebike} alt="image" style={{ width: "40%" }} className='bike-image' />
+                    <Typography variant='h4' style={{ marginBottom: "20px" }}>Your Performance</Typography>
+                    {/* Render the received data */}
+                    <h2>User ID: {userId}</h2>
+                    <p>Mileage: {mileage}</p>
+                    <p>Electricity: {electricity}</p>
+                    <p>Bike ID: {bikeId}</p>
                 </div>
 
-                {/* Buttons */}
-                <form onSubmit={onSubmit} style={{ marginTop: "40px" }}>
-                    <button type="button" className='bike-btn' onClick={handleScanButtonClick} >Pause Journey</button>
-                    <button type="submit" className='bike-btn' style={{ float: "right" }}>End Journey</button>
-
-                </form>
 
             </div>
-
 
 
 
@@ -158,4 +133,4 @@ function RidingBike() {
     );
 }
 
-export default RidingBike;
+export default RideComplete;

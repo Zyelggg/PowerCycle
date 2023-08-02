@@ -11,31 +11,47 @@ import UserContext from "../contexts/UserContext";
 
 function UserHistory() {
 
-  const [userRiddenBikes, setUserRiddenBikes] = useState([]);
-  const { setUser } = useContext(UserContext);
+ const navigate = useNavigate();
+  const [userDetail, setUserDetail] = useState({}); // No need for 'user' state
 
   useEffect(() => {
     if (localStorage.getItem("accessToken")) {
-      http
-        .get("/user/auth")
+      // Use axios instead of fetch to keep consistency with other requests
+      http.get("/user/auth")
         .then((res) => {
-          setUser(res.data.userid);
-
-          return res.data.userid;
+          const userId = res.data.userid;
+          console.log(userId); // Verify the user value here
+          fetchUserDetails(userId); // Fetch user details using the foreign key (userId)
         })
-        .then((user) => {
-          console.log(user, "hi"); // Verify the user value here
-          fetch(`http://localhost:3001/user/userdetails/${user}`, {
-            method: "GET",
-          })
-            .then((res) => res.json()) // Parse the response as JSON
-            .then((data) => {
-              setUserRiddenBikes(data); // Use setUserRiddenBikes instead of setUserDetail
-              console.log(data);
-            });
+        .catch((error) => {
+          console.error('Error fetching user details:', error);
         });
     }
   }, []);
+
+  const fetchUserDetails = (userId) => {
+    http.get(`/user/userdetails/${userId}`)
+      .then((res) => {
+        setUserDetail(res.data);
+        console.log(res.data);
+      })
+      .catch((error) => {
+        console.error('Error fetching user details:', error);
+      });
+
+    http.get('/ridden')
+      .then((res) => {
+        setUserDetail(res.data);
+        console.log(res.data);
+      })
+      .catch((error) => {
+        console.error('Error fetching ridden details:', error);
+      });
+  };
+
+  const handleScanButtonClick = () => {
+    console.log("Pause");
+  };
 
   return (
 <Box>
@@ -50,7 +66,7 @@ function UserHistory() {
             <Box className="hist-box">
               <Typography variant="h5" >User History</Typography>
               {/* Display the user details here */}
-              {userRiddenBikes.map((userDetail, index) => (
+              {userDetail.map((userDetail, index) => (
                 <Box key={index} className="record-box">
                   <Grid container spacing={5}>
                     <Grid item xs={12} md={6}>
