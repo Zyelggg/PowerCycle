@@ -93,8 +93,8 @@ function RidingBike() {
 
                 {/* Buttons */}
                 <form onSubmit={onSubmit} style={{marginTop:"40px"}}>
-                    <button type="button" className='bike-btn' onClick={handleScanButtonClick} style={{float:"right"}}>Pause Journey</button>
-                    <button type="submit" className='bike-btn'>End Journey</button>
+                    <button type="button" className='bike-btn' onClick={handleScanButtonClick} >Pause Journey</button>
+                    <button type="submit" className='bike-btn' style={{float:"right"}}>End Journey</button>
 
                 </form>
 
