@@ -7,6 +7,23 @@ const { sign } = require('jsonwebtoken');
 const { validateToken } = require('../middlewares/auth');
 require('dotenv').config();
 
+router.get("/", async (req, res) => {
+    let condition = {};
+    let search = req.query.search;
+    if (search) {
+      condition[Sequelize.Op.or] = [
+        { name: { [Sequelize.Op.like]: `%${search}%` } },
+        { email: { [Sequelize.Op.like]: `%${search}%` } },
+      ];
+    }
+    let list = await User.findAll({
+      where: condition,
+      order: [["createdAt", "DESC"]],
+    });
+    res.json(list);
+  });
+  
+
 router.post("/register",async (req,res)=>{
     let data = req.body;
     // Validate request body
