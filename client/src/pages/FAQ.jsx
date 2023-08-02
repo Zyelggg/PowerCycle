@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import './FAQ.css';
+import './styles/FAQ.css';
 
 const FAQItem = ({ question, answer }) => {
   const [isExpanded, setIsExpanded] = useState(false);
