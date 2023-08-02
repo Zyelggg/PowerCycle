@@ -67,12 +67,14 @@ function Login() {
     }
   };
   const formik = useFormik({
-    initialValues: 
-      // email: email,
-      // password: password
-      ""
-    ,
-    
+    // initialValues: 
+    //   // email: email,
+    //   // password: password
+    // ,
+    initialValues: {
+      email: "",
+      password: "",
+    },
     validationSchema: yup.object().shape({
       email: yup
         .string()

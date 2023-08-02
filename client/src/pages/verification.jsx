@@ -108,7 +108,7 @@ const Verification = () => {
         <div id="recaptcha-container"></div>
         {user ? (
           <h2 className="text-center text-white font-medium text-2xl">
-            👍Login Success
+            👍Register Success
           </h2>
           
         ) : (

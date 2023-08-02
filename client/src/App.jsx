@@ -22,9 +22,12 @@ import AddAdmin from './pages/AddAdmin';
 import EditAdmin from './pages/EditAdmin';
 import RetrieveAdmin from './pages/RetrieveAdmin';
 import DeleteAdmin from './pages/DeleteAdmin';
+import FAQ from "./pages/FAQ";
 // import AdminHome from './pages/AdminHome';
 import QRCode from "./pages/QRCode";
 import UserContext from "./contexts/UserContext";
+import Feedback from "./components/Feedback";
+import UserHistory from "./pages/UserHistory"
 import http from "./http";
 import Register from "./pages/Register";
 import Login from "./pages/Login";
@@ -183,7 +186,7 @@ function App() {
                 </Link>
               </li>
               <li>
-                <Link to="/" onClick={handleLinkClick} className="navlink">
+                <Link to="/faq" onClick={handleLinkClick} className="navlink">
                   FAQ
                 </Link>
               </li>
@@ -286,6 +289,7 @@ function App() {
 
         <Container>
           <Routes>
+            
             <Route path="/home" element={<Home />} />
             <Route path="/" element={<BikeDash />} />
             <Route path="/bikeservice" element={<BikeService />} />
@@ -313,6 +317,8 @@ function App() {
             <Route path={"/editadmin/:id"} element={<EditAdmin />} />
             <Route path={"/deladmin"} element={<DeleteAdmin />} />
             <Route path="/qrcode" element={<QRCode />} />
+            <Route path="/faq" element={<FAQ />} />
+            <Route path="/feedback" element={<Feedback />} />
             <Route path={"/register"} element={<Register />} />
             <Route path={"/login"} element={<Login />} />
             <Route path={"/verification"} element={<Verification />} />
