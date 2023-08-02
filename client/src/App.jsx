@@ -34,6 +34,8 @@ import Login from "./pages/Login";
 import Verification from "./pages/verification";
 import Userdetails from "./pages/userdetails";
 import Securitydetails from "./pages/securitydetails";
+import UserHistory from "./pages/UserHistory";
+import RidingBike from "./pages/RidingBike";
 import "./App.css";
 import logo from "./pages/images/powerlogo.png";
 import human from "./pages/images/humanicon.png";
@@ -317,8 +319,6 @@ function App() {
             <Route path={"/editadmin/:id"} element={<EditAdmin />} />
             <Route path={"/deladmin"} element={<DeleteAdmin />} />
             <Route path="/qrcode" element={<QRCode />} />
-            <Route path="/faq" element={<FAQ />} />
-            <Route path="/feedback" element={<Feedback />} />
             <Route path={"/register"} element={<Register />} />
             <Route path={"/login"} element={<Login />} />
             <Route path={"/verification"} element={<Verification />} />

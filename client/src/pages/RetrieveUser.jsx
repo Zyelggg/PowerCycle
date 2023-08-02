@@ -8,8 +8,6 @@ import http from '../http';
 import './styles/adminCard.css';
 import ChevronLeftIcon from '@mui/icons-material/ChevronLeft';
 
-
-
 function RetrieveUser() {
   const [userList, setUserList] = useState([]);
   const [search, setSearch] = useState('');
