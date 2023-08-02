@@ -21,7 +21,7 @@ module.exports = (sequelize, DataTypes) => {
 
     // User has many bikes that they have ridden
     Ridden.associate = models => {
-        Ridden.belongsTo(models.User, { foreignKey: 'userId', targetKey: 'userId' });
+        Ridden.belongsTo(models.User, { foreignKey: 'userId', targetKey: 'id' });
         Ridden.belongsTo(models.Bike, { foreignKey: 'bikeId', targetKey: 'id' });
     }
 
