@@ -11,7 +11,7 @@ import ChevronLeftIcon from '@mui/icons-material/ChevronLeft';
 
 
 function RetrieveUser() {
-  const [userList, setuserList] = useState([]);
+  const [userList, setUserList] = useState([]);
   const [search, setSearch] = useState('');
   
   const onSearchChange = (e) => {
@@ -52,7 +52,7 @@ function RetrieveUser() {
   return (
     <Box className="main-wrap">
         <Box sx={{ mb: 2 }}>
-          <Link to="/admin" style={{ textDecoration: 'none' }}>
+          <Link to="/user" style={{ textDecoration: 'none' }}>
             <Button variant="contained">
               <ChevronLeftIcon></ChevronLeftIcon>
                 back
@@ -61,7 +61,7 @@ function RetrieveUser() {
         </Box>
       <Box>
         <Typography className="main-title" variant="h5" sx={{ my: 2 }}>
-          User
+          Users
         </Typography>
 
         <Box sx={{ display: 'flex', alignItems: 'center', mb: 2 }}>
@@ -105,7 +105,7 @@ function RetrieveUser() {
                         {user.email}
                       </Typography>
                       <Box sx={{ mt: 2 }}>
-                      <Link to={`/edituser/${admin.id}`}>
+                      <Link to={`/edituser/${user.id}`}>
                           <Button className="main-btn" variant="contained" type="submit">
                           Edit User
                           </Button>
