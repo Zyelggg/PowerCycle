@@ -1,9 +1,28 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import logo from "./pages/images/powerlogo.png";
+import human from "./pages/images/humanicon.png";
+import "./App.css";
+import {
+  Button,
+  Container,
+  Dialog,
+  DialogTitle,
+  DialogContent,
+  DialogActions,
+  DialogContentText,
+  AppBar,
+  Toolbar,
+  Typography
+} from "@mui/material";
+
 
 const AdminSideNavigation = ({ handleLinkClick }) => {
+  const [isNavExpanded, setIsNavExpanded] = useState(false);
     return (
-    <Router>
+      
+
       <AppBar className='sidebar'>
         <Container>
           <Toolbar disableGutters={true} className='nav-links'>
@@ -56,21 +75,7 @@ const AdminSideNavigation = ({ handleLinkClick }) => {
           </Toolbar>
         </Container>
       </AppBar>
-      <Container>
-        <Routes>
-          <Route path={"/home"} element={< Home />} />
-          <Route path={"/bikeservice"} element={< BikeService />} />
-          <Route path={"/bike"} element={< Bikes />} />
-          <Route path={"/bikestop"} element={< BikeStop />} />
-          <Route path={"/bikedash"} element={< BikeDash />} />
-          <Route path={"/addbike"} element={<AddBikes />} />
-          <Route path={"/addbikestop"} element={<AddBikeStop />} />
-          <Route path={"/editbike/:id"} element={<EditBikes />} />
-          <Route path={"/editbikestop/:id"} element={<EditBikeStop />} />
-        </Routes>
-      </Container>
 
-    </Router>
     );
 };
 

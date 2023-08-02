@@ -1,10 +1,34 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import logo from "./pages/images/powerlogo.png";
+import human from "./pages/images/humanicon.png";
+import "./App.css";
+
+import {
+  Button,
+  Container,
+  Dialog,
+  DialogTitle,
+  DialogContent,
+  DialogActions,
+  DialogContentText,
+} from "@mui/material";
+
+import "./App.css";
+const handleLinkClick = () => {
+  setIsNavExpanded(false);
+};
 
 const UserSideNavigation = ({ handleLinkClick }) => {
+
+  const [isNavExpanded, setIsNavExpanded] = useState(false);
+
+  // Function to handle link click and close the navigation menu
+
+
   return (
     
-    <Router>
         <nav className="navigation">
           <Link to="/home" className="brand-name">
             <img src={logo} className='logo' alt="Logo" />
@@ -40,10 +64,7 @@ const UserSideNavigation = ({ handleLinkClick }) => {
             </ul>
           </div>
         </nav>
-        <Container>
 
-        </Container>
-      </Router>
     );
 };
 
