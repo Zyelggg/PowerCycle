@@ -35,6 +35,8 @@ app.use("/file", fileRoute);
 
 const userRoute = require('./routes/user');
 app.use("/user", userRoute);
+const feedbackRoute = require('./routes/feedback');
+app.use("/feedback", feedbackRoute);
 
 const riddenRoute = require('./routes/ridden');
 app.use("/ridden", riddenRoute);

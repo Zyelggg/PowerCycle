@@ -137,9 +137,9 @@ function securityDetails() {
             </label>
 
             <br />
-            <div className={dashboard.textwrap}>
+            <div className={dashboard.textwrapSecurity}>
               <input
-                style={{ color: "white" }}
+                style={{ color: "white" ,background : "blueviolet"  }}
                 className={dashboard.phone}
                 margin="normal"
                 autoComplete="off"
@@ -178,9 +178,9 @@ function securityDetails() {
               Confirm password
             </label>
 
-            <div className={dashboard.textwrap}>
+            <div className={dashboard.textwrapSecurity}>
               <input
-                style={{ color: "white" }}
+                style={{ color: "white" , background : "blueviolet" }}
                 className={dashboard.phone}
                 margin="normal"
                 autoComplete="off"

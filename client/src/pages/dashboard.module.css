@@ -49,15 +49,24 @@ html, body {
 }
 .textwrap{
     border: none;
-    background-color: blueviolet;
+
     border-radius: 25px;
     height: 43px;
     width: 100%;
     margin-bottom: 0.8rem;
 }
+.textwrapSecurity{
+    border: none;
+    border-radius: 25px;
+    height: 43px;
+    width: 100%;
+    margin-bottom: 0.8rem;
+    background-color: blueviolet;
+
+}
 .name, .email{
     border: none;
-    background-color: blueviolet;
+
     border-radius: 25px;
     height: 43px;
     width: 83%;
@@ -84,7 +93,6 @@ input{
 }
 .phone{
     border: none;
-    background-color: blueviolet;
     border-radius: 25px;
     height: 43px;
     width: 83%;
@@ -93,7 +101,7 @@ input{
 }
 .dob{
     border: none;
-    background-color: blueviolet;
+
     border-radius: 25px;
     height: 43px;
     width: 63%;
