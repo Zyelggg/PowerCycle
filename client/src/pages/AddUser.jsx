@@ -1,48 +1,25 @@
-import React, { useEffect, useState } from "react";
-import { useParams, useNavigate, Link } from "react-router-dom";
-import {
-  Box,
-  Typography,
-  TextField,
-  Button,
-  Dialog,
-  DialogTitle,
-  DialogContent,
-  DialogContentText,
-  DialogActions,
-  InputLabel,
-  Select,
-  MenuItem,
-} from "@mui/material";
-import ChevronLeftIcon from "@mui/icons-material/ChevronLeft";
+import React from "react";
+import { Box, Typography, TextField, Button, IconButton,InputLabel, Select, MenuItem } from "@mui/material";
 import { useFormik } from "formik";
-import * as yup from "yup";
+import { useNavigate, Link } from "react-router-dom";
+import { ToastContainer, toast } from "react-toastify";
 import rewardimg from "./images/reward.png";
+import * as yup from "yup";
 import http from "../http";
 import "./styles/adminCard.css";
+import ChevronLeftIcon from "@mui/icons-material/ChevronLeft";
 
-function EditUser() {
-  const { id } = useParams();
+function AddUser() {
   const navigate = useNavigate();
 
-  const [user, setUser] = useState({
-    email: "",
-    password: "",
-    name: "",
-    phone: "",
-    admin: "",
-  });
-
-  useEffect(() => {
-    http.get(`/user/${id}`).then((res) => {
-      setUser(res.data);
-    });
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
-
   const formik = useFormik({
-    initialValues: user,
-    enableReinitialize: true,
+    initialValues: {
+      email: "",
+      password: "",
+      name: "",
+      phone: "",
+      admin: false
+    },
     validationSchema: yup.object({
       email: yup
         .string()
@@ -62,9 +39,9 @@ function EditUser() {
       name: yup
         .string()
         .trim()
-        .min(5, "User name must be at least 5 characters")
-        .max(30, "User name must be at most 30 characters")
-        .required("User name is required"),
+        .min(5, "Admin name must be at least 5 characters")
+        .max(30, "Admin name must be at most 30 characters")
+        .required("Admin name is required"),
       phone: yup
         .string()
         .trim()
@@ -77,29 +54,14 @@ function EditUser() {
       data.password = data.password.trim();
       data.name = data.name.trim();
       data.phone = data.phone.trim();
-      http.put(`/user/${id}`, data).then((res) => {
+      data.admin = Boolean(data.admin);
+      http.post("/user", data).then((res) => {
         console.log(res.data);
         navigate("/getuser");
       });
+      toast.success("User Added");
     },
   });
-
-  const [open, setOpen] = useState(false);
-
-  const handleOpen = () => {
-    setOpen(true);
-  };
-
-  const handleClose = () => {
-    setOpen(false);
-  };
-
-  const deleteUser = () => {
-    http.delete(`/user/${id}`).then((res) => {
-      console.log(res.data);
-      navigate("/getuser");
-    });
-  };
 
   return (
     <Box className="main-wrap">
@@ -113,8 +75,8 @@ function EditUser() {
           </Link>
         </Box>
         <Typography className="main-title" variant="h5" sx={{ my: 2 }}>
-          <img className="main-icon" src={rewardimg} alt="user" />
-          Edit User
+          <img className="main-icon" src={rewardimg} alt="admin" />
+          Add User
         </Typography>
         <Box component="form" onSubmit={formik.handleSubmit}>
           <TextField
@@ -147,7 +109,7 @@ function EditUser() {
             fullWidth
             margin="normal"
             autoComplete="off"
-            label="User name"
+            label="Admin name"
             name="name"
             value={formik.values.name}
             onChange={formik.handleChange}
@@ -167,11 +129,11 @@ function EditUser() {
             error={formik.touched.phone && Boolean(formik.errors.phone)}
             helperText={formik.touched.phone && formik.errors.phone}
           />
-          <InputLabel id="repairs-label">Admin Role</InputLabel>
+          <InputLabel id="admin-label">Admin Role</InputLabel>
           <Select
             fullWidth
             margin="normal"
-            labelId="repairs-label"
+            labelId="admin-label"
             id="admin"
             name="admin"
             value={formik.values.admin}
@@ -180,39 +142,24 @@ function EditUser() {
             <MenuItem value={false}>False</MenuItem>
             <MenuItem value={true}>True</MenuItem>
           </Select>
-          <Box sx={{ mt: 2 }}>
+          <Box
+            sx={{
+              mt: 2,
+              marginLeft: "auto",
+              display: "flex",
+              justifyContent: "flex-end",
+            }}
+          >
             <Button className="main-btn" variant="contained" type="submit">
-              Update
-            </Button>
-            <Button
-              variant="contained"
-              sx={{ ml: 2 }}
-              color="error"
-              onClick={handleOpen}
-            >
-              Delete
+              Add
             </Button>
           </Box>
-          <Dialog open={open} onClose={handleClose}>
-            <DialogTitle>Delete User?</DialogTitle>
-            <DialogContent>
-              <DialogContentText>
-                Are you want to delete this user account?
-              </DialogContentText>
-            </DialogContent>
-            <DialogActions>
-              <Button variant="contained" color="inherit" onClick={handleClose}>
-                Cancel
-              </Button>
-              <Button variant="contained" color="error" onClick={deleteUser}>
-                Delete
-              </Button>
-            </DialogActions>
-          </Dialog>
         </Box>
+
+        <ToastContainer />
       </Box>
     </Box>
   );
 }
 
-export default EditUser;
+export default AddUser
