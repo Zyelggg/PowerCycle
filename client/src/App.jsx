@@ -13,6 +13,7 @@ import EditReward from './pages/EditReward';
 import RetrieveReward from './pages/RetrieveReward';
 import DeleteReward from './pages/DeleteReward';
 import UserManagement from './pages/UserManagement';
+import RetrieveUser from "./pages/RetrieveUser";
 import AdminManagement from './pages/AdminManagement';
 import AddAdmin from './pages/AddAdmin';
 import EditAdmin from './pages/EditAdmin';
@@ -27,6 +28,9 @@ import Login from "./pages/Login";
 import Verification from "./pages/verification";
 import Userdetails from "./pages/userdetails";
 import Securitydetails from "./pages/securitydetails";
+import FAQ from './pages/FAQ';
+import About from "./pages/About";
+import AddPayment from "./pages/AddPayment";
 import "./App.css";
 import logo from "./pages/images/powerlogo.png";
 import human from "./pages/images/humanicon.png";
@@ -211,15 +215,21 @@ function App() {
                 </Link>
               </li>
               <li>
-                <Link to="/" onClick={handleLinkClick} className="navlink">
+                <Link to="/about" onClick={handleLinkClick} className="navlink">
                   About
                 </Link>
               </li>
               <li>
-                <Link to="/" onClick={handleLinkClick} className="navlink">
+                <Link to="/faqs" onClick={handleLinkClick} className="navlink">
                   FAQ
                 </Link>
               </li>
+              <li>
+                <Link to="/addPayment" onClick={handleLinkClick} className="navlink">
+                  Add Payment
+                </Link>
+              </li>
+              
               {user && (
                 <>
                   <li>
@@ -335,13 +345,17 @@ function App() {
             <Route path={"/editreward/:id"} element={<EditReward />} />
             <Route path={"/delreward"} element={<DeleteReward />} />
             <Route path={"/user"} element={<UserManagement />} />
+            <Route path={"/getuser"} element={<RetrieveUser />} />
             {/* <Route path={"/adminhome"} element={<AdminHome />} /> */}
             <Route path={"/admin"} element={<AdminManagement />} />
             <Route path={"/addadmin"} element={<AddAdmin />} />
             <Route path={"/getadmin"} element={<RetrieveAdmin />} />
             <Route path={"/editadmin/:id"} element={<EditAdmin />} />
             <Route path={"/deladmin"} element={<DeleteAdmin />} />
-            <Route path="/qrcode" element={<QRCode />} />
+            <Route path={"/faqs"} element={<FAQ />} />
+            <Route path={"/about"} element={<About />} />
+            <Route path={"/addPayment"} element={<AddPayment />} />
+            <Route path={"/qrcode"} element={<QRCode />} />
             <Route path={"/register"} element={<Register />} />
             <Route path={"/login"} element={<Login />} />
             <Route path={"/verification"} element={<Verification />} />
