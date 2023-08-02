@@ -1,3 +1,4 @@
+
 .css-1oqqzyl-MuiContainer-root {
     padding-right: 0px!important;
     padding-left: 0px!important;
@@ -6,6 +7,14 @@
 
 .landing-banner {
     background:   linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)),url("https://media.istockphoto.com/id/1050437392/photo/woman-feet-on-bycikle-pedal-in-sunset-light.jpg?s=1024x1024&w=is&k=20&c=YMElcoWzLAkxyU6jY2hj19CgpAXy2M3vGK0742HNC5g=");
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center center;
+    min-height: 500px;
+}
+
+.landing-banner2 {
+    background:   linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)),url("https://www.visitsingapore.com/editorials/cycling-routes-in-singapore/_jcr_content/par/mobile_21_content_sl/sliderccpar1/editorial_generic_co.thumbnail.overview-image.730.411.jpg");
     background-repeat: no-repeat;
     background-size: cover;
     background-position: center center;
@@ -55,6 +64,11 @@
     float:unset;
 }
 
+.bike-btn {
+    background-color: #F2C086 !important;
+    color: white !important;
+
+}
 
 .user-records {
     background-color: black;
@@ -63,6 +77,20 @@
     margin-top: 20px;
     margin-left:20px;
     margin-right: 20px;
+}
+
+.white-wrapper {
+    background-color: white;
+    border-radius: 15px;
+    padding: 20px;
+}
+
+.bike-image {
+    display: block;
+    margin: auto;
+    width: 35%;
+    margin-top: 10px;
+    margin-bottom: 20px;
 }
 
 @media screen and (max-width: 700px) {
