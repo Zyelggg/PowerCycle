@@ -1,6 +1,7 @@
 import React, { useState,useEffect } from "react";
 import "./Feedback.css";
 import Reviews from "./Reviews";
+import { Http } from "@mui/icons-material";
 
 
 const Feedback = () => {
@@ -8,7 +9,8 @@ const Feedback = () => {
   const [isLoading, setIsLoading] = useState(false); // State to track loading state
   const [isSent, setIsSent] = useState(false); // State to track if the message has been sent
   const [updateUI,setUpdateUI] = useState(false)
-
+  const [user,setUser] = useState("")
+  const[userid,setUserid] = useState("")
   const handleChange = (event) => {
     setFeedbackText(event.target.value);
   };
@@ -16,10 +18,10 @@ const Feedback = () => {
   const handleSubmit = () => {
     setIsLoading(true); // Set loading state to true when message is being sent
 
-    const signedUser = JSON.parse(localStorage.getItem("signedUser")); // Retrieve signed user from local storage
+    const signedUser = JSON.parse(localStorage.getItem("accessToken")); // Retrieve signed user from local storage
     const feedbackData = {
-      id: signedUser.id,
-      senderName: signedUser.name,
+      id: userid,
+      senderName: user.name,
       message: feedbackText,
       review: selectedReview
     };
@@ -52,11 +54,18 @@ const Feedback = () => {
 
   useEffect(() => {
     fetchFeedbacks();
+    if (localStorage.getItem("accessToken")) {
+      http.get("/user/auth").then((res) => {
+        setUser(res.data.user);
+        setUserid(res.data.userid);
+      });
+    }
   }, [updateUI]);
+  
 
   const fetchFeedbacks = async () => {
     try {
-      const response = await fetch("http://localhost:3001/feedbacks");
+      const response = await fetch("http://localhost:3001/feedback/feedbacks");
       if (!response.ok) {
         throw new Error("Network response was not ok");
       }
@@ -132,6 +141,6 @@ const Feedback = () => {
     </div>
     </div>
   );
-};
-
-export default Feedback;
+}
+  
+export default Feedback
