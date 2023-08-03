@@ -143,7 +143,7 @@ const UserSideNavigation = ({ handleLinkClick }) => {
                 </Link>
               </li>
               <li>
-                <Link to="/" onClick={handleLinkClick} className="navlink">
+                <Link to="/about" onClick={handleLinkClick} className="navlink">
                   About
                 </Link>
               </li>
@@ -165,17 +165,19 @@ const UserSideNavigation = ({ handleLinkClick }) => {
                       </Dropdown.Toggle>
 
                       <Dropdown.Menu>
-                        <Dropdown.Item>More...</Dropdown.Item>
-                        <Dropdown.Item href="/securitydetails/:id">
-                          Security Details
-                        </Dropdown.Item>
                         <Dropdown.Item href="/userdetails/:id">
                           User Details
                         </Dropdown.Item>
-                        <Dropdown.Item onClick={logout}>logout</Dropdown.Item>
+                        <Dropdown.Item href="/securitydetails/:id">
+                          Security Details
+                        </Dropdown.Item>
+                        <Dropdown.Item href="/payment">
+                          Payment Methods
+                        </Dropdown.Item>
                         <Dropdown.Item onClick={handleOpen}>
                           Delete account
                         </Dropdown.Item>
+                        <Dropdown.Item onClick={logout}>Logout</Dropdown.Item>
                       </Dropdown.Menu>
                     </Dropdown>
                   </li>

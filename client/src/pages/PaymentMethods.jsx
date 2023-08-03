@@ -3,13 +3,13 @@ import { Box, Typography, IconButton, Button, ToggleButton, ToggleButtonGroup } 
 import { useNavigate } from 'react-router-dom';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-import http from '../http';
+import http from "../http";
 import { Dialog, DialogTitle, DialogContent, DialogContentText, DialogActions } from '@mui/material';
 
-import mastercardIcon from '../assets/Mastercard-logo.svg.png';
-import visaIcon from '../assets/Visa_2021.svg.png';
-import deleteIcon from '../assets/delete.png';
-import editIcon from '../assets/pencil.png';
+// import mastercardIcon from '../assets/Mastercard-logo.svg.png';
+// import visaIcon from '../assets/Visa_2021.svg.png';
+// import deleteIcon from '../assets/delete.png';
+// import editIcon from '../assets/pencil.png';
 
 function PaymentMethods() {
   const [paymentMethods, setPaymentMethods] = useState([]);
@@ -258,4 +258,4 @@ function PaymentMethods() {
   );
 }
 
-export default PaymentMethods;
+export default PaymentMethods

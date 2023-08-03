@@ -36,6 +36,9 @@ import UserHistory from "./pages/UserHistory";
 import RidingBike from "./pages/RidingBike";
 import RideComplete from "./pages/RideComplete";
 import "./App.css";
+import AddPayment from "./pages/AddPayment";
+import PaymentMethods from "./pages/PaymentMethods";
+import UpdatePayment from "./pages/updatePayment";
 import logo from "./pages/images/powerlogo.png";
 import human from "./pages/images/humanicon.png";
 
@@ -56,6 +59,7 @@ import React, { useEffect, useState } from "react";
 import Dropdown from "react-bootstrap/Dropdown";
 
 import "bootstrap/dist/css/bootstrap.min.css";
+import { Update } from "@mui/icons-material";
 
 function App() {
   const [user, setUser] = useState(null);
@@ -204,7 +208,10 @@ function App() {
             <Route path={"/userdetails/:id"} element={<Userdetails />} />
             <Route path={"/userhistory/:id"} element={< UserHistory />} />
             <Route path={"/securitydetails/:id"} element={<Securitydetails />} />
-          </Routes>
+            <Route path={"/addpayment"} element={<AddPayment />} />
+            <Route path={"/payment"} element={<PaymentMethods />} />
+            <Route path={"/editpayment"} element={<UpdatePayment />} /> 
+          </Routes> 
         </Container>
       </Router>
     </UserContext.Provider>
