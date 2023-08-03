@@ -41,10 +41,7 @@ import PaymentMethods from "./pages/PaymentMethods";
 import UpdatePayment from "./pages/updatePayment";
 import logo from "./pages/images/powerlogo.png";
 import human from "./pages/images/humanicon.png";
-<<<<<<< HEAD
-=======
 import Feedback from "./components/Feedback";
->>>>>>> 86f2753632f77af6afd405ef5fd0def693384d35
 import UserSideNavigation from "./UserSideNavigation";
 import AdminSideNavigation from "./AdminSideNavigation";
 import Reviews from "./pages/Reviews"
