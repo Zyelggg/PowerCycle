@@ -198,11 +198,6 @@ function App() {
                 <Route path={"/payment"} element={<PaymentMethods />} />
                 <Route path={"/addpayment"} element={<AddPayment />} />
                 <Route path={"/editpayment"} element={<EditPayment />} />
-                <Route path={"/user"} element={<UserManagement />} />
-                <Route path={"/adduser"} element={<AddUser />} />
-                <Route path={"/getuser"} element={<RetrieveUser />} />
-                <Route path={"/edituser/:id"} element={<EditUser />} />
-                <Route path={"/deluser"} element={<DeleteUser />} />
               </Routes>
             </Container>
           </>
