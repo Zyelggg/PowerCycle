@@ -64,7 +64,6 @@ function RideComplete() {
 
 
             <div className="user-records">
-
                 <div className='white-wrapper'>
                     <Typography variant='h4' style={{ marginBottom: "20px" }}>Congratulations</Typography>
 
