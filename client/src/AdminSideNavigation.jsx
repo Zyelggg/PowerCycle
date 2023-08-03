@@ -92,9 +92,6 @@ const AdminSideNavigation = ({ handleLinkClick }) => {
           <Link to="/user">
             <Typography>Users</Typography>
           </Link>
-          <Link to="/admin">
-            <Typography>Admin</Typography>
-          </Link>
           <Link to="/">
             <Typography>Bikes</Typography>
           </Link>

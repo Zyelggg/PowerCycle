@@ -18,7 +18,7 @@ function AddUser() {
       password: "",
       name: "",
       phone: "",
-      admin: false
+      admin: true
     },
     validationSchema: yup.object({
       email: yup
