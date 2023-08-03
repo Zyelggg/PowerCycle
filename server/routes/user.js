@@ -33,7 +33,7 @@ router.post("/register",async (req,res)=>{
         email: yup.string().trim().email().max(50).required(),
         password: yup.string().trim().min(8).max(50).required(),
         phone: yup.string().trim().min(8).max(8).required(),
-        
+        admin: yup.bool().required()
     })
     console.log("here")
     try {
