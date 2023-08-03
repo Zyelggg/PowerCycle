@@ -187,7 +187,7 @@ function App() {
                 <Route path={"/login"} element={<Login />} />
                 <Route path={"/verification"} element={<Verification />} />
                 <Route path="/bikeservice" element={<BikeService />} />
-
+                <Route path="/faq" element={<FAQ/>} />
                 <Route path={"/userdetails/:id"} element={<Userdetails />} />
                 <Route path={"/userhistory/:id"} element={< UserHistory />} />
 
