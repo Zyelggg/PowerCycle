@@ -27,14 +27,14 @@ import FAQ from "./pages/FAQ";
 // import AdminHome from './pages/AdminHome';
 import QRCode from "./pages/QRCode";
 import UserContext from "./contexts/UserContext";
+import Feedback from "./components/Feedback";
+import UserHistory from "./pages/UserHistory"
 import http from "./http";
 import Register from "./pages/Register";
 import Login from "./pages/Login";
 import Verification from "./pages/verification";
 import Userdetails from "./pages/userdetails";
-import Securitydetails from "./pages/securitydetails";
-import UserHistory from "./pages/UserHistory";
-import RidingBike from "./pages/RidingBike";
+import Securitydetails from "./pages/securitydetails";import RidingBike from "./pages/RidingBike";
 import RideComplete from "./pages/RideComplete";
 import "./App.css";
 import AddPayment from "./pages/AddPayment";

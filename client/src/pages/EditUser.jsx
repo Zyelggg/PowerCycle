@@ -37,7 +37,7 @@ function EditUser() {
   });
 
   useEffect(() => {
-    http.get(`/userdetails/${id}`).then((res) => {
+    http.get(`/user/userdetails/${id}`).then((res) => {
       setUser(res.data);
     });
     // eslint-disable-next-line react-hooks/exhaustive-deps
