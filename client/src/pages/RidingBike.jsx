@@ -13,12 +13,6 @@ import http from "../http";
 function RidingBike() {
     const navigate = useNavigate();
 
-    const sampleData = {
-        userId: 1,
-        mileage: 50.7,
-        electricity: 8.3,
-        bikeId: 1,
-    };
     const [user, setUser] = useState(null);
     const [userDetail, setuserDetail] = useState({});
 
@@ -45,6 +39,12 @@ function RidingBike() {
         }
     }, []);
 
+    const sampleData = {
+        userId: user,
+        mileage: 50.7,
+        electricity: 8.3,
+        bikeId: 1,
+    };
 
     const onSubmit = () => {
         console.log("work")
@@ -104,12 +104,7 @@ function RidingBike() {
 
             </div>
 
-
-
-
             <Typography variant='h4' style={{ marginBottom: "20px", color: "white", marginLeft: "20px", marginTop: "40px" }}>Stuck? Talk to our customer help</Typography>
-
-
 
             <AppBar position="static" className="Footer">
                 <Container>

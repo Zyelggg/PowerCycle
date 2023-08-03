@@ -58,9 +58,8 @@ const UserSideNavigation = ({ handleLinkClick }) => {
     if (localStorage.getItem("accessToken")) {
       http.get("/user/auth").then((res) => {
         setUser(res.data.user);
-        setUserid(res.data.userid);
-        // Check if the user is an admin
-        setIsAdmin(res.data.user.admin === true);
+        // setUserid(res.data.userid);
+        
       });
 
     }

@@ -39,8 +39,8 @@ import "./App.css";
 import logo from "./pages/images/powerlogo.png";
 import human from "./pages/images/humanicon.png";
 
-import UserSideNavigation from "./UserSideNavigation"; 
-import AdminSideNavigation from "./AdminSideNavigation"; 
+import UserSideNavigation from "./UserSideNavigation";
+import AdminSideNavigation from "./AdminSideNavigation";
 
 import {
   Button,
@@ -139,17 +139,36 @@ function App() {
   return (
     <UserContext.Provider value={{ user, setUser }}>
       <Router>
-      {isAdmin ? (
+        {isAdmin ? (
           // Render admin side navigation if the user is an admin
           <>
             <AdminSideNavigation handleLinkClick={handleLinkClick} />
             <Container>
               <Routes>
-                <Route path="/admin" element={<AdminManagement />} />
-                <Route path="/addadmin" element={<AddAdmin />} />
-                <Route path="/getadmin" element={<RetrieveAdmin />} />
-                <Route path="/editadmin/:id" element={<EditAdmin />} />
-                <Route path="/deladmin" element={<DeleteAdmin />} />
+                <Route path="/home" element={<Home />} />
+                <Route path="/bike" element={<Bikes />} />
+                <Route path="/bikestop" element={<BikeStop />} />
+                <Route path="/bikedash" element={<BikeDash />} />
+                <Route path="/addbike" element={<AddBikes />} />
+                <Route path="/addbikestop" element={<AddBikeStop />} />
+                <Route path="/editbike/:id" element={<EditBikes />} />
+                <Route path="/editbikestop/:id" element={<EditBikeStop />} />
+                <Route path={"/reward"} element={<RewardManagement />} />
+                <Route path={"/addreward"} element={<AddReward />} />
+                <Route path={"/getreward"} element={<RetrieveReward />} />
+                <Route path={"/editreward/:id"} element={<EditReward />} />
+                <Route path={"/delreward"} element={<DeleteReward />} />
+                <Route path={"/user"} element={<UserManagement />} />
+                <Route path={"/adduser"} element={<AddUser />} />
+                <Route path={"/getuser"} element={<RetrieveUser />} />
+                <Route path={"/edituser/:id"} element={<EditUser />} />
+                <Route path={"/deluser"} element={<DeleteUser />} />
+                {/* <Route path={"/adminhome"} element={<AdminHome />} /> */}
+                <Route path={"/admin"} element={<AdminManagement />} />
+                <Route path={"/addadmin"} element={<AddAdmin />} />
+                <Route path={"/getadmin"} element={<RetrieveAdmin />} />
+                <Route path={"/editadmin/:id"} element={<EditAdmin />} />
+                <Route path={"/deladmin"} element={<DeleteAdmin />} />
               </Routes>
             </Container>
           </>
@@ -160,52 +179,24 @@ function App() {
             <Container>
               <Routes>
                 <Route path="/home" element={<Home />} />
-                <Route path="/" element={<BikeDash />} />
-                {/* Add other routes for user navigation here */}
+                <Route path="/qrcode" element={<QRCode />} />
+                <Route path="/ridecomplete" element={<RideComplete />} />
+                <Route path="/ridingbike" element={<RidingBike />} />
+                <Route path={"/register"} element={<Register />} />
+                <Route path={"/login"} element={<Login />} />
+                <Route path={"/verification"} element={<Verification />} />
+                <Route path="/bikeservice" element={<BikeService />} />
+
+                <Route path={"/userdetails/:id"} element={<Userdetails />} />
+                <Route path={"/userhistory/:id"} element={< UserHistory />} />
+
+                <Route path={"/securitydetails/:id"} element={<Securitydetails />} />
+
               </Routes>
             </Container>
           </>
         )}
-        <Container>
-          <Routes>
 
-            <Route path="/home" element={<Home />} />
-            <Route path="/" element={<BikeDash />} />
-            <Route path="/bikeservice" element={<BikeService />} />
-            <Route path="/bike" element={<Bikes />} />
-            <Route path="/bikestop" element={<BikeStop />} />
-            <Route path="/bikedash" element={<BikeDash />} />
-            <Route path="/addbike" element={<AddBikes />} />
-            <Route path="/addbikestop" element={<AddBikeStop />} />
-            <Route path="/editbike/:id" element={<EditBikes />} />
-            <Route path="/editbikestop/:id" element={<EditBikeStop />} />
-            <Route path={"/reward"} element={<RewardManagement />} />
-            <Route path={"/addreward"} element={<AddReward />} />
-            <Route path={"/getreward"} element={<RetrieveReward />} />
-            <Route path={"/editreward/:id"} element={<EditReward />} />
-            <Route path={"/delreward"} element={<DeleteReward />} />
-            <Route path={"/user"} element={<UserManagement />} />
-            <Route path={"/adduser"} element={<AddUser />} />
-            <Route path={"/getuser"} element={<RetrieveUser />} />
-            <Route path={"/edituser/:id"} element={<EditUser />} />
-            <Route path={"/deluser"} element={<DeleteUser />} />
-            {/* <Route path={"/adminhome"} element={<AdminHome />} /> */}
-            <Route path={"/admin"} element={<AdminManagement />} />
-            <Route path={"/addadmin"} element={<AddAdmin />} />
-            <Route path={"/getadmin"} element={<RetrieveAdmin />} />
-            <Route path={"/editadmin/:id"} element={<EditAdmin />} />
-            <Route path={"/deladmin"} element={<DeleteAdmin />} />
-            <Route path="/qrcode" element={<QRCode />} />
-            <Route path="/ridecomplete" element={<RideComplete />} />
-            <Route path="/ridingbike" element={<RidingBike />} />
-            <Route path={"/register"} element={<Register />} />
-            <Route path={"/login"} element={<Login />} />
-            <Route path={"/verification"} element={<Verification />} />
-            <Route path={"/userdetails/:id"} element={<Userdetails />} />
-            <Route path={"/userhistory/:id"} element={< UserHistory />} />
-            <Route path={"/securitydetails/:id"} element={<Securitydetails />} />
-          </Routes>
-        </Container>
       </Router>
     </UserContext.Provider>
     /* User Side Navigation */

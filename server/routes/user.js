@@ -50,6 +50,7 @@ router.post("/register",async (req,res)=>{
     data.email = data.email.trim().toLowerCase();
     data.password = data.password.trim();
     data.phone = data.phone.trim();
+    data.userid = data.id;
 
     // Check email
     let user = await User.findOne({

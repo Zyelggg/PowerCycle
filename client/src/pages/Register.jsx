@@ -86,6 +86,7 @@ function Register() {
       data.email = data.email.trim().toLowerCase();
       data.phone = data.phone.trim();
       data.password = data.password.trim();
+      data.userId = data.id;
       http
         .post("/user/register", data)
         .then((res) => {
