@@ -1,6 +1,8 @@
 import './styles/Reviews.css'
-import React, { useState ,useEffect } from "react";
+import React, { useState, useEffect } from "react";
+import { Container, AppBar, Toolbar, Typography, Box, Grid } from '@mui/material';
 import "./styles/Feedback.css";
+import http from '../http';
 
 function Reviews() {
   const [feedbackText, setFeedbackText] = useState("");
@@ -12,39 +14,49 @@ function Reviews() {
     setFeedbackText(event.target.value);
   };
 
+  const [user, setUser] = useState(null);
+
+  useEffect(() => {
+    
+    if (localStorage.getItem("accessToken")) {
+      // Use axios instead of fetch to keep consistency with other requests
+      http.get("/user/auth")
+        .then((res) => {
+          const userId = res.data.userid;
+          console.log(userId); // Verify the user value here
+          setUser(res.data.user);
+          // Fetch user details using the foreign key (userId)
+        })
+        .catch((error) => {
+          console.error('Error fetching user details:', error);
+        });
+    }
+  }, []);
+
   const handleSubmit = () => {
     setIsLoading(true); // Set loading state to true when message is being sent
 
-    const signedUser = JSON.parse(localStorage.getItem("signedUser")); // Retrieve signed user from local storage
     const feedbackData = {
-      id: signedUser.id,
-      senderName: signedUser.name,
+      id: user.id,
+      senderName: user.name,
       message: feedbackText,
-      review: selectedReview
+      review: 1
     };
 
-    // Send the feedbackData to the server using fetch or axios
-    fetch("http://localhost:3001/submit-feedback", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(feedbackData),
-    })
-      .then((response) => response.json())
-      .then((data) => {
-        console.log("Feedback submitted:", data); // Data received from the server
-        setIsSent(true); // Set isSent state to true when the message is sent
-        setFeedbackText(""); // Clear the textarea after submission
-        setTimeout(() => { setIsSent(false) }, 2000)
-        updateUI ? setUpdateUI(false) : setUpdateUI(true)
-      })
-      .catch((error) => {
-        console.error("Error submitting feedback:", error);
-      })
-      .finally(() => {
-        setIsLoading(false); // Set loading state to false after the request is completed
-      });
+    console.log("press");
+    console.log(user.name);
+    console.log(feedbackText);
+    http.post("/feedback/submit-feedback", feedbackData)
+            .then((res) => {
+                console.log("Backend Response:", res.status, res.data);
+            })
+            .catch((error) => {
+                console.error('Error submitting data:', error);
+            })
+            .finally(() => {
+              setIsLoading(false); // Set loading state to false after the request is completed
+            });
+
   };
 
   const [feedbacks, setFeedbacks] = useState([]);
@@ -54,16 +66,15 @@ function Reviews() {
   }, [updateUI]);
 
   const fetchFeedbacks = async () => {
-    try {
-      const response = await fetch("http://localhost:3001/feedbacks");
-      if (!response.ok) {
-        throw new Error("Network response was not ok");
-      }
-      const data = await response.json();
-      setFeedbacks(data);
-    } catch (error) {
-      console.error("Error fetching feedbacks:", error);
-    }
+
+    http.get(`/feedback/feedbacks`)
+      .then((res) => {
+        setFeedbacks(res.data); // Assuming the API response is an array of user details
+      })
+      .catch((error) => {
+        console.error('Error fetching user details:', error);
+      });
+
   };
   const [selectedReview, setSelectedReview] = useState(null);
   //reviews
@@ -71,9 +82,10 @@ function Reviews() {
 
     const handleReviewClick = (reviewNumber) => {
       setSelectedReview(reviewNumber);
-      console.log(selectedReview)
+      console.log(user);
     };
-    
+  }
+
     return (
       <div className="backgroundF">
         <div className="newF">
@@ -84,17 +96,23 @@ function Reviews() {
             <div style={{ display: 'flex', justifyContent: 'center', marginBottom: '10px' }}>
               <ReviewRow />
             </div>
-            <textarea
-              className="feedback-textarea"
-              placeholder="Enter your feedback here..."
-              value={feedbackText}
-              onChange={handleChange}
-            />
-            <div style={{ display: "flex", justifyContent: "center" }}>
-              <button className="send-button" onClick={handleSubmit}>
-                {isLoading ? "Sending..." : "Send Feedback"}
-              </button>
-            </div>
+
+            <form onSubmit={handleSubmit}>
+              <textarea
+                className="feedback-textarea"
+                placeholder="Enter your feedback here..."
+                value={feedbackText}
+                onChange={handleChange}
+              />
+              <div style={{ display: "flex", justifyContent: "center" }}>
+                <button className="send-button" type='button' onClick={handleSubmit}>
+                  {isLoading ? "Sending..." : "Send Feedback"}
+                </button>
+
+              </div>
+            </form>
+
+
             {isSent && (
               <div style={{ display: "flex", justifyContent: "center" }}>
                 <p>Message has been sent!</p>
@@ -102,28 +120,39 @@ function Reviews() {
             )}
           </div>
         </div>
-        <div className="newRev">
-          {feedbacks.map((feedback) => (
-            <Reviews key={feedback.id} username={feedback.senderName} message={feedback.message} review={feedback.review} />
+        <div >
+          {feedbacks.map((detail) => (
+            <Container className="newRev">
+            <Typography variant="h6" style={{ color: "white" }}>Review No.: #{detail.id}</Typography>
+            {/* <Typography variant="h6">Hours Ridden: {detail.hoursRidden}</Typography> */}
+            <Typography variant="h6" style={{ color: "white" }}>Username: {detail.senderName}</Typography>
+            <Typography variant="h6" style={{ color: "white" }}>User Message: {detail.message}</Typography>
+            {/* <Typography variant="h6" style={{ color: "white" }}>Electricity Generated: {detail.review}</Typography> */}
+            </Container>
+
+            
           ))}
         </div>
 
-
+        {feedbacks.map((detail) => (
         <div className="feedback-item" style={{ width: '75%', cursor: 'default' }}>
           {/* You can replace the below icon with your "bx-user-circle" icon */}
           <i className="bx bx-user-circle"></i>
 
           <div className="feedback-content">
             <div style={{ display: 'flex' }}>
-              <div className="username">{username}</div>
-              <div style={{ marginLeft: 'auto', marginTop: '10px' }} className="rating">Rating: {review}</div>
+              <div className="username">{detail.senderName}</div>
+              <div style={{ marginLeft: 'auto', marginTop: '10px' }} className="rating">Rating: {detail.review}</div>
             </div>
-            <div className="message">{message}</div>
+            <div className="message">{detail.message}</div>
           </div>
         </div>
+
+      ))}
       </div>
+
+
     )
   }
-}
 
-export default Reviews;
+  export default Reviews;
