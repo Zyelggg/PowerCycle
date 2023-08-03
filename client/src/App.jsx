@@ -27,7 +27,6 @@ import FAQ from "./pages/FAQ";
 import QRCode from "./pages/QRCode";
 import UserContext from "./contexts/UserContext";
 import Feedback from "./components/Feedback";
-import UserHistory from "./pages/UserHistory"
 import http from "./http";
 import Register from "./pages/Register";
 import Login from "./pages/Login";
