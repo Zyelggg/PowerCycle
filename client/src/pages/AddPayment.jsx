@@ -109,8 +109,8 @@ import * as yup from 'yup';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import http from '../http';
-// import mastercardIcon from '../assets/Mastercard-logo.svg.png';
-// import visaIcon from '../assets/Visa_2021.svg.png';
+import mastercardIcon from '../assets/Mastercard-logo.svg.png';
+import visaIcon from '../assets/Visa_2021.svg.png';
 
 
 export default function AddPayment() {
@@ -165,7 +165,6 @@ export default function AddPayment() {
   return (
     <Box className="payment-container"
       sx={{
-        marginTop: 8,
         display: 'flex',
         flexDirection: 'column',
         alignItems: 'center',

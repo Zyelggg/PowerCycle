@@ -22,6 +22,7 @@ import AddAdmin from './pages/AddAdmin';
 import EditAdmin from './pages/EditAdmin';
 import RetrieveAdmin from './pages/RetrieveAdmin';
 import DeleteAdmin from './pages/DeleteAdmin';
+import About from "./pages/About";
 import FAQ from "./pages/FAQ";
 // import AdminHome from './pages/AdminHome';
 import QRCode from "./pages/QRCode";
@@ -38,7 +39,7 @@ import RideComplete from "./pages/RideComplete";
 import "./App.css";
 import AddPayment from "./pages/AddPayment";
 import PaymentMethods from "./pages/PaymentMethods";
-import UpdatePayment from "./pages/updatePayment";
+import EditPayment from "./pages/EditPayment";
 import logo from "./pages/images/powerlogo.png";
 import human from "./pages/images/humanicon.png";
 import Feedback from "./components/Feedback";
@@ -59,7 +60,7 @@ import React, { useEffect, useState } from "react";
 import Dropdown from "react-bootstrap/Dropdown";
 
 import "bootstrap/dist/css/bootstrap.min.css";
-import { Update } from "@mui/icons-material";
+import { Add, Update } from "@mui/icons-material";
 
 function App() {
   const [user, setUser] = useState(null);
@@ -182,6 +183,7 @@ function App() {
                 <Route path="/home" element={<Home />} />
                 <Route path="/qrcode" element={<QRCode />} />
                 <Route path="/ridecomplete" element={<RideComplete />} />
+                <Route path={"/about"} element={<About />} />
                 <Route path="/faq" element={<FAQ />} />
                 <Route path="/feedback" element={<Feedback />} />
                 <Route path="/ridingbike" element={<RidingBike />} />
@@ -189,12 +191,17 @@ function App() {
                 <Route path={"/login"} element={<Login />} />
                 <Route path={"/verification"} element={<Verification />} />
                 <Route path="/bikeservice" element={<BikeService />} />
-                <Route path="/faq" element={<FAQ/>} />
                 <Route path={"/userdetails/:id"} element={<Userdetails />} />
                 <Route path={"/userhistory/:id"} element={< UserHistory />} />
-
                 <Route path={"/securitydetails/:id"} element={<Securitydetails />} />
-
+                <Route path={"/payment"} element={<PaymentMethods />} />
+                <Route path={"/addpayment"} element={<AddPayment />} />
+                <Route path={"/editpayment"} element={<EditPayment />} />
+                <Route path={"/user"} element={<UserManagement />} />
+                <Route path={"/adduser"} element={<AddUser />} />
+                <Route path={"/getuser"} element={<RetrieveUser />} />
+                <Route path={"/edituser/:id"} element={<EditUser />} />
+                <Route path={"/deluser"} element={<DeleteUser />} />
               </Routes>
             </Container>
           </>

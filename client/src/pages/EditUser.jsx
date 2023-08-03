@@ -30,7 +30,7 @@ function EditUser() {
     password: "",
     name: "",
     phone: "",
-    admin: "",
+    admin: ""
   });
 
   useEffect(() => {
@@ -43,7 +43,7 @@ function EditUser() {
   const formik = useFormik({
     initialValues: user,
     enableReinitialize: true,
-    validationSchema: yup.object({
+    validationSchema: yup.object().shape({
       email: yup
         .string()
         .trim()
@@ -70,7 +70,9 @@ function EditUser() {
         .trim()
         .matches(/^\d{8}$/, "Invalid phone number")
         .required("Phone number is required"),
-      admin: yup.boolean().required("Admin field is required"),
+      admin: yup
+        .boolean()
+        .required("Admin field is required"),
     }),
     onSubmit: (data) => {
       data.email = data.email.trim();
@@ -105,7 +107,7 @@ function EditUser() {
     <Box className="main-wrap">
       <Box>
         <Box sx={{ mb: 2 }}>
-          <Link to="/user" style={{ textDecoration: "none" }}>
+          <Link to="/getuser" style={{ textDecoration: "none" }}>
             <Button variant="contained">
               <ChevronLeftIcon></ChevronLeftIcon>
               back
@@ -125,7 +127,7 @@ function EditUser() {
             minRows={2}
             label="Email"
             name="email"
-            value={formik.values.email}
+            value={user.email && formik.values.email}
             onChange={formik.handleChange}
             error={formik.touched.email && Boolean(formik.errors.email)}
             helperText={formik.touched.email && formik.errors.email}
@@ -138,7 +140,7 @@ function EditUser() {
             minRows={2}
             label="Password"
             name="password"
-            value={formik.values.password}
+            value={user.password && formik.values.password}
             onChange={formik.handleChange}
             error={formik.touched.password && Boolean(formik.errors.password)}
             helperText={formik.touched.password && formik.errors.password}
@@ -149,7 +151,7 @@ function EditUser() {
             autoComplete="off"
             label="User name"
             name="name"
-            value={formik.values.name}
+            value={user.name && formik.values.name}
             onChange={formik.handleChange}
             error={formik.touched.name && Boolean(formik.errors.name)}
             helperText={formik.touched.name && formik.errors.name}
@@ -162,7 +164,7 @@ function EditUser() {
             minRows={2}
             label="Phone"
             name="phone"
-            value={formik.values.phone}
+            value={user.phone && formik.values.phone}
             onChange={formik.handleChange}
             error={formik.touched.phone && Boolean(formik.errors.phone)}
             helperText={formik.touched.phone && formik.errors.phone}
@@ -174,7 +176,7 @@ function EditUser() {
             labelId="admin-label"
             id="admin"
             name="admin"
-            value={formik.values.admin}
+            value={user.admin && formik.values.admin}
             onChange={formik.handleChange}
           >
             <MenuItem value={false}>False</MenuItem>

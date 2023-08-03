@@ -7,11 +7,11 @@ import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import http from '../http';
 
-// import mastercardIcon from '../assets/Mastercard-logo.svg.png';
-// import visaIcon from '../assets/Visa_2021.svg.png';
-// import '../pages/styles/Payment.css';
+import mastercardIcon from '../assets/Mastercard-logo.svg.png';
+import visaIcon from '../assets/Visa_2021.svg.png';
+import '../pages/styles/Payment.css';
 
-function UpdatePayment() {
+function EditPayment() {
   const navigate = useNavigate();
   const { id } = useParams();
   console.log(id);
@@ -232,4 +232,4 @@ function UpdatePayment() {
   );
 }
 
-export default UpdatePayment
+export default EditPayment
