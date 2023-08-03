@@ -1,6 +1,6 @@
 const express = require("express");
 const router = express.Router();
-const { Reward, Sequelize } = require("../models");
+const { Feedback,  Review, Sequelize  } = require("../models");
 const yup = require("yup");
 
 router.post("/submit-feedback", async (req, res) => {
@@ -25,18 +25,20 @@ router.post("/submit-feedback", async (req, res) => {
 
 // 2) Endpoint to fetch all feedbacks
 router.get("/feedbacks", async (req, res) => {
-    try {
-      // Fetch all feedbacks along with their corresponding replies
-      const feedbacksWithReplies = await Feedback.findAll({
-        include: { model: FeedbackReply, as: "reply" },
-      });
-  
-      res.json(feedbacksWithReplies);
-    } catch (error) {
-      console.error("Error fetching feedbacks:", error);
-      res.status(500).json({ error: "Error fetching feedbacks" });
-    }
+  let condition = {};
+  let search = req.query.search;
+  if (search) {
+    condition[Sequelize.Op.or] = [
+      { name: { [Sequelize.Op.like]: `%${search}%` } },
+      { email: { [Sequelize.Op.like]: `%${search}%` } },
+    ];
+  }
+  let list = await Feedback.findAll({
+    where: condition,
+    order: [["createdAt", "DESC"]],
   });
+  res.json(list);
+});
 
 // 3) Endpoint to update the status of a feedback entry
 router.put("/update-feedback-status/:id", async (req, res) => {
