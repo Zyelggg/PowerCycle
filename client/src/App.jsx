@@ -41,9 +41,9 @@ import PaymentMethods from "./pages/PaymentMethods";
 import UpdatePayment from "./pages/updatePayment";
 import logo from "./pages/images/powerlogo.png";
 import human from "./pages/images/humanicon.png";
-
 import UserSideNavigation from "./UserSideNavigation";
 import AdminSideNavigation from "./AdminSideNavigation";
+import Reviews from "./pages/Reviews"
 
 import {
   Button,
@@ -181,6 +181,7 @@ function App() {
               <Routes>
                 <Route path="/home" element={<Home />} />
                 <Route path="/qrcode" element={<QRCode />} />
+                <Route path="/reviews" element={<Reviews />} />
                 <Route path="/ridecomplete" element={<RideComplete />} />
                 <Route path="/ridingbike" element={<RidingBike />} />
                 <Route path={"/register"} element={<Register />} />
@@ -190,7 +191,6 @@ function App() {
                 <Route path="/faq" element={<FAQ/>} />
                 <Route path={"/userdetails/:id"} element={<Userdetails />} />
                 <Route path={"/userhistory/:id"} element={< UserHistory />} />
-
                 <Route path={"/securitydetails/:id"} element={<Securitydetails />} />
 
               </Routes>
