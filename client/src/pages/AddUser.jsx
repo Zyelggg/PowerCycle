@@ -18,7 +18,7 @@ function AddUser() {
       password: "",
       name: "",
       phone: "",
-      admin: false
+      admin: true
     },
     validationSchema: yup.object({
       email: yup
@@ -56,9 +56,9 @@ function AddUser() {
       data.phone = data.phone.trim();
       http.post("/user/verification", data).then((res) => {
         console.log(res.data);
+        toast.success("User Added")
         navigate("/getuser");
       });
-      toast.success("User Added");
     },
   });
 
@@ -146,8 +146,8 @@ function AddUser() {
             error={formik.touched.admin && Boolean(formik.errors.admin)}
             helperText={formik.touched.admin && formik.errors.admin}
           >
-            <MenuItem value={false}>False</MenuItem>
-            <MenuItem value={true}>True</MenuItem>
+            <MenuItem value={true}>False</MenuItem>
+            <MenuItem value={false}>True</MenuItem>
           </Select>
           <Box
             sx={{
