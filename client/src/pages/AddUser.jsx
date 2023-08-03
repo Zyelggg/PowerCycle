@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { Box, Typography, TextField, Button, IconButton,InputLabel, Select, MenuItem } from "@mui/material";
 import { useFormik } from "formik";
 import { useNavigate, Link } from "react-router-dom";
@@ -54,8 +54,7 @@ function AddUser() {
       data.password = data.password.trim();
       data.name = data.name.trim();
       data.phone = data.phone.trim();
-      data.admin = Boolean(data.admin);
-      http.post("/user", data).then((res) => {
+      http.post("/user/verification", data).then((res) => {
         console.log(res.data);
         navigate("/getuser");
       });
@@ -63,8 +62,14 @@ function AddUser() {
     },
   });
 
+  const [admin, setAdmin] = useState(false);
+
+  const handleChangeAdmin = (event) => {
+    setAdmin(event.target.value);
+  }
+
   return (
-    <Box className="main-wrap">
+    <Box className="main-wrap admin-wrap">
       <Box>
         <Box sx={{ mb: 2 }}>
           <Link to="/user" style={{ textDecoration: "none" }}>
@@ -136,8 +141,10 @@ function AddUser() {
             labelId="admin-label"
             id="admin"
             name="admin"
-            value={formik.values.admin}
-            onChange={formik.handleChange}
+            value={admin}
+            onChange={handleChangeAdmin}
+            error={formik.touched.admin && Boolean(formik.errors.admin)}
+            helperText={formik.touched.admin && formik.errors.admin}
           >
             <MenuItem value={false}>False</MenuItem>
             <MenuItem value={true}>True</MenuItem>

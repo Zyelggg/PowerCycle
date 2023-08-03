@@ -1,6 +1,7 @@
 import React from 'react'
 import './Reviews.css'
-export default function Reviews({username,message,review}) {
+
+function Reviews({username,message,review}) {
   return (
     <div className="feedback-item" style={{width:'75%',cursor:'default'}}>
       {/* You can replace the below icon with your "bx-user-circle" icon */}
@@ -16,3 +17,5 @@ export default function Reviews({username,message,review}) {
     </div>
   )
 }
+
+export default Reviews;

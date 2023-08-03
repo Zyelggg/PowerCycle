@@ -19,17 +19,15 @@ module.exports = (sequelize, DataTypes) => {
         admin: {
             type: DataTypes.BOOLEAN,
             allowNull: false,
-            defaultValue: false
+            defaultValue: false  
         }
     });
 
-    User.associate = (models) => {
-        User.hasMany(models.Bike, {
-            foreignKey: "userId",
-            as: "subUsers",
-            onDelete: "cascade"
-        });
-    };
+    User.associate = models => {
+        User.hasMany(models.Ridden, { foreignKey: 'userId' });
+        
+
+    }
 
     return User;
 }

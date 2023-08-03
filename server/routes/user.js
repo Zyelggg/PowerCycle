@@ -33,7 +33,7 @@ router.post("/register",async (req,res)=>{
         email: yup.string().trim().email().max(50).required(),
         password: yup.string().trim().min(8).max(50).required(),
         phone: yup.string().trim().min(8).max(8).required(),
-        
+        admin: yup.bool().required()
     })
     console.log("here")
     try {
@@ -50,6 +50,7 @@ router.post("/register",async (req,res)=>{
     data.email = data.email.trim().toLowerCase();
     data.password = data.password.trim();
     data.phone = data.phone.trim();
+    data.userid = data.id;
 
     // Check email
     let user = await User.findOne({

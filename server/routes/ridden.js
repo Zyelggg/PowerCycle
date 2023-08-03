@@ -14,26 +14,41 @@ const schema = yup.object().shape({
 // Define the POST route for creating a new Ridden instance
 router.post("/", async (req, res) => {
   try {
-    // Validate the request body against the schema
-    await schema.validate(req.body);
+    // Validate the request body against the defined schema
+    const validData = await schema.validate(req.body);
 
-    // Extract the data from the request body
-    const { userId, mileage, electricity, bikeId } = req.body;
-
-    // Create a new instance of the Ridden model with the data
-    const newRiddenInstance = await Ridden.create({
-      userId,
-      mileage,
-      electricity,
-      bikeId,
+    // Create a new Ridden instance in the database
+    const newRidden = await Ridden.create({
+      userId: validData.userId,
+      mileage: validData.mileage,
+      electricity: validData.electricity,
+      bikeId: validData.bikeId,
     });
 
-    // Send a success response
-    res.status(201).json(newRiddenInstance);
+    // Respond with the newly created Ridden instance
+    res.status(201).json(newRidden);
   } catch (error) {
-    // If validation or database error occurs, send an error response
+    // If validation or database insertion fails, handle the error
     res.status(400).json({ error: error.message });
   }
 });
+
+
+router.get("/", async (req, res) => {
+  let condition = {};
+  let search = req.query.search;
+  if (search) {
+      condition[Sequelize.Op.or] = [
+          { stopname: { [Sequelize.Op.like]: `%${search}%` } }
+      ];
+  }
+
+  let list = await Ridden.findAll({
+      where: condition,
+      order: [['createdAt', 'DESC']]
+  });
+  res.json(list);
+});
+
 
 module.exports = router;
