@@ -1,18 +1,15 @@
-import React, { useContext, useState } from "react";
-import { Container, AppBar, Toolbar, Typography, Box, Button, Grid } from '@mui/material';
-import { BrowserRouter as Router, Routes, Route, Link } from 'react-router-dom';
-import './styles/Home.css';
-import instagram from './images/instagram.png'
-import facebook from './images/facebook.png'
-import twitter from './images/twitter.png'
-import powercycle from './images/powercycle.png'
+import React, { useEffect, useState } from 'react';
+import { Container, AppBar, Toolbar, Typography, Box, Grid } from '@mui/material';
+import { Link } from 'react-router-dom';
+import http from '../http'; // Make sure to import the http client for API requests
+import instagram from './images/instagram.png';
+import facebook from './images/facebook.png';
+import twitter from './images/twitter.png';
+import powercycle from './images/powercycle.png';
 import logo from './images/powerlogo.png';
-import UserContext from "../contexts/UserContext";
 
 function UserHistory() {
-
- const navigate = useNavigate();
-  const [userDetail, setUserDetail] = useState({}); // No need for 'user' state
+  const [userDetails, setUserDetails] = useState([]); // Initialize as an empty array
 
   useEffect(() => {
     if (localStorage.getItem("accessToken")) {
@@ -29,23 +26,15 @@ function UserHistory() {
     }
   }, []);
 
+  console.log('userDetails:', userDetails);
+
   const fetchUserDetails = (userId) => {
-    http.get(`/user/userdetails/${userId}`)
+    http.get(`/ridden`)
       .then((res) => {
-        setUserDetail(res.data);
-        console.log(res.data);
+        setUserDetails(res.data); // Assuming the API response is an array of user details
       })
       .catch((error) => {
         console.error('Error fetching user details:', error);
-      });
-
-    http.get('/ridden')
-      .then((res) => {
-        setUserDetail(res.data);
-        console.log(res.data);
-      })
-      .catch((error) => {
-        console.error('Error fetching ridden details:', error);
       });
   };
 
@@ -54,7 +43,7 @@ function UserHistory() {
   };
 
   return (
-<Box>
+    <Box>
       <Box className="wrap-div">
         <Grid container spacing={5}>
           <Grid item xs={12} md={3}>
@@ -62,21 +51,22 @@ function UserHistory() {
           </Grid>
 
           <Grid item xs={12} md={9}>
-            <Typography variant="h3" style={{ color: "black", }}>John Doe</Typography>
+            <Typography variant="h3" style={{ color: "black" }}>John Doe</Typography>
             <Box className="hist-box">
-              <Typography variant="h5" >User History</Typography>
+              <Typography variant="h5">User History</Typography>
               {/* Display the user details here */}
-              {userDetail.map((userDetail, index) => (
+              {userDetails.map((detail, index) => (
                 <Box key={index} className="record-box">
                   <Grid container spacing={5}>
                     <Grid item xs={12} md={6}>
-                      <Typography variant="h6" >Bike No.: {userDetail.bikeNo}</Typography>
-                      <Typography variant="h6" >Hours Ridden: {userDetail.hoursRidden}</Typography>
-                      <Typography variant="h6" >Distance: {userDetail.distance}</Typography>
-                      <Typography variant="h6" >Total Charged: {userDetail.totalCharged}</Typography>
+                      <Typography variant="h6">Bike No.: #{detail.bikeId}</Typography>
+                      {/* <Typography variant="h6">Hours Ridden: {detail.hoursRidden}</Typography> */}
+                      <Typography variant="h6">Distance: {detail.mileage}</Typography>
+                      <Typography variant="h6">Electricity Generated: {detail.electricity}</Typography>
+                      {/* <Typography variant="h6">Total Charged: {detail.totalCharged}</Typography> */}
                     </Grid>
                     <Grid item xs={12} md={6}>
-                      <img src={powercycle} alt="image" style={{ width: "40px%" }} />
+                      <img src={powercycle} alt="image" style={{ width: "40px" }} />
                     </Grid>
                   </Grid>
                 </Box>
@@ -115,9 +105,9 @@ function UserHistory() {
               </Grid>
               <Grid item xs={12} md={3}>
                 <Typography variant="h6">Social Media</Typography>
-                <img src={instagram} className='socials'></img>
-                <img src={twitter} className='socials'></img>
-                <img src={facebook} className='socials'></img>
+                <img src={instagram} className='socials' alt="instagram"></img>
+                <img src={twitter} className='socials' alt="twitter"></img>
+                <img src={facebook} className='socials' alt="facebook"></img>
               </Grid>
             </Grid>
           </Toolbar>
