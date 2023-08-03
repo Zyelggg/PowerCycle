@@ -138,8 +138,6 @@ function App() {
   };
 
 
-
-
   return (
     <UserContext.Provider value={{ user, setUser }}>
       <Router>
@@ -149,7 +147,6 @@ function App() {
             <AdminSideNavigation handleLinkClick={handleLinkClick} />
             <Container>
               <Routes>
-                <Route path="/home" element={<Home />} />
                 <Route path="/bike" element={<Bikes />} />
                 <Route path="/bikestop" element={<BikeStop />} />
                 <Route path="/bikedash" element={<BikeDash />} />
@@ -202,5 +199,7 @@ function App() {
         )}
         </Router>
         </UserContext.Provider>
-  )
+  );
 }
+
+export default App;
