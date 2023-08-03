@@ -27,7 +27,7 @@ function AddBikes() {
                 .then((res) => {
                     console.log(res.data);
                     navigate("/bike");
-                })
+            })
         }
     });
 

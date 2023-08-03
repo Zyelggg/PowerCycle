@@ -2,7 +2,7 @@ import logins from "./Login.module.css";
 import { Icon } from "react-icons-kit";
 import { eyeOff } from "react-icons-kit/feather/eyeOff";
 import { eye } from "react-icons-kit/feather/eye";
-import React, { useContext, useState } from "react";
+import React, { useContext, useState , useEffect} from "react";
 import { Box, Typography, TextField, Button, Input } from "@mui/material";
 import { useNavigate } from "react-router-dom";
 import { useFormik } from "formik";
@@ -12,7 +12,9 @@ import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import UserContext from "../contexts/UserContext";
 import ggle from "./images/googleicon.png";
+
 function Login() {
+  
   const google = () => {
     window.open("http://localhost:3001/auth/google", "_self");
   };
@@ -20,7 +22,36 @@ function Login() {
   const { setUser } = useContext(UserContext);
   const [type, setType] = useState("password");
   const [icon, setIcon] = useState(eyeOff);
+  //remember me
+  // const [rememberMe, setRememberMe] = useState(false);
+  // const [email, setEmail] = useState("");
+  // const [password, setPassword] = useState("")
+  
 
+  // useEffect(()=>{
+  //   const storedEmail = Cookies.get('rememberedEmail');
+  //   const storedPassword = Cookies.get('rememberedPassword');
+
+  //   if (storedEmail && storedPassword) {
+  //     setEmail(storedEmail);
+  //     setPassword(storedPassword);
+  //     setRememberMe(true);
+  //   }
+    
+  // },[])
+  // const handleLogin = () => {
+    
+  //   if (rememberMe) {
+  //     // Set cookies to expire in 30 days
+  //     console.log("here")
+  //     Cookies.set('rememberedEmail', email, { expires: 30 });
+  //     Cookies.set('rememberedPassword', password, { expires: 30 });
+  //   } else {
+  //     // Remove cookies if "Remember Me" is not checked
+  //     Cookies.remove('rememberedEmail');
+  //     Cookies.remove('rememberedPassword');
+  //   }
+  // }
   const onSuccess = (res) => {
     console.log("Success,Current user: ", res.ProfileObj);
   };
@@ -33,9 +64,12 @@ function Login() {
       setIcon(eyeOff);
       setType("password");
     }
-    console.log("Work");
   };
   const formik = useFormik({
+    // initialValues: 
+    //   // email: email,
+    //   // password: password
+    // ,
     initialValues: {
       email: "",
       password: "",
@@ -60,6 +94,7 @@ function Login() {
       http
         .post("/user/login", data)
         .then((res) => {
+          // handleLogin()
           localStorage.setItem("accessToken", res.data.accessToken);
           setUser(res.data.user);
           navigate("/");
@@ -91,7 +126,7 @@ function Login() {
               label="Email"
               name="email"
               placeholder="Email"
-              value={formik.values.email}
+              value={formik.values.email }
               onChange={formik.handleChange}
               sx={{ borderColor: "white" }}
             />
@@ -111,7 +146,7 @@ function Login() {
               name="password"
               type={type}
               placeholder="Password"
-              value={formik.values.password}
+              value={formik.values.password }
               onChange={formik.handleChange}
             />
             <span
@@ -138,6 +173,8 @@ function Login() {
           <Box sx={{ display: "flex", alignItems: "center" }}>
             <input
               type="checkbox"
+              // checked={rememberMe}
+              // onChange={(e) => setRememberMe(e.target.checked)}
               style={{ height: "20px", marginRight: "5px" }}
             />
 

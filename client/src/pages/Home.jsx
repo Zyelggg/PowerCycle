@@ -8,8 +8,9 @@ import pic3 from './images/3.png'
 import instagram from './images/instagram.png'
 import facebook from './images/facebook.png'
 import twitter from './images/twitter.png'
-import banner1 from './images/banner1.png'
 import logo from './images/powerlogo.png';
+import banner1 from './images/banner1.png'
+
 
 
 function Home() {

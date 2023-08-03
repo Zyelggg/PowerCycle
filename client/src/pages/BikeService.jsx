@@ -58,7 +58,7 @@ function BikeService() {
   });
 
   const handleScanButtonClick = () => {
-    navigate("/qrcode")
+    navigate("/ridingbike")
   }
 
   return (
@@ -115,7 +115,7 @@ function BikeService() {
       </MapContainer>
 
 
-      <button onClick={handleScanButtonClick}>Scan QR Code</button>
+      <button style={{ color: "white" }} onClick={handleScanButtonClick}>Scan QR Code</button>
 
 
       <Box className="wrap-div" style={{ marginTop: "80px" }}>

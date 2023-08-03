@@ -12,13 +12,21 @@ import { edit2 } from "react-icons-kit/feather/edit2";
 import http from "../http";
 import dashboard from "./dashboard.module.css";
 import { lock } from "react-icons-kit/feather/lock";
+
 function userDetails() {
   const [user, setUser] = useState(null);
   //readonly section
   const [disabled, setDisabled] = useState(true);
+  // update background colour
+  const [backgroundColor, setBackgroundColor] = useState('#61677A'); 
   const editor = () => {
     if (disabled === true) {
       setDisabled(false);
+      setBackgroundColor("blueviolet");
+    }
+    else {
+      setDisabled(true);
+      setBackgroundColor("#61677A")
     }
   };
   // reload page(cancel button)
@@ -96,6 +104,7 @@ function userDetails() {
         // http
         //   .put(`/user/userdetails/${userDetail.id}`, data)
         .then((res) => {
+          editor()
           console.log(res.data);
         })
         .catch(function (err) {
@@ -122,9 +131,9 @@ function userDetails() {
             </label>
 
             <br />
-            <div className={dashboard.textwrap}>
+            <div className={dashboard.textwrap} style= {{background : backgroundColor}}>
               <input
-                style={{ color: "white" }}
+                style={{ color: "white",background : backgroundColor }}
                 className={dashboard.name}
                 margin="normal"
                 autoComplete="off"
@@ -149,9 +158,9 @@ function userDetails() {
               Email
             </label>
 
-            <div className={dashboard.textwrap}>
+            <div className={dashboard.textwrap}style={{background : backgroundColor}}>
               <input
-                style={{ color: "white" }}
+                style={{ color: "white" , background : backgroundColor}}
                 className={dashboard.email}
                 margin="normal"
                 autoComplete="off"
@@ -178,9 +187,9 @@ function userDetails() {
                   Account Created on
                 </label>
                 <br />
-                <div className={dashboard.textwrap} style={{ display: "flex" }}>
+                <div className={dashboard.textwrap} style={{ display: "flex" ,background : backgroundColor}}>
                   <input
-                    style={{ color: "white" }}
+                    style={{ color: "white" , background : backgroundColor }}
                     className={dashboard.dob}
                     margin="normal"
                     autoComplete="off"
@@ -207,9 +216,9 @@ function userDetails() {
                   Phone Number
                 </label>
                 <br />
-                <div className={dashboard.textwrap}>
+                <div className={dashboard.textwrap} style={{background : backgroundColor}}>
                   <input
-                    style={{ color: "white" }}
+                    style={{ color: "white" , background : backgroundColor }}
                     className={dashboard.phone}
                     margin="normal"
                     autoComplete="off"
@@ -253,11 +262,11 @@ function userDetails() {
                 marginTop: "20px",
               }}
             >
-              <Button className={dashboard.save} type="submit">
+              <Button className={dashboard.save} type="submit" >
                 Save
               </Button>
               <br />
-              <Button className={dashboard.cancel} onClick={reload}>
+              <Button className={dashboard.cancel} onClick={reload && editor}>
                 Cancel
               </Button>
             </Box>

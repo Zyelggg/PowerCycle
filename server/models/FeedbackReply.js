@@ -15,5 +15,5 @@ const FeedbackReply = sequelize.define("FeedbackReply", {
 
 }
   // Define a relationship between Feedback and FeedbackReply models
-  Feedback.hasOne(FeedbackReply, { as: "reply", foreignKey: "feedbackId" });
-  FeedbackReply.belongsTo(Feedback, { as: "feedback", foreignKey: "feedbackId" });
+//   Feedback.hasOne(FeedbackReply, { as: "reply", foreignKey: "feedbackId" });
+//   FeedbackReply.belongsTo(Feedback, { as: "feedback", foreignKey: "feedbackId" });
