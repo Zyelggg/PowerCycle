@@ -180,6 +180,7 @@ function App() {
             <UserSideNavigation handleLinkClick={handleLinkClick} />
             <Container>
               <Routes>
+                <Route path="/" element={<Home />} />
                 <Route path="/home" element={<Home />} />
                 <Route path="/qrcode" element={<QRCode />} />
                 <Route path="/reviews" element={<Reviews />} />

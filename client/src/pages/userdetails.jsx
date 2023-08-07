@@ -29,6 +29,11 @@ function userDetails() {
       setBackgroundColor("#61677A")
     }
   };
+  const cancel =() => {
+    setDisabled(true);
+    setBackgroundColor("#61677A")
+
+  }
   // reload page(cancel button)
   const reload = () => {
     formik.setFieldValue("name", userDetail.name);
@@ -266,7 +271,7 @@ function userDetails() {
                 Save
               </Button>
               <br />
-              <Button className={dashboard.cancel} onClick={reload && editor}>
+              <Button className={dashboard.cancel} onClick={reload && cancel}>
                 Cancel
               </Button>
             </Box>
