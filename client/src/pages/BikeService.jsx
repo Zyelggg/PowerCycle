@@ -30,7 +30,7 @@ function BikeService() {
     http.get('/bikestop').then((res) => {
       setBikeStopList(res.data);
     });
-  };
+  }; 
 
   useEffect(() => {
     getBikeStop();
@@ -62,7 +62,7 @@ function BikeService() {
   });
 
   const handleScanButtonClick = () => {
-    navigate("/ridingbike")
+    navigate("/qrcode")
   }
 
   return (

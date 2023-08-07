@@ -85,14 +85,14 @@ function RidingBike() {
             </Box>
             {/* Render the sampleData if it is available */}
             <div className="user-records">
-                <Typography variant='h4' style={{ marginBottom: "20px", color: "white" }}>You are now riding bike #123</Typography>
+                <Typography variant='h4' style={{ marginBottom: "20px", color: "white" }}>You are now riding Bike #{sampleData.bikeId}</Typography>
 
-                <img src={ebike} alt="image" style={{ width: "40px%" }} className='bike-image' />
+                <img src={ebike} alt="image" style={{ width: "40%" }} className='bike-image' />
                 <div className='white-wrapper'>
-                    <h2>User ID: {sampleData.userId}</h2>
-                    <p>Mileage: {sampleData.mileage}</p>
-                    <p>Electricity: {sampleData.electricity}</p>
-                    <p>Bike ID: {sampleData.bikeId}</p>
+                    <h2 style={{ color: "black" }}>User ID: {sampleData.userId}</h2>
+                    <p style={{ color: "black" }}>Mileage: {sampleData.mileage}</p>
+                    <p style={{ color: "black" }}>Electricity: {sampleData.electricity}</p>
+                    <p style={{ color: "black" }}>Bike ID: {sampleData.bikeId}</p>
                 </div>
 
                 {/* Buttons */}

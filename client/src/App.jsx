@@ -148,7 +148,18 @@ function App() {
             <AdminSideNavigation handleLinkClick={handleLinkClick} />
             <Container>
               <Routes>
-                <Route path="/bike" element={<Bikes />} />
+                
+              </Routes>
+            </Container>
+          </>
+        ) : (
+          // Render user side navigation if the user is not an admin
+          <>
+            <UserSideNavigation handleLinkClick={handleLinkClick} />
+            <Container>
+              <Routes>
+
+              <Route path="/bike" element={<Bikes />} />
                 <Route path="/bikestop" element={<BikeStop />} />
                 <Route path="/bikedash" element={<BikeDash />} />
                 <Route path="/addbike" element={<AddBikes />} />
@@ -171,15 +182,10 @@ function App() {
                 <Route path={"/getadmin"} element={<RetrieveAdmin />} />
                 <Route path={"/editadmin/:id"} element={<EditAdmin />} />
                 <Route path={"/deladmin"} element={<DeleteAdmin />} />
-              </Routes>
-            </Container>
-          </>
-        ) : (
-          // Render user side navigation if the user is not an admin
-          <>
-            <UserSideNavigation handleLinkClick={handleLinkClick} />
-            <Container>
-              <Routes>
+
+
+
+                {/* USer */}
                 <Route path="/home" element={<Home />} />
                 <Route path="/qrcode" element={<QRCode />} />
                 <Route path="/reviews" element={<Reviews />} />
