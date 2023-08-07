@@ -6,17 +6,24 @@ import * as yup from 'yup';
 import http from '../http';
 import './styles/Bike.css';
 import bikeicon from './images/bikeicon.png';
+import qr from 'qrcode';
 
 function AddBikes() {
+
     const navigate = useNavigate();
+    const [repairs, setRepairs] = useState(false);
+    const [bikeStopList, setBikeStopList] = useState([]);
+
 
     const formik = useFormik({
         initialValues: {
+            serialno: '',
             stopname: '',
             repairs: false
         },
 
         validationSchema: yup.object().shape({
+            serialno: yup.string().trim().required('Serial No. is required'),
             stopname: yup.string().trim().required('Stop name is required'),
             repairs: yup.boolean().required('Repairs field is required')
         }),
@@ -27,12 +34,11 @@ function AddBikes() {
                 .then((res) => {
                     console.log(res.data);
                     navigate("/bike");
-            })
+                })
         }
     });
 
-    const [repairs, setRepairs] = useState(false);
-    const [bikeStopList, setBikeStopList] = useState([]);
+
 
     const getBikeStop = () => {
         http.get('/bikestop').then((res) => {
@@ -51,6 +57,8 @@ function AddBikes() {
         setRepairs(event.target.value);
     };
 
+
+
     return (
         <Box className="main-wrap admin-wrap">
             <div style={{ display: 'flex', alignItems: 'center' }}>
@@ -61,6 +69,15 @@ function AddBikes() {
             </div>
             <Box component="form" onSubmit={formik.handleSubmit}>
 
+                <TextField
+                    fullWidth margin="normal" autoComplete="off"
+                    label="Serial No."
+                    name="serialno"
+                    value={formik.values.serialno}
+                    onChange={formik.handleChange}
+                    error={formik.touched.serialno && Boolean(formik.errors.serialno)}
+                    helperText={formik.touched.serialno && formik.errors.serialno}
+                />
 
                 <InputLabel id="stop-label">Stop name</InputLabel>
 

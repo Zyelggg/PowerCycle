@@ -6,6 +6,7 @@ import { Link } from 'react-router-dom';
 import { Box, Typography, Grid, Card, CardContent, Input, IconButton } from '@mui/material';
 import http from '../http';
 import bikeicon from './images/bikeicon.png';
+import jsQR from 'jsqr'; // Import jsQR
 
 function Bikes() {
   const [bikeList, setBikeList] = useState([]);
@@ -29,10 +30,51 @@ function Bikes() {
     });
   };
 
+  const readQRCodeValue = (qrCodeDataURL) => {
+    const image = new Image();
+    image.src = qrCodeDataURL;
+
+    const canvas = document.createElement('canvas');
+    const ctx = canvas.getContext('2d');
+
+    return new Promise((resolve, reject) => {
+      image.onload = () => {
+        canvas.width = image.width;
+        canvas.height = image.height;
+        ctx.drawImage(image, 0, 0);
+
+        const imageData = ctx.getImageData(0, 0, canvas.width, canvas.height);
+        const code = jsQR(imageData.data, imageData.width, imageData.height);
+
+        if (code) {
+          resolve(code.data); // Return the QR code value
+        } else {
+          reject(new Error('No QR code found'));
+        }
+      };
+
+      image.onerror = (error) => {
+        reject(error);
+      };
+    });
+  };
+
   useEffect(() => {
     http.get('/bike').then((res) => {
       setBikeList(res.data);
       setTotalBikes(res.data.length);
+
+      // Loop through bikeList to read QR code values
+      res.data.forEach((bike) => {
+        readQRCodeValue(bike.qrcode)
+          .then((qrCodeValue) => {
+            // Do something with the QR code value
+            console.log('QR Code Value:', qrCodeValue);
+          })
+          .catch((error) => {
+            console.error('Error reading QR code:', error);
+          });
+      });
     });
   }, []);
 
@@ -84,6 +126,9 @@ function Bikes() {
           <Grid item xs={12} md={6} lg={4} key={bike.id}>
             <Card>
               <CardContent>
+                {/* SHOW QR CODE IMAGE */}
+                <img src={bike.qrcode} alt="image" style={{ width: "100px" }} />
+
                 <Typography variant="h6" sx={{ fontWeight: 'bold' }}>
                   Bike No. #{bike.id}
                 </Typography>
