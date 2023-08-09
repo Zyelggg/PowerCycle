@@ -97,6 +97,21 @@ html body{
     margin-bottom: 20px;
 }
 
+.scanqr-btn {
+    color:white;
+    width: -webkit-fill-available;
+    margin: 20px;
+
+
+}
+
+.stuck-btn {
+    background-color: purple!important;
+    color: white;
+    margin-left:20px;
+    margin-bottom: 40px;
+}
+
 @media screen and (max-width: 700px) {
     h3 {
         font-size: 2.5rem!important;

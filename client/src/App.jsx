@@ -157,7 +157,28 @@ function App() {
           <>
             <UserSideNavigation handleLinkClick={handleLinkClick} />
             <Container>
+
+
               <Routes>
+                <Route path="/home" element={<Home />} />
+                <Route path="/qrcode" element={<QRCode />} />
+                <Route path="/reviews" element={<Reviews />} />
+                <Route path="/ridecomplete" element={<RideComplete />} />
+                <Route path={"/about"} element={<About />} />
+                <Route path="/faq" element={<FAQ />} />
+                <Route path="/review" element={<Reviews />} />
+                <Route path="/ridingbike" element={<RidingBike />} />
+                <Route path={"/register"} element={<Register />} />
+                <Route path={"/login"} element={<Login />} />
+                <Route path={"/verification"} element={<Verification />} />
+                <Route path="/bikeservice" element={<BikeService />} />
+                <Route path={"/userdetails/:id"} element={<Userdetails />} />
+                <Route path={"/userhistory/:id"} element={< UserHistory />} />
+                <Route path={"/securitydetails/:id"} element={<Securitydetails />} />
+                <Route path={"/payment"} element={<PaymentMethods />} />
+                <Route path={"/addpayment"} element={<AddPayment />} />
+                <Route path={"/editpayment"} element={<EditPayment />} />
+              
 
               <Route path="/bike" element={<Bikes />} />
                 <Route path="/bikestop" element={<BikeStop />} />
@@ -182,33 +203,6 @@ function App() {
                 <Route path={"/getadmin"} element={<RetrieveAdmin />} />
                 <Route path={"/editadmin/:id"} element={<EditAdmin />} />
                 <Route path={"/deladmin"} element={<DeleteAdmin />} />
-              </Routes>
-            </Container>
-          </>
-        ) : (
-          // Render user side navigation if the user is not an admin
-          <>
-            <UserSideNavigation handleLinkClick={handleLinkClick} />
-            <Container>
-              <Routes>
-                <Route path="/home" element={<Home />} />
-                <Route path="/qrcode" element={<QRCode />} />
-                <Route path="/reviews" element={<Reviews />} />
-                <Route path="/ridecomplete" element={<RideComplete />} />
-                <Route path={"/about"} element={<About />} />
-                <Route path="/faq" element={<FAQ />} />
-                <Route path="/review" element={<Reviews />} />
-                <Route path="/ridingbike" element={<RidingBike />} />
-                <Route path={"/register"} element={<Register />} />
-                <Route path={"/login"} element={<Login />} />
-                <Route path={"/verification"} element={<Verification />} />
-                <Route path="/bikeservice" element={<BikeService />} />
-                <Route path={"/userdetails/:id"} element={<Userdetails />} />
-                <Route path={"/userhistory/:id"} element={< UserHistory />} />
-                <Route path={"/securitydetails/:id"} element={<Securitydetails />} />
-                <Route path={"/payment"} element={<PaymentMethods />} />
-                <Route path={"/addpayment"} element={<AddPayment />} />
-                <Route path={"/editpayment"} element={<EditPayment />} />
               </Routes>
             </Container>
           </>

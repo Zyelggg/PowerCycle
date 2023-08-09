@@ -12,7 +12,6 @@ import logo from './images/powerlogo.png';
 import banner1 from './images/banner1.png'
 
 
-
 function Home() {
   return (
     <Box>

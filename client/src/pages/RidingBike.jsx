@@ -1,6 +1,6 @@
 import React, { useEffect, useRef, useState } from 'react';
 import './styles/Home.css';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useLocation } from 'react-router-dom';
 import ebike from './images/Ebike.png';
 import { Container, AppBar, Toolbar, Typography, Box, Button, Grid } from '@mui/material';
 import { BrowserRouter as Router, Routes, Route, Link } from 'react-router-dom';
@@ -15,6 +15,21 @@ function RidingBike() {
 
     const [user, setUser] = useState(null);
     const [userDetail, setuserDetail] = useState({});
+
+
+    const location = useLocation();
+    const queryParams = new URLSearchParams(location.search);
+
+    // Get the JSON object as a string from the query parameter
+    const qrCodeParam = queryParams.get('qrCode');
+
+    // Parse the JSON string to a JavaScript object
+    const qrCodeObject = JSON.parse(qrCodeParam);
+
+    // Now you can access the properties of the parsed object
+    const serialno = qrCodeObject.serialno;
+    const stopname = qrCodeObject.stopname;
+    const repairs = qrCodeObject.repairs;
 
     useEffect(() => {
         if (localStorage.getItem("accessToken")) {
@@ -43,7 +58,7 @@ function RidingBike() {
         userId: user,
         mileage: 50.7,
         electricity: 8.3,
-        bikeId: 1,
+        bikeId: serialno,
     };
 
     const onSubmit = () => {
@@ -103,8 +118,11 @@ function RidingBike() {
                 </form>
 
             </div>
+            <Container>
+                <Typography variant='h4' style={{ marginBottom: "20px", color: "white", marginLeft: "20px", marginTop: "40px" }}>Stuck? Talk to our customer help</Typography>
+                <button type="submit" className='stuck-btn'>Contact Us</button>
+            </Container>
 
-            <Typography variant='h4' style={{ marginBottom: "20px", color: "white", marginLeft: "20px", marginTop: "40px" }}>Stuck? Talk to our customer help</Typography>
 
             <AppBar position="static" className="Footer">
                 <Container>

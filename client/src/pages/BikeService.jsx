@@ -117,9 +117,11 @@ function BikeService() {
           </div>
         )}
       </MapContainer>
+      <Container>
+      <button className='scanqr-btn' onClick={handleScanButtonClick}>Scan QR Code</button>
 
+      </Container>
 
-      <button style={{ color: "white" }} onClick={handleScanButtonClick}>Scan QR Code</button>
 
 
       <Box className="wrap-div" style={{ marginTop: "80px" }}>
