@@ -15,16 +15,17 @@ const schema = yup.object().shape({
 router.post("/", async (req, res) => {
   try {
     // Validate the request body against the defined schema
-    const validData = await schema.validate(req.body);
+    let data = req.body;
 
     // Create a new Ridden instance in the database
     const newRidden = await Ridden.create({
-      userId: validData.userId,
-      mileage: validData.mileage,
-      electricity: validData.electricity,
-      bikeId: validData.bikeId,
+      userId: data.userId,
+      duration: data.duration,
+      mileage: data.mileage,
+      electricity: data.electricity,
+      bikeId: data.bikeId,
     });
-
+    
     // Respond with the newly created Ridden instance
     res.status(201).json(newRidden);
   } catch (error) {

@@ -45,6 +45,7 @@ import human from "./pages/images/humanicon.png";
 import UserSideNavigation from "./UserSideNavigation";
 import AdminSideNavigation from "./AdminSideNavigation";
 import Reviews from "./pages/Reviews"
+import Augmented from "./pages/Augmented";
 
 import {
   Button,
@@ -71,7 +72,7 @@ function App() {
   const [isNavExpanded, setIsNavExpanded] = useState(false);
   const [isDeleted, setIsDeleted] = useState(false);
   // Hook from react-router-dom
-  const [isAdmin, setIsAdmin] = useState(false);
+  const [isAdmin, setIsAdmin] = useState(true);
 
   // Function to handle link click and close the navigation menu
   const handleLinkClick = () => {
@@ -142,21 +143,48 @@ function App() {
   return (
     <UserContext.Provider value={{ user, setUser }}>
       <Router>
-        {isAdmin ? (
+      {isAdmin && location.pathname.includes("/admin") ? (
+
           // Render admin side navigation if the user is an admin
           <>
             <AdminSideNavigation handleLinkClick={handleLinkClick} />
             <Container>
               <Routes>
-                
+                <Route path="/admin/bike" element={<Bikes />} />
+                <Route path="/admin/bikestop" element={<BikeStop />} />
+                <Route path="/admin/bikedash" element={<BikeDash />} />
+                <Route path="/admin/addbike" element={<AddBikes />} />
+                <Route path="/admin/addbikestop" element={<AddBikeStop />} />
+                <Route path="/admin/editbike/:id" element={<EditBikes />} />
+                <Route path="/admin/editbikestop/:id" element={<EditBikeStop />} />
+                <Route path={"/admin/reward"} element={<RewardManagement />} />
+                <Route path={"/admin/addreward"} element={<AddReward />} />
+                <Route path={"/admin/getreward"} element={<RetrieveReward />} />
+                <Route path={"/admin/editreward/:id"} element={<EditReward />} />
+                <Route path={"/admin/delreward"} element={<DeleteReward />} />
+                <Route path={"/admin/user"} element={<UserManagement />} />
+                <Route path={"/adduser"} element={<AddUser />} />
+                <Route path={"/getuser"} element={<RetrieveUser />} />
+                <Route path={"/edituser/:id"} element={<EditUser />} />
+                <Route path={"/deluser"} element={<DeleteUser />} />
+                {/* <Route path={"/adminhome"} element={<AdminHome />} /> */}
+                <Route path={"/admin/admin"} element={<AdminManagement />} />
+                <Route path={"/admin/addadmin"} element={<AddAdmin />} />
+                <Route path={"/admin/getadmin"} element={<RetrieveAdmin />} />
+                <Route path={"/admin/editadmin/:id"} element={<EditAdmin />} />
+                <Route path={"/admin/deladmin"} element={<DeleteAdmin />} />
               </Routes>
             </Container>
           </>
         ) : (
           // Render user side navigation if the user is not an admin
           <>
+          
+
             <UserSideNavigation handleLinkClick={handleLinkClick} />
+            
             <Container>
+              
 
 
               <Routes>
@@ -178,31 +206,9 @@ function App() {
                 <Route path={"/payment"} element={<PaymentMethods />} />
                 <Route path={"/addpayment"} element={<AddPayment />} />
                 <Route path={"/editpayment"} element={<EditPayment />} />
-              
+                <Route path="/augmented" element={<Augmented />} />
 
-              <Route path="/bike" element={<Bikes />} />
-                <Route path="/bikestop" element={<BikeStop />} />
-                <Route path="/bikedash" element={<BikeDash />} />
-                <Route path="/addbike" element={<AddBikes />} />
-                <Route path="/addbikestop" element={<AddBikeStop />} />
-                <Route path="/editbike/:id" element={<EditBikes />} />
-                <Route path="/editbikestop/:id" element={<EditBikeStop />} />
-                <Route path={"/reward"} element={<RewardManagement />} />
-                <Route path={"/addreward"} element={<AddReward />} />
-                <Route path={"/getreward"} element={<RetrieveReward />} />
-                <Route path={"/editreward/:id"} element={<EditReward />} />
-                <Route path={"/delreward"} element={<DeleteReward />} />
-                <Route path={"/user"} element={<UserManagement />} />
-                <Route path={"/adduser"} element={<AddUser />} />
-                <Route path={"/getuser"} element={<RetrieveUser />} />
-                <Route path={"/edituser/:id"} element={<EditUser />} />
-                <Route path={"/deluser"} element={<DeleteUser />} />
-                {/* <Route path={"/adminhome"} element={<AdminHome />} /> */}
-                <Route path={"/admin"} element={<AdminManagement />} />
-                <Route path={"/addadmin"} element={<AddAdmin />} />
-                <Route path={"/getadmin"} element={<RetrieveAdmin />} />
-                <Route path={"/editadmin/:id"} element={<EditAdmin />} />
-                <Route path={"/deladmin"} element={<DeleteAdmin />} />
+
               </Routes>
             </Container>
           </>

@@ -38,8 +38,6 @@ function AddBikes() {
         }
     });
 
-
-
     const getBikeStop = () => {
         http.get('/bikestop').then((res) => {
             setBikeStopList(res.data);
@@ -56,8 +54,6 @@ function AddBikes() {
     const handleChangeRepairs = (event) => {
         setRepairs(event.target.value);
     };
-
-
 
     return (
         <Box className="main-wrap admin-wrap">

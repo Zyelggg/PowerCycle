@@ -4,6 +4,10 @@ module.exports = (sequelize, DataTypes) => {
             type: DataTypes.INTEGER,
             allowNull: false
         },
+        duration: {
+            type: DataTypes.FLOAT,
+            allowNull: false
+        },
         mileage: {
             type: DataTypes.FLOAT,
             allowNull: false

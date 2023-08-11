@@ -26,11 +26,6 @@ router.post("/", async (req, res) => {
   data.stopname = data.stopname.trim();
 
   try {
-    // Step 2: Create a JSON object with stopname and repairs
-    // const jsonData = JSON.stringify({
-    //   stopname: data.stopname,
-    //   repairs: data.repairs,
-    // });
 
     const qrcode = await generateQRCode(data.serialno);
 
