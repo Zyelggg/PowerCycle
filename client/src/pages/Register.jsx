@@ -12,9 +12,6 @@ import { eyeOff } from "react-icons-kit/feather/eyeOff";
 import { eye } from "react-icons-kit/feather/eye";
 import ggle from "./images/googleicon.png";
 function Register() {
-  const google = () => {
-    window.open("http://localhost:3001/auth/google", "_self");
-  };
   const navigate = useNavigate();
   const [type1, setType1] = useState("password");
   const [icon1, setIcon1] = useState(eyeOff);
@@ -316,7 +313,7 @@ function Register() {
                 style={{
                   cursor: "pointer",
                   color: "white",
-                  
+                  fontWeight:"bold"
                 }}
                 href="./login"
               >
@@ -324,21 +321,7 @@ function Register() {
               </a>
               {"  "}to Login
             </p>
-            <Box
-              style={{
-                display: "flex",
-                flexDirection: "row",
-                alignItems: "center",
-                marginTop: "30px",
-              }}
-            >
-              <hr style={{ width: "100%", height: "2px" }} />
-              <p style={{ color: "white", fontSize: "10px" }}>OR</p>
-              <hr style={{ width: "100%", height: "2px" }} />
-            </Box>
-            <div onClick={google} style={{ background: "white" ,height:"40px",textAlign:"center",borderRadius:"5px",cursor:"pointer"}}>
-              <p style={{ font: "15px",fontFamily:"Roboto",marginTop:"5px" }}><img src={ggle} alt="" style={{height:"30px",marginRight:"15px"}} /> Continue with Google</p>
-            </div>
+            
 
             <ToastContainer />
           </Box>

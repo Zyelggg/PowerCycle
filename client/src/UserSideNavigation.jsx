@@ -99,7 +99,7 @@ const UserSideNavigation = ({ handleLinkClick }) => {
             <img
               src={logo}
               className="logo"
-              style={{ marginTop: "20px", width: "80%" }}
+              style={{ width: "80%" }}
               alt="Logo"
             />
           </Link>

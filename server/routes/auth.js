@@ -36,34 +36,34 @@ router.get(
     failureRedirect: "/login/failed",
   })
 );
-router.post("/verification", (req, res) => {
-  const smtp = require('smtp-client');
+// router.post("/verification", (req, res) => {
+//   const smtp = require('smtp-client');
 
-const options = {
-  host: 'smtp.gmail.com',
-  port: 587,
-  secure: false, // false for TLS; true for SSL
-  auth: {
-    user: 'dragonlongt08@gmail.com',
-    password: 'password',
-  },
-};
+// const options = {
+//   host: 'smtp.gmail.com',
+//   port: 587,
+//   secure: false, // false for TLS; true for SSL
+//   auth: {
+//     user: 'dragonlongt08@gmail.com',
+//     password: 'password',
+//   },
+// };
 
-const email = {
-  from: 'dragonlongt08@gmail.com',
-  to: 'sipern08@gmail.com',
-  subject: 'This is the subject',
-  text: 'This is the body of the email',
-};
+// const email = {
+//   from: 'dragonlongt08@gmail.com',
+//   to: 'sipern08@gmail.com',
+//   subject: 'This is the subject',
+//   text: 'This is the body of the email',
+// };
 
-smtp.sendMail(email, options, (err, data) => {
-  if (err) {
-    console.error(err);
-  } else {
-    console.log('Email sent successfully!');
-  }
-});
-})
+// smtp.sendMail(email, options, (err, data) => {
+//   if (err) {
+//     console.error(err);
+//   } else {
+//     console.log('Email sent successfully!');
+//   }
+// });
+// })
 
 
 module.exports = router;

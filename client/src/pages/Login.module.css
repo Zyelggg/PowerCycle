@@ -15,7 +15,7 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    min-height: 100vh;
+    min-height: 90vh;
     background: #250D69;
 }
 
@@ -23,7 +23,7 @@
 {
     position: relative;
     width: 380px;
-    height: 550px;
+    height: 450px;
     background: #1c1c1c;
     border-radius: 8px;
     overflow: hidden;

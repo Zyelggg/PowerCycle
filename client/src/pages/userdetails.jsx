@@ -12,13 +12,15 @@ import { edit2 } from "react-icons-kit/feather/edit2";
 import http from "../http";
 import dashboard from "./dashboard.module.css";
 import { lock } from "react-icons-kit/feather/lock";
-
+import AspectRatio from '@mui/joy/AspectRatio'
 function userDetails() {
   const [user, setUser] = useState(null);
+  // const [imageFile, setImageFile] = useState(null);
+
   //readonly section
   const [disabled, setDisabled] = useState(true);
   // update background colour
-  const [backgroundColor, setBackgroundColor] = useState('#61677A'); 
+  const [backgroundColor, setBackgroundColor] = useState('#61677A');
   const editor = () => {
     if (disabled === true) {
       setDisabled(false);
@@ -29,7 +31,7 @@ function userDetails() {
       setBackgroundColor("#61677A")
     }
   };
-  const cancel =() => {
+  const cancel = () => {
     setDisabled(true);
     setBackgroundColor("#61677A")
 
@@ -47,7 +49,29 @@ function userDetails() {
     password: "",
     createdAt: "",
   });
+  const onFileChange = (e) => {
+    let file = e.target.files[0];
+    if (file) {
+      if (file.size > 1024 * 1024) {
+        toast.error('Maximum file size is 1MB');
+        return;
+      }
 
+      let formData = new FormData();
+      formData.append('file', file);
+      http.post('/file/upload', formData, {
+        headers: {
+          'Content-Type': 'multipart/form-data'
+        }
+      })
+        .then((res) => {
+          setImageFile(res.data.filename);
+        })
+        .catch(function (error) {
+          console.log(error.response);
+        });
+    }
+  };
   useEffect(() => {
     if (localStorage.getItem("accessToken")) {
       http
@@ -95,6 +119,7 @@ function userDetails() {
         .max(8, "Phone number must be 8 characters")
         .required("Phone Number is required"),
     }),
+
     onSubmit: (data) => {
       data.name = data.name.trim();
       data.email = data.email.trim();
@@ -119,26 +144,44 @@ function userDetails() {
   });
   return (
     <div className={dashboard.purpleContainer}>
-      <h2 className={dashboard.bth} style={{ fontFamily: "Montserrat" }}>
-        back to home {">>"}
-      </h2>
       <div className={dashboard.whiteContainer}>
         <div className={dashboard.header} style={{ fontFamily: "Montserrat" }}>
           User Details
         </div>
         <div className={dashboard.form}>
           <Box component="form" onSubmit={formik.handleSubmit}>
+            {/* <Box style={{ marginBottom: "30px" ,height:"3.5rem" }} >
+              <Button variant="contained" component="label">
+                Upload Image
+                <input hidden accept="image/*" multiple type="file"
+                  onChange={onFileChange} />              </Button>
+              {
+                imageFile && (
+                  <AspectRatio sx={{ mt: 3 }} style={{borderRadius: "50%", height: "150px",width:"150px",backgroundSize: "cover",marginTop:"-40px",
+                      backgroundPosition: "center",
+                      backgroundRepeat: 'no - repeat'}}>
+                    <Box component="img" alt="tutorial" className="pfpimg"style={{
+                       height:"100%",width:"100%",objectFit: 'contain', 
+                       objectPosition: 'center',
+                    }}
+                      src={`${import.meta.env.VITE_FILE_BASE_URL}${imageFile}`}>
+                    </Box>
+                  </AspectRatio>
+                )
+              }
+            </Box> */}
+
             <label
               for="name"
               style={{ fontSize: "10px", fontFamily: "Montserrat" }}
             >
               Name
-            </label>
+            </label>``
 
             <br />
-            <div className={dashboard.textwrap} style= {{background : backgroundColor}}>
+            <div className={dashboard.textwrap} style={{ background: backgroundColor }}>
               <input
-                style={{ color: "white",background : backgroundColor }}
+                style={{ color: "white", background: backgroundColor }}
                 className={dashboard.name}
                 margin="normal"
                 autoComplete="off"
@@ -163,9 +206,9 @@ function userDetails() {
               Email
             </label>
 
-            <div className={dashboard.textwrap}style={{background : backgroundColor}}>
+            <div className={dashboard.textwrap} style={{ background: backgroundColor }}>
               <input
-                style={{ color: "white" , background : backgroundColor}}
+                style={{ color: "white", background: backgroundColor }}
                 className={dashboard.email}
                 margin="normal"
                 autoComplete="off"
@@ -192,9 +235,9 @@ function userDetails() {
                   Account Created on
                 </label>
                 <br />
-                <div className={dashboard.textwrap} style={{ display: "flex" ,background : backgroundColor}}>
+                <div className={dashboard.textwrap} style={{ display: "flex", background: backgroundColor }}>
                   <input
-                    style={{ color: "white" , background : backgroundColor }}
+                    style={{ color: "white", background: backgroundColor }}
                     className={dashboard.dob}
                     margin="normal"
                     autoComplete="off"
@@ -221,9 +264,9 @@ function userDetails() {
                   Phone Number
                 </label>
                 <br />
-                <div className={dashboard.textwrap} style={{background : backgroundColor}}>
+                <div className={dashboard.textwrap} style={{ background: backgroundColor }}>
                   <input
-                    style={{ color: "white" , background : backgroundColor }}
+                    style={{ color: "white", background: backgroundColor }}
                     className={dashboard.phone}
                     margin="normal"
                     autoComplete="off"

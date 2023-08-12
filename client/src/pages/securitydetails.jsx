@@ -120,9 +120,6 @@ function securityDetails() {
   });
   return (
     <div className={dashboard.purpleContainer}>
-      <h2 className={dashboard.bth} style={{ fontFamily: "Montserrat" }}>
-        back to home {">>"}
-      </h2>
       <div className={dashboard.whiteContainer}>
         <div className={dashboard.header} style={{ fontFamily: "Montserrat" }}>
           Security Details

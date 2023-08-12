@@ -238,21 +238,8 @@ function Login() {
               </a>
               {"  "}to Sign Up
             </p>
-            <Box
-              style={{
-                display: "flex",
-                flexDirection: "row",
-                alignItems: "center",
-                marginTop: "25px",
-              }}
-            >
-              <hr style={{ width: "100%", height: "2px",color:"white",transform:"translateY(-7px)"}} />
-              <p style={{ color: "white", fontSize: "10px" }}>OR</p>
-              <hr style={{ width: "100%", height: "2px" ,color:"white",transform:"translateY(-7px)"}} />
-            </Box>
-            <div onClick={google} style={{ background: "white" ,height:"40px",textAlign:"center",borderRadius:"5px",cursor:"pointer"}}>
-              <p style={{ font: "15px",fontFamily:"Roboto",marginTop:"5px" }}><img src={ggle} alt="" style={{height:"30px",marginRight:"15px"}} /> Continue with Google</p>
-            </div>
+            
+            
           </Box>
         </Box>
       </div>

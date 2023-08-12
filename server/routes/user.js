@@ -35,7 +35,7 @@ router.post("/register",async (req,res)=>{
         phone: yup.string().trim().min(8).max(8).required(),
         admin: yup.bool().required()
     })
-    console.log("here")
+    
     try {
         await validationSchema.validate(data,
             { abortEarly: false, strict: true });
@@ -67,6 +67,7 @@ router.post("/register",async (req,res)=>{
         res.status(400).json({ message: "Phone number already exists." });
         return;
     };
+    console.log("here")
     res.json(data)
 })
 

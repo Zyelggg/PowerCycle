@@ -20,7 +20,12 @@ module.exports = (sequelize, DataTypes) => {
             type: DataTypes.BOOLEAN,
             allowNull: false,
             defaultValue: false  
-        }
+        },
+        // pic: {
+        //     type: DataTypes.STRING(20),
+        //     allowNull: false,
+        //     defaultValue: false  
+        // }
     });
 
     User.associate = models => {

@@ -28,7 +28,7 @@ input{
 {
     position: relative;
     width: 680px;
-    height: 620px;
+    height: 500px;
     background: #1c1c1c;
     border-radius: 8px;
     overflow: hidden;
@@ -127,6 +127,7 @@ input{
     border:hidden ;
     margin: auto;
     height:40px;
+    color: black;
     width:83%;
     box-shadow: #1c1c1c;
     outline: none;
