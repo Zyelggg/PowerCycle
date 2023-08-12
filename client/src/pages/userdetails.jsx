@@ -15,7 +15,8 @@ import { lock } from "react-icons-kit/feather/lock";
 import AspectRatio from '@mui/joy/AspectRatio'
 function userDetails() {
   const [user, setUser] = useState(null);
-  // const [imageFile, setImageFile] = useState(null);
+  const [imageFile, setImageFile] = useState('');
+  const [isButtonDisabled, setIsButtonDisabled] = useState(true);
 
   //readonly section
   const [disabled, setDisabled] = useState(true);
@@ -25,15 +26,18 @@ function userDetails() {
     if (disabled === true) {
       setDisabled(false);
       setBackgroundColor("blueviolet");
+      setIsButtonDisabled(false); 
     }
     else {
       setDisabled(true);
       setBackgroundColor("#61677A")
+      setIsButtonDisabled(true); 
     }
   };
   const cancel = () => {
     setDisabled(true);
     setBackgroundColor("#61677A")
+    setIsButtonDisabled(true); 
 
   }
   // reload page(cancel button)
@@ -48,6 +52,7 @@ function userDetails() {
     phone: "",
     password: "",
     createdAt: "",
+    pic:"",
   });
   const onFileChange = (e) => {
     let file = e.target.files[0];
@@ -82,18 +87,30 @@ function userDetails() {
           return res.data.userid;
         })
         .then((user) => {
-          console.log(user, "hi"); // Verify the user value here
           fetch(`http://localhost:3001/user/userdetails/${user}`, {
             method: "GET",
           })
             .then((res) => res.json()) // Parse the response as JSON
             .then((data) => {
               setuserDetail(data);
+              
               console.log(data);
             });
         });
+        
     }
+    
   }, []);
+  useEffect(() => {
+    console.log(userDetail);
+    if (userDetail.pic === 0 || !userDetail.pic || userDetail.pic === null) {
+      console.log("Empty");
+      setImageFile('defaultpfp.png');
+    } else {
+      console.log("not Empty");
+      setImageFile(userDetail.pic);
+    }
+  }, [userDetail]);
 
   const formik = useFormik({
     initialValues: userDetail,
@@ -124,6 +141,7 @@ function userDetails() {
       data.name = data.name.trim();
       data.email = data.email.trim();
       data.phone = data.phone.trim();
+      data.pic = imageFile;
       fetch(`http://localhost:3001/user/userdetails/${userDetail.id}`, {
         method: "PUT",
         body: JSON.stringify(data),
@@ -136,6 +154,7 @@ function userDetails() {
         .then((res) => {
           editor()
           console.log(res.data);
+          toast.success(res.data)
         })
         .catch(function (err) {
           toast.error(`${err.response.data.message}`);
@@ -148,10 +167,12 @@ function userDetails() {
         <div className={dashboard.header} style={{ fontFamily: "Montserrat",color:"black" }}>
           User Details
         </div>
+
         <div className={dashboard.form}>
           <Box component="form" onSubmit={formik.handleSubmit}>
-            {/* <Box style={{ marginBottom: "30px" ,height:"3.5rem" }} >
-              <Button variant="contained" component="label">
+           
+            <Box style={{ marginBottom: "30px",marginTop:"30px" ,height:"3.5rem" }} >
+              <Button variant="contained" disabled={isButtonDisabled} component="label" style={{marginTop:"25px"}}>
                 Upload Image
                 <input hidden accept="image/*" multiple type="file"
                   onChange={onFileChange} />              </Button>
@@ -169,7 +190,8 @@ function userDetails() {
                   </AspectRatio>
                 )
               }
-            </Box> */}
+            </Box>
+            
 
             <label
               for="name"
@@ -310,7 +332,7 @@ function userDetails() {
                 marginTop: "20px",
               }}
             >
-              <Button className={dashboard.save} type="submit" >
+              <Button className={dashboard.save} type="submit" onClick={{cancel}} >
                 Save
               </Button>
               <br />

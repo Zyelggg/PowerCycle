@@ -10,11 +10,14 @@ import Registers from "./Register.module.css";
 import { Icon } from "react-icons-kit";
 import { eyeOff } from "react-icons-kit/feather/eyeOff";
 import { eye } from "react-icons-kit/feather/eye";
+import AspectRatio from '@mui/joy/AspectRatio';
+
 
 function Register() {
   const navigate = useNavigate();
   const [type1, setType1] = useState("password");
   const [icon1, setIcon1] = useState(eyeOff);
+
   //first eye
   const passToggle = () => {
     if (type1 === "password") {
@@ -37,6 +40,8 @@ function Register() {
       setType2("password");
     }
   };
+  
+
   const formik = useFormik({
     initialValues: {
       name: "",
@@ -84,6 +89,7 @@ function Register() {
       data.phone = data.phone.trim();
       data.password = data.password.trim();
       data.admin = false;
+      
       // data.userId = data.id;
       http
         .post("/user/register", data)
@@ -95,8 +101,8 @@ function Register() {
         .catch(function (err) {
           toast.error(`${err.response.data.message}`);
         });
-      
-      
+
+
     },
   });
 
@@ -109,7 +115,7 @@ function Register() {
           sx={{ maxWidth: "500px" }}
           onSubmit={formik.handleSubmit}
         >
-          <h2 style={{color:"white"}}>SignUp</h2>
+          <h2 style={{ color: "white" }}>SignUp</h2>
           <br />
           <Box
             style={{
@@ -276,14 +282,15 @@ function Register() {
                 sx={{ borderColor: "white" }}
               />
             </div>
-          </Box>
-          
-            {formik.touched.phone && formik.errors.phone && (
-              <div className={Registers.errorText} color="red">
-                {formik.errors.phone}
-              </div>
-            )}
             
+          </Box>
+
+          {formik.touched.phone && formik.errors.phone && (
+            <div className={Registers.errorText} color="red">
+              {formik.errors.phone}
+            </div>
+          )}
+
           <Box style={{ display: "flex", flexDirection: "column" }}>
             <Button
               fullWidth
@@ -314,7 +321,7 @@ function Register() {
                 style={{
                   cursor: "pointer",
                   color: "white",
-                  fontWeight:"bold"
+                  fontWeight: "bold"
                 }}
                 href="./login"
               >
@@ -322,7 +329,7 @@ function Register() {
               </a>
               {"  "}to Login
             </p>
-            
+
 
             <ToastContainer />
           </Box>

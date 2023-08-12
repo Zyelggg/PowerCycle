@@ -21,11 +21,10 @@ module.exports = (sequelize, DataTypes) => {
             allowNull: false,
             defaultValue: false  
         },
-        // pic: {
-        //     type: DataTypes.STRING(20),
-        //     allowNull: false,
-        //     defaultValue: false  
-        // }
+        pic: {
+            type: DataTypes.STRING(20),
+            allowNull: true
+        }
     });
 
     User.associate = models => {
