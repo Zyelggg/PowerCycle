@@ -26,6 +26,8 @@ router.get("/", async (req, res) => {
 
 router.post("/register",async (req,res)=>{
     let data = req.body;
+
+
     // Validate request body
     let validationSchema = yup.object().shape({
         name: yup.string().trim().matches(/^[a-z ,.'-]+$/i)
@@ -35,12 +37,13 @@ router.post("/register",async (req,res)=>{
         phone: yup.string().trim().min(8).max(8).required(),
         admin: yup.bool().required()
     })
-    
+
     try {
         await validationSchema.validate(data,
             { abortEarly: false, strict: true });
     }
     catch (err) {
+        console.error(err);
         res.status(400).json({ errors: err.errors });
         return;
     }
@@ -67,7 +70,7 @@ router.post("/register",async (req,res)=>{
         res.status(400).json({ message: "Phone number already exists." });
         return;
     };
-    console.log("here")
+
     res.json(data)
 })
 

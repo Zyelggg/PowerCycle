@@ -10,7 +10,7 @@ import Registers from "./Register.module.css";
 import { Icon } from "react-icons-kit";
 import { eyeOff } from "react-icons-kit/feather/eyeOff";
 import { eye } from "react-icons-kit/feather/eye";
-import ggle from "./images/googleicon.png";
+
 function Register() {
   const navigate = useNavigate();
   const [type1, setType1] = useState("password");
@@ -83,7 +83,8 @@ function Register() {
       data.email = data.email.trim().toLowerCase();
       data.phone = data.phone.trim();
       data.password = data.password.trim();
-      data.userId = data.id;
+      data.admin = false;
+      // data.userId = data.id;
       http
         .post("/user/register", data)
         .then((res) => {

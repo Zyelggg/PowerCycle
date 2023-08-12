@@ -16,6 +16,8 @@
     "@mui/icons-material": "^5.11.0",
     "@mui/joy": "^5.0.0-alpha.86",
     "@mui/material": "^5.11.6",
+    "aframe": "^1.4.2",
+    "aframe-ar": "^0.2.1-a",
     "antd": "^5.6.3",
     "ar.js": "^2.2.2",
     "axios": "^1.2.6",

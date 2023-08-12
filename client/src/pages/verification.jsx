@@ -81,6 +81,7 @@ const Verification = () => {
       })
       .catch((err) => {
         console.log(err);
+        toast.error("Wrong OTP");
         setLoading(false);
       });
   }
@@ -123,12 +124,14 @@ const Verification = () => {
                 </div>
                 <label
                   htmlFor="otp"
-                  className="font-bold text-xl text-white text-center"
+                  className="font-bold text-xl text-black text-center"
+                  style={{color:"white"}}
                 >
                   Enter your OTP
                 </label>
                 <OtpInput
                   value={otp}
+                  style={{color:"black"}}
                   onChange={setOtp}
                   OTPLength={6}
                   otpType="number"
