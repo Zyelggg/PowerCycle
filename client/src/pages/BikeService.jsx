@@ -21,7 +21,7 @@ function BikeService() {
 
   var urlAndroid =
     "intent://arvr.google.com/scene-viewer/1.0?file=" +
-    'https://raw.githubusercontent.com/Zyelggg/PowerCycle/main/client/src/assets/bicycle/scene.gltf?token=GHSAT0AAAAAACGGFNJCAKME4TTCOL53H2I4ZGXVLWQ' +
+    'https://raw.githubusercontent.com/ZhiLong25/bicycle/main/bicycle/scene.gltf' +
     "&mode=ar_preferred#Intent;scheme=https;package=com.google.android.googlequicksearchbox;action=android.intent.action.VIEW;S.browser_fallback_url=https://developers.google.com/ar;end;";
 
   const [markerClicked, setMarkerClicked] = useState(null);
@@ -207,32 +207,15 @@ function BikeService() {
 
       <Container>
         <button className='scanqr-btn' onClick={handleScanButtonClick}>Scan QR Code</button>
-
       </Container>
-
 
       <Container>
         <Typography variant='h3' className='title-wrap'>Curious how our bike looks like?</Typography>
-
         <Container style={{ width: "-webkit-fill-available", margin: "20px" }}>
           <Grid container rowSpacing={1} columnSpacing={{ xs: 1, sm: 2, md: 3 }} >
             <Grid item xs={12} sm={6}>
-              <Chip
-                label="Try for Android"
-                component="a"
-                href={urlAndroid}
-                icon={<AndroidIcon />}
-                variant="outlined"
-                clickable
-              />
-               <Chip
-                label="Try for Apple"
-                component="a"
-                href={bikeIOS}
-                icon={<AppleIcon />}
-                variant="outlined"
-                clickable
-              />
+
+
               <Card>
                 <CardMedia
                   sx={{ height: 140 }}
@@ -241,13 +224,18 @@ function BikeService() {
                 />
                 <CardContent>
                   <Typography variant='h4' color="text.secondary" gutterBottom>
-                    Try for Android
+                    Android
                   </Typography>
                 </CardContent>
                 <CardActions>
-                  <a rel="ar" href={urlAndroid}>
-                    <Button size="small">View Now</Button>
-                  </a>
+                  <Chip
+                    color="primary"
+                    label="Try Now for Android"
+                    component="a"
+                    href={urlAndroid}
+                    icon={<AndroidIcon />}
+                    clickable
+                  />
                 </CardActions>
               </Card>
             </Grid>
@@ -264,9 +252,14 @@ function BikeService() {
                   </Typography>
                 </CardContent>
                 <CardActions>
-                  <a rel="ar" href={bikeIOS}>
-                    <Button size="small">View Now</Button>
-                  </a>
+                  <Chip
+                    color="primary"
+                    label="Try Now for Apple"
+                    component="a"
+                    href={bikeIOS}
+                    icon={<AppleIcon />}
+                    clickable
+                  />
                 </CardActions>
               </Card>
 
