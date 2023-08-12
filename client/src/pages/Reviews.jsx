@@ -1,8 +1,12 @@
 import './styles/Reviews.css'
 import React, { useState, useEffect } from "react";
-import { Container, AppBar, Toolbar, Typography, Box, Grid } from '@mui/material';
+import { Container, AppBar, Toolbar, Typography, Box, Grid, Link } from '@mui/material';
 import "./styles/Feedback.css";
 import http from '../http';
+import logo from './images/powerlogo.png';
+import instagram from './images/instagram.png'
+import facebook from './images/facebook.png'
+import twitter from './images/twitter.png'
 
 function Reviews() {
   const [feedbackText, setFeedbackText] = useState("");
@@ -90,7 +94,7 @@ function Reviews() {
 
     return (
       <div className="backgroundF">
-        <div className="newF">
+        <div className="newF" >
           <div className="feedback-container">
             <div style={{ display: "flex", justifyContent: "center" }}>
               <h2>Send Us Your Feedback!</h2>
@@ -151,9 +155,51 @@ function Reviews() {
         </div>
 
       ))}
+
+<AppBar position="static" className="Footer">
+        <Container>
+          <Toolbar disableGutters={true}>
+            <Grid container spacing={3}>
+              <Grid item xs={12} md={3}>
+                <img src={logo} className="logo" alt="PowerLogo" />
+              </Grid>
+              <Grid item xs={12} md={3}>
+                <Typography variant="h6">Navigation</Typography>
+                <Link to="/home">
+                  <Typography>Home</Typography>
+                </Link>
+                <Link to="/bikeservice">
+                  <Typography>Bicycles</Typography>
+                </Link>
+                <Link to="/">
+                  <Typography>About</Typography>
+                </Link>
+              </Grid>
+              <Grid item xs={12} md={3}>
+                <Typography variant="h6">Customer Help</Typography>
+                <Link to="/">
+                  <Typography>FAQ</Typography>
+                </Link>
+                <Link to="/">
+                  <Typography>Message Us</Typography>
+                </Link>
+              </Grid>
+              <Grid item xs={12} md={3}>
+                <Typography variant="h6">Social Media</Typography>
+                <img src={instagram} className='socials' alt="Instagram" />
+                <img src={twitter} className='socials' alt="Twitter" />
+                <img src={facebook} className='socials' alt="Facebook" />
+              </Grid>
+            </Grid>
+          </Toolbar>
+          <Typography variant="body1" style={{ textAlign: "center", marginTop: "40px" }}>
+            © 2023 PowerRide. All rights reserved.
+          </Typography>
+        </Container>
+      </AppBar>
       </div>
 
-
+      
     )
   }
 

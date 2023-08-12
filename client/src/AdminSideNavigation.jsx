@@ -76,29 +76,26 @@ const AdminSideNavigation = ({ handleLinkClick }) => {
     <AppBar className="sidebar">
       <Container>
         <Toolbar disableGutters={true} className="nav-links">
-          <img src={logo} className="logo" />
+        <Link to="/home"><img src={logo} className="logo" /></Link>
 
-          <Link to="/bikedash">
+          <Link to="/admin/admin">
             <Typography variant="h6" component="div" className="nav-title">
               Admin Dashboard
             </Typography>
           </Link>
-          <Link to="/adminhome">
-            <Typography>Home</Typography>
-          </Link>
-          <Link to="/reward">
+          <Link to="/admin/rewards">
             <Typography>Rewards</Typography>
           </Link>
-          <Link to="/user">
+          <Link to="/admin/user">
             <Typography>Users</Typography>
           </Link>
-          <Link to="/">
+          <Link to="/admin/bikedash">
             <Typography>Bikes</Typography>
           </Link>
-          <Link to="/">
+          <Link to="/admin/">
             <Typography>Transactions</Typography>
           </Link>
-          <Link to="/">
+          <Link to="/admin/feedback">
             <Typography>Feedback</Typography>
           </Link>
         </Toolbar>

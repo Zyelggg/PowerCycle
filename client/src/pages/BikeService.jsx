@@ -14,12 +14,13 @@ import facebook from './images/facebook.png'
 import twitter from './images/twitter.png'
 import logo from './images/powerlogo.png';
 
-
-
 function BikeService() {
   const [markerClicked, setMarkerClicked] = useState(null);
   const [bikeStopList, setBikeStopList] = useState([]);
   const [userLocation, setUserLocation] = useState(null);
+
+  const [user, setUser] = useState(null); 
+
   const navigate = useNavigate();
 
   const handleMarkerClick = (markerId) => {
@@ -31,6 +32,41 @@ function BikeService() {
       setBikeStopList(res.data);
     });
   }; 
+
+  useEffect(() => {
+    const getUser = () => {
+      fetch("http://localhost:3001/auth/login/success", {
+        method: "GET",
+        credentials: "include",
+        headers: {
+          Accept: "application/json",
+          "Content-Type": "application/json",
+          "Access-Control-Allow-Credentials": true,
+        },
+      })
+        .then((response) => {
+          if (response.status === 200) return response.json();
+          throw new Error("authentication has been failed!");
+        })
+        .then((resObject) => {
+          setUser(resObject.user);
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    };
+    getUser();
+  }, []);
+
+  useEffect(() => {
+    if (localStorage.getItem("accessToken")) {
+      http.get("/user/auth").then((res) => {
+        setUser(res.data.user);
+
+      });
+    }
+  }, []);
+
 
   useEffect(() => {
     getBikeStop();
@@ -65,6 +101,11 @@ function BikeService() {
     navigate("/qrcode")
   }
 
+  const handleLoginButton = () => {
+    console.log("work")
+    navigate("/login")
+}
+
   return (
 
     <Box>
@@ -76,53 +117,77 @@ function BikeService() {
 
       <Typography variant='h3' className='title-wrap'>Find our nearest bikes</Typography>
 
+      {user ? ( // Remember to remove !
+        
       <MapContainer center={[1.350270, 103.821959]} zoom={12}>
-        <TileLayer url="https://api.maptiler.com/maps/basic-v2/256/{z}/{x}/{y}.png?key=vawTmn0mJjBwNQB6GFOe" />
+      <TileLayer url="https://api.maptiler.com/maps/basic-v2/256/{z}/{x}/{y}.png?key=vawTmn0mJjBwNQB6GFOe" />
 
-        {userLocation && (
-          <Marker position={userLocation}>
-            <Popup>Your Location</Popup>
-          </Marker>
-        )}
+      {userLocation && (
+        <Marker position={userLocation}>
+          <Popup>Your Location</Popup>
+        </Marker>
+      )}
 
-        {bikeStopList.map((bikeStop) => (
-          <Marker
-            key={bikeStop.stopname}
-            position={[bikeStop.coordx, bikeStop.coordy]}
-            eventHandlers={{ click: () => handleMarkerClick(bikeStop.stopname) }}
-            icon={markerIcon}
-          >
-            <Popup>
-              {
-                bikeStop.imageFile && (
-                  <AspectRatio>
-                    <Box component="img"
-                      src={`${import.meta.env.VITE_FILE_BASE_URL}${bikeStop.imageFile}`}
-                      alt="bikestop">
-                    </Box>
-                  </AspectRatio>
-                )
-              }
+      {bikeStopList.map((bikeStop) => (
+        <Marker
+          key={bikeStop.stopname}
+          position={[bikeStop.coordx, bikeStop.coordy]}
+          eventHandlers={{ click: () => handleMarkerClick(bikeStop.stopname) }}
+          icon={markerIcon}
+        >
+          <Popup>
+            {
+              bikeStop.imageFile && (
+                <AspectRatio>
+                  <Box component="img"
+                    src={`${import.meta.env.VITE_FILE_BASE_URL}${bikeStop.imageFile}`}
+                    alt="bikestop"
+                    className="popup-image"
+                    >
+                      
+                  </Box>
+                </AspectRatio>
+              )
+            }
 
-              {bikeStop.stopname}</Popup>
-          </Marker>
-        ))}
+            {bikeStop.stopname}
+            
+            {/* Add amount of bikes */}
 
-        {markerClicked && (
-          <div className="marker-info">
-            <h2>{markerClicked}</h2>
-            <p>
-              {bikeStopList.find((bikeStop) => bikeStop.stopname === markerClicked)?.info}
-            </p>
-          </div>
-        )}
+            </Popup>
+        </Marker>
+      ))}
+
+      {markerClicked && (
+        <div className="marker-info">
+          <h2>{markerClicked}</h2>
+          <p>
+            {bikeStopList.find((bikeStop) => bikeStop.stopname === markerClicked)?.info}
+          </p>
+        </div>
+      )}
       </MapContainer>
+      ) : (
 
+        <MapContainer center={[1.350270, 103.821959]} zoom={12}>
+          <Container className='unactive-map'>
+              <Container className='not-log'>
+                <Typography variant='h4' >Looks like you are not logged in</Typography>
+                <Button variant="contained" type="button" className='home-btn' style={{ marginTop: "20px"}} onClick={ handleLoginButton }>Log in here</Button>
+              </Container>
+              
 
-      <button style={{ color: "white" }} onClick={handleScanButtonClick}>Scan QR Code</button>
+          </Container>
+        </MapContainer>
 
+      )}
 
-      <Box className="wrap-div" style={{ marginTop: "80px" }}>
+      <Container>
+      <button className='scanqr-btn' onClick={handleScanButtonClick}>Scan QR Code</button>
+
+      </Container>
+
+      <Box className="wrap-div" style={{ marginTop: "40px" }}>
         <Grid container spacing={5}>
           <Grid item xs={12} md={6}>
             <img src={banner1} alt="Banner" style={{ width: "100%" }} />

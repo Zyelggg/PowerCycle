@@ -1,6 +1,6 @@
 import React, { useEffect, useRef, useState } from 'react';
 import './styles/Home.css';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useLocation } from 'react-router-dom';
 import ebike from './images/Ebike.png';
 import { Container, AppBar, Toolbar, Typography, Box, Button, Grid } from '@mui/material';
 import { BrowserRouter as Router, Routes, Route, Link } from 'react-router-dom';
@@ -15,8 +15,36 @@ function RidingBike() {
 
     const [user, setUser] = useState(null);
     const [userDetail, setuserDetail] = useState({});
+    const [isPaused, setIsPaused] = useState(false); // Add this state
+    const [counter, setCounter] = useState(0);
+
+    const location = useLocation();
+    const queryParams = new URLSearchParams(location.search);
+
+    // Get the JSON object as a string from the query parameter
+    const qrCodeParam = queryParams.get('qrCode');
+
+    // Parse the JSON string to a JavaScript object
+    const qrCodeObject = JSON.parse(qrCodeParam);
+
+    // // Now you can access the properties of the parsed object
+    // const serialno = qrCodeObject.serialno;
+    // const stopname = qrCodeObject.stopname;
+    // const repairs = qrCodeObject.repairs;
 
     useEffect(() => {
+        const interval = setInterval(() => {
+            setCounter(prevCounter => prevCounter + 1);
+        }, 60000);
+
+        // Clear the interval when the component unmounts
+        return () => {
+            clearInterval(interval);
+        };
+    }, []);
+
+    useEffect(() => {
+
         if (localStorage.getItem("accessToken")) {
             http
                 .get("/user/auth")
@@ -41,18 +69,18 @@ function RidingBike() {
 
     const sampleData = {
         userId: user,
+        duration: counter,
         mileage: 50.7,
         electricity: 8.3,
         bikeId: 1,
     };
 
     const onSubmit = () => {
-        console.log("work")
 
         http.post("/ridden", sampleData)
             .then((res) => {
                 console.log("Backend Response:", res.status, res.data);
-                    navigate(`/ridecomplete?userId=${sampleData.userId}&mileage=${sampleData.mileage}&electricity=${sampleData.electricity}&bikeId=${sampleData.bikeId}`);
+                navigate(`/ridecomplete?serialno=${sampleData.serialno}&duration=${sampleData.duration}&userId=${sampleData.userId}&mileage=${sampleData.mileage}&electricity=${sampleData.electricity}`);
 
             })
             .catch((error) => {
@@ -60,19 +88,26 @@ function RidingBike() {
             });
     };
 
-    const handleScanButtonClick = () => {
-        console.log("work")
+    const handleSubmitButtonClick = () => {
 
         http.post("/ridden", sampleData)
+            console.log("work")
+
             .then((res) => {
                 console.log("Backend Response:", res.status, res.data);
-                    navigate(`/ridecomplete?userId=${sampleData.userId}&mileage=${sampleData.mileage}&electricity=${sampleData.electricity}&bikeId=${sampleData.bikeId}`);
+                navigate(`/ridecomplete?userId=${sampleData.userId}&mileage=${sampleData.mileage}&electricity=${sampleData.electricity}&bikeId=${sampleData.bikeId}`);
 
             })
             .catch((error) => {
                 console.error('Error submitting data:', error);
             });
     }
+
+
+    const handlePauseButtonClick = () => {
+        setIsPaused(!isPaused);
+    }
+
 
     return (
         <div>
@@ -84,27 +119,45 @@ function RidingBike() {
 
             </Box>
             {/* Render the sampleData if it is available */}
-            <div className="user-records">
-                <Typography variant='h4' style={{ marginBottom: "20px", color: "white" }}>You are now riding Bike #{sampleData.bikeId}</Typography>
+            {isPaused ? (
+                <div className="user-records">
+                    {/* Content you want to display when the journey is paused */}
+                    <Typography variant='h4'>Journey Paused</Typography>
+                    <p>Your journey has been paused.</p>
+                    <button type="button" className='bike-btn' onClick={handlePauseButtonClick} style={{marginTop: "20px"}}>Resume Journey</button>
 
-                <img src={ebike} alt="image" style={{ width: "40%" }} className='bike-image' />
-                <div className='white-wrapper'>
-                    <h2 style={{ color: "black" }}>User ID: {sampleData.userId}</h2>
-                    <p style={{ color: "black" }}>Mileage: {sampleData.mileage}</p>
-                    <p style={{ color: "black" }}>Electricity: {sampleData.electricity}</p>
-                    <p style={{ color: "black" }}>Bike ID: {sampleData.bikeId}</p>
                 </div>
+            ) : (
+                
+                <div className="user-records">
 
-                {/* Buttons */}
-                <form onSubmit={onSubmit} style={{ marginTop: "40px" }}>
-                    <button type="button" className='bike-btn' onClick={handleScanButtonClick} >Pause Journey</button>
-                    <button type="submit" className='bike-btn' style={{ float: "right" }}>End Journey</button>
+                    <Typography variant='h4' style={{ marginBottom: "20px", color: "white" }}>You are now riding Bike #{sampleData.bikeId}</Typography>
 
-                </form>
+                    <img src={ebike} alt="image" style={{ width: "40%" }} className='bike-image' />
+                    <div className='white-wrapper'>
+                        <p style={{ color: "black" }}>User ID: {sampleData.userId}</p>
+                        <p style={{ color: "black" }}>Time Elapsed: {counter} minutes</p>
+                        <p style={{ color: "black" }}>Mileage: {sampleData.mileage}</p>
+                        <p style={{ color: "black" }}>Electricity: {sampleData.electricity}</p>
+                        <p style={{ color: "black" }}>Bike ID: {sampleData.bikeId}</p>
+                    </div>
 
-            </div>
+                    {/* Buttons */}
+                    <form onSubmit={onSubmit} style={{ marginTop: "40px" }}>
+                        <button type="button" className='bike-btn' onClick={handlePauseButtonClick} >Pause Journey</button>
+                        <button type="button" className='bike-btn' style={{ float: "right" }} onClick={handleSubmitButtonClick}> End Journey</button>
 
-            <Typography variant='h4' style={{ marginBottom: "20px", color: "white", marginLeft: "20px", marginTop: "40px" }}>Stuck? Talk to our customer help</Typography>
+                    </form>
+
+                </div>
+            )}
+
+
+            <Container>
+                <Typography variant='h4' style={{ marginBottom: "20px", color: "white", marginLeft: "20px", marginTop: "40px" }}>Stuck? Talk to our customer help</Typography>
+                <button type="submit" className='stuck-btn' onClick={ () => navigate('/contact')}>Contact Us</button>
+            </Container>
+
 
             <AppBar position="static" className="Footer">
                 <Container>

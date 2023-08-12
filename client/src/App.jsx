@@ -45,6 +45,7 @@ import human from "./pages/images/humanicon.png";
 import UserSideNavigation from "./UserSideNavigation";
 import AdminSideNavigation from "./AdminSideNavigation";
 import Reviews from "./pages/Reviews"
+import Augmented from "./pages/Augmented";
 
 import {
   Button,
@@ -71,7 +72,7 @@ function App() {
   const [isNavExpanded, setIsNavExpanded] = useState(false);
   const [isDeleted, setIsDeleted] = useState(false);
   // Hook from react-router-dom
-  const [isAdmin, setIsAdmin] = useState(false);
+  const [isAdmin, setIsAdmin] = useState(true);
 
   // Function to handle link click and close the navigation menu
   const handleLinkClick = () => {
@@ -142,13 +143,25 @@ function App() {
   return (
     <UserContext.Provider value={{ user, setUser }}>
       <Router>
-        {isAdmin ? (
+      {isAdmin && location.pathname.includes("/admin") ? (
+
           // Render admin side navigation if the user is an admin
           <>
             <AdminSideNavigation handleLinkClick={handleLinkClick} />
             <Container>
               <Routes>
-                <Route path="/bike" element={<Bikes />} />
+                
+              </Routes>
+            </Container>
+          </>
+        ) : (
+          // Render user side navigation if the user is not an admin
+          <>
+            <UserSideNavigation handleLinkClick={handleLinkClick} />
+            <Container>
+              <Routes>
+
+              <Route path="/bike" element={<Bikes />} />
                 <Route path="/bikestop" element={<BikeStop />} />
                 <Route path="/bikedash" element={<BikeDash />} />
                 <Route path="/addbike" element={<AddBikes />} />
@@ -166,19 +179,25 @@ function App() {
                 <Route path={"/edituser/:id"} element={<EditUser />} />
                 <Route path={"/deluser"} element={<DeleteUser />} />
                 {/* <Route path={"/adminhome"} element={<AdminHome />} /> */}
-                <Route path={"/admin"} element={<AdminManagement />} />
-                <Route path={"/addadmin"} element={<AddAdmin />} />
-                <Route path={"/getadmin"} element={<RetrieveAdmin />} />
-                <Route path={"/editadmin/:id"} element={<EditAdmin />} />
-                <Route path={"/deladmin"} element={<DeleteAdmin />} />
+                <Route path={"/admin/admin"} element={<AdminManagement />} />
+                <Route path={"/admin/addadmin"} element={<AddAdmin />} />
+                <Route path={"/admin/getadmin"} element={<RetrieveAdmin />} />
+                <Route path={"/admin/editadmin/:id"} element={<EditAdmin />} />
+                <Route path={"/admin/deladmin"} element={<DeleteAdmin />} />
               </Routes>
             </Container>
           </>
         ) : (
           // Render user side navigation if the user is not an admin
           <>
+          
+
             <UserSideNavigation handleLinkClick={handleLinkClick} />
+            
             <Container>
+              
+
+
               <Routes>
                 <Route path="/" element={<Home />} />
                 <Route path="/home" element={<Home />} />
@@ -199,6 +218,9 @@ function App() {
                 <Route path={"/payment"} element={<PaymentMethods />} />
                 <Route path={"/addpayment"} element={<AddPayment />} />
                 <Route path={"/editpayment"} element={<EditPayment />} />
+                <Route path="/augmented" element={<Augmented />} />
+
+
               </Routes>
             </Container>
           </>
