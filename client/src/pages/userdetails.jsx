@@ -145,7 +145,7 @@ function userDetails() {
   return (
     <div className={dashboard.purpleContainer}>
       <div className={dashboard.whiteContainer}>
-        <div className={dashboard.header} style={{ fontFamily: "Montserrat" }}>
+        <div className={dashboard.header} style={{ fontFamily: "Montserrat",color:"black" }}>
           User Details
         </div>
         <div className={dashboard.form}>

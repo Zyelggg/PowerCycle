@@ -59,7 +59,14 @@ const FAQ = () => {
         <FAQItem key={index} question={faq.question} answer={faq.answer} />
       ))}
     </div>
-
+    <iframe
+        src="http://localhost:8501"  
+        width="100%"
+        height="800px"
+        style={{background:"#250D69"}}
+        frameBorder="0"
+        title="StreamlitApp"
+      />
     <AppBar position="static" className="Footer">
         <Container>
           <Toolbar disableGutters={true}>
@@ -101,7 +108,7 @@ const FAQ = () => {
           </Typography>
         </Container>
       </AppBar>
-
+      
     </div>
   
   );
