@@ -56,6 +56,27 @@ router.get("/", async (req, res) => {
     res.json(list);
 });
 
+
+router.get('/stoprecords', async (req, res) => {
+    try {
+      const bikeCounts = await Bike.findAll({
+        attributes: ['stopname', [Sequelize.fn('COUNT', Sequelize.col('id')), 'count']],
+        group: ['stopname'],
+      });
+  
+      const stopRecords = {};
+      bikeCounts.forEach((bikeCount) => {
+        stopRecords[bikeCount.stopname] = bikeCount.get('count');
+      });
+  
+      res.json(stopRecords);
+    } catch (error) {
+      console.error('Error fetching bike stop records:', error);
+      res.status(500).json({ error: 'Internal server error' });
+    }
+  });
+
+
 router.get("/:id", async (req, res) => {
     let id = req.params.id;
     let bike = await Bike.findByPk(id);

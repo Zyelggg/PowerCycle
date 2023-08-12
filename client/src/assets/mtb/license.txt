@@ -1,0 +1,11 @@
+Model Information:
+* title:	MTB Mongoose Tyax
+* source:	https://sketchfab.com/3d-models/mtb-mongoose-tyax-d5c7ab157aa84eb08e2deaee6165e764
+* author:	Saushkin (https://sketchfab.com/Saushkin)
+
+Model License:
+* license type:	CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)
+* requirements:	Author must be credited. Commercial use is allowed.
+
+If you use this 3D model in your project be sure to copy paste this credit wherever you share it:
+This work is based on "MTB Mongoose Tyax" (https://sketchfab.com/3d-models/mtb-mongoose-tyax-d5c7ab157aa84eb08e2deaee6165e764) by Saushkin (https://sketchfab.com/Saushkin) licensed under CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)

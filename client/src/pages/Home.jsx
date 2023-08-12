@@ -72,7 +72,7 @@ function Home() {
               Join us today and embark on a renewable energy adventure that's both affordable and environmentally conscious
             </Typography>
             <Typography variant="h5" style={{ color: "black", marginTop: "20px" }}>
-              Price: $1.00 / hour
+              Price: $3.00 / hour
 
             </Typography>
             <Typography variant="h5" style={{ color: "black", marginTop: "20px" }}>

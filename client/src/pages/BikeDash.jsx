@@ -48,12 +48,12 @@ function BikeDash() {
               <CardContent className="addCard">
                 <Typography className="topheader">Add</Typography>
                 <Box>
-                  <Link to="/addbikestop"><IconButton className="changeicon"><Add></Add></IconButton></Link>
+                  <Link to="/admin/addbikestop"><IconButton className="changeicon"><Add></Add></IconButton></Link>
                   <Typography>Bicycle Stops</Typography>
                   <Typography>{totalBikestop} Stops</Typography>
                 </Box>
                 <Box>
-                  <Link to="/addbike"><IconButton className="changeicon"><Add></Add></IconButton></Link>
+                  <Link to="/admin/addbike"><IconButton className="changeicon"><Add></Add></IconButton></Link>
                   <Typography>Bicycles</Typography>
                   <Typography>{totalBikes} Bikes</Typography>
                 </Box>
@@ -66,12 +66,12 @@ function BikeDash() {
               <CardContent className="retrieveCard">
                 <Typography className="topheader">Retrieve</Typography>
                 <Box>
-                  <Link to="/bikestop"><IconButton className="changeicon"><Search></Search></IconButton></Link>
+                  <Link to="/admin/bikestop"><IconButton className="changeicon"><Search></Search></IconButton></Link>
                   <Typography>Bicycle Stops</Typography>
                   <Typography>{totalBikestop} Stops</Typography>
                 </Box>
                 <Box>
-                  <Link to="/bike"><IconButton className="changeicon"><Search></Search></IconButton></Link>
+                  <Link to="/admin/bike"><IconButton className="changeicon"><Search></Search></IconButton></Link>
                   <Typography>Bicycles</Typography>
                   <Typography>{totalBikes} Bikes</Typography>
                 </Box>
@@ -84,12 +84,12 @@ function BikeDash() {
               <CardContent className="updateCard">
                 <Typography className="topheader">Update</Typography>
                 <Box>
-                  <Link to="/bikestop"><IconButton className="changeicon"><Edit></Edit></IconButton></Link>
+                  <Link to="/admin/bikestop"><IconButton className="changeicon"><Edit></Edit></IconButton></Link>
                   <Typography>Bicycle Stops</Typography>
                   <Typography>{totalBikestop} Stops</Typography>
                 </Box>
                 <Box>
-                  <Link to="/bike"><IconButton className="changeicon"><Edit></Edit></IconButton></Link>
+                  <Link to="/admin/bike"><IconButton className="changeicon"><Edit></Edit></IconButton></Link>
                   <Typography>Bicycles</Typography>
                   <Typography>{totalBikes} Bikes</Typography>
                 </Box>
@@ -102,12 +102,12 @@ function BikeDash() {
               <CardContent className="deleteCard">
                 <Typography className="topheader">Delete</Typography>
                 <Box>
-                  <Link to="/bikestop"><IconButton className="changeicon"><Delete></Delete></IconButton></Link>
+                  <Link to="/admin/bikestop"><IconButton className="changeicon"><Delete></Delete></IconButton></Link>
                   <Typography>Bicycle Stops</Typography>
                   <Typography>{totalBikestop} Stops</Typography>
                 </Box>
                 <Box>
-                  <Link to="/bike"><IconButton className="changeicon"><Delete></Delete></IconButton></Link>
+                  <Link to="/admin/bike"><IconButton className="changeicon"><Delete></Delete></IconButton></Link>
                   <Typography>Bicycles</Typography>
                   <Typography>{totalBikes} Bikes</Typography>
                 </Box>
@@ -115,16 +115,6 @@ function BikeDash() {
               </CardContent>
 
             </Grid>
-
-            <Routes>
-              <Route path={"/bikedash"} element={< BikeDash />} />
-              <Route path={"/addbike"} element={<AddBikes />} />
-              <Route path={"/addbikestop"} element={<AddBikeStop />} />
-              <Route path={"/editbike"} element={<EditBikes />} />
-              <Route path={"/editbikestop"} element={<EditBikeStop />} />
-              <Route path={"/delbike"} element={<DeleteBikes />} />
-              <Route path={"/delbikestop"} element={<DeleteBikeStop />} />
-            </Routes>
 
           </Grid>
         </Box>
