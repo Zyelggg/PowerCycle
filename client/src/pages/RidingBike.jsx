@@ -28,9 +28,8 @@ function RidingBike() {
     const qrCodeObject = JSON.parse(qrCodeParam);
 
     // // Now you can access the properties of the parsed object
-    // const serialno = qrCodeObject.serialno;
-    // const stopname = qrCodeObject.stopname;
-    // const repairs = qrCodeObject.repairs;
+    const serialno = qrCodeObject.serialno;
+
 
     useEffect(() => {
         const interval = setInterval(() => {
@@ -72,6 +71,7 @@ function RidingBike() {
         duration: counter,
         mileage: 50.7,
         electricity: 8.3,
+        serialno: serialno,
         bikeId: 1,
     };
 
@@ -89,18 +89,12 @@ function RidingBike() {
     };
 
     const handleSubmitButtonClick = () => {
-
+        console.log("work");
         http.post("/ridden", sampleData)
-            console.log("work")
-
             .then((res) => {
-                console.log("Backend Response:", res.status, res.data);
-                navigate(`/ridecomplete?userId=${sampleData.userId}&mileage=${sampleData.mileage}&electricity=${sampleData.electricity}&bikeId=${sampleData.bikeId}`);
+                navigate(`/ridecomplete?userId=${sampleData.userId}&mileage=${sampleData.mileage}&duration=${sampleData.duration}&electricity=${sampleData.electricity}&serialno=${sampleData.serialno}`);
 
             })
-            .catch((error) => {
-                console.error('Error submitting data:', error);
-            });
     }
 
 
@@ -131,7 +125,7 @@ function RidingBike() {
                 
                 <div className="user-records">
 
-                    <Typography variant='h4' style={{ marginBottom: "20px", color: "white" }}>You are now riding Bike #{sampleData.bikeId}</Typography>
+                    <Typography variant='h4' style={{ marginBottom: "20px", color: "white" }}>You are now riding Bike #{sampleData.serialno}</Typography>
 
                     <img src={ebike} alt="image" style={{ width: "40%" }} className='bike-image' />
                     <div className='white-wrapper'>
@@ -139,7 +133,6 @@ function RidingBike() {
                         <p style={{ color: "black" }}>Time Elapsed: {counter} minutes</p>
                         <p style={{ color: "black" }}>Mileage: {sampleData.mileage}</p>
                         <p style={{ color: "black" }}>Electricity: {sampleData.electricity}</p>
-                        <p style={{ color: "black" }}>Bike ID: {sampleData.bikeId}</p>
                     </div>
 
                     {/* Buttons */}

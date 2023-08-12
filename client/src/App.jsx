@@ -46,6 +46,7 @@ import UserSideNavigation from "./UserSideNavigation";
 import AdminSideNavigation from "./AdminSideNavigation";
 import Reviews from "./pages/Reviews"
 import Augmented from "./pages/Augmented";
+import Weather from "./pages/Weather";
 
 import {
   Button,
@@ -139,7 +140,6 @@ function App() {
     window.location = "/";
   };
 
-
   return (
     <UserContext.Provider value={{ user, setUser }}>
       <Router>
@@ -179,16 +179,14 @@ function App() {
         ) : (
           // Render user side navigation if the user is not an admin
           <>
-          
 
             <UserSideNavigation handleLinkClick={handleLinkClick} />
             
             <Container>
-              
-
 
               <Routes>
-                <Route path="/home" element={<Home />} />
+                <Route path="/" element={<Home />} />
+                <Route path="/weather" element={<Weather />} />
                 <Route path="/qrcode" element={<QRCode />} />
                 <Route path="/reviews" element={<Reviews />} />
                 <Route path="/ridecomplete" element={<RideComplete />} />

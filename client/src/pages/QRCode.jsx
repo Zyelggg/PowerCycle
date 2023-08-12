@@ -1,5 +1,7 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { Html5QrcodeScanner } from 'html5-qrcode';
+import { Container, AppBar, Toolbar, Typography, Box, Button, Grid, Card, CardContent, CardActions, CardMedia } from '@mui/material';
+
 import './styles/Home.css';
 import { useNavigate } from 'react-router-dom';
 
@@ -36,12 +38,14 @@ function QRCode() {
   }, [navigate]);
 
   return (
-    <div>
-      <div className="App">
-        <h1>QR Code Reader</h1>
-        {scanResult ? <div><h1>Success</h1></div> : <div id="qr-reader"></div>}
+    <Container>
+      <div className="App" style={{ padding: "20px"}}>
+        <h1 style={{ marginBottom: "20px"}}>QR Code Reader</h1>
+        {scanResult ? <div><h1>Success</h1></div> : <div id="qr-reader" style={{ width: "70%", margin: "auto"}}></div>}
       </div>
-    </div>
+    </Container>
+      
+
   );
 }
 

@@ -76,7 +76,7 @@ const AdminSideNavigation = ({ handleLinkClick }) => {
     <AppBar className="sidebar">
       <Container>
         <Toolbar disableGutters={true} className="nav-links">
-        <Link to="/home"><img src={logo} className="logo" /></Link>
+        <Link to="/"><img src={logo} className="logo" /></Link>
 
           <Link to="/admin/admin">
             <Typography variant="h6" component="div" className="nav-title">

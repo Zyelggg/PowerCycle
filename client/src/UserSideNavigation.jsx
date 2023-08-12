@@ -95,7 +95,7 @@ const UserSideNavigation = ({ handleLinkClick }) => {
     
         <div>
           <nav className="navigation">
-          <Link to="/home" className="brand-name">
+          <Link to="/" className="brand-name">
             <img
               src={logo}
               className="logo"
@@ -128,7 +128,7 @@ const UserSideNavigation = ({ handleLinkClick }) => {
           >
             <ul>
               <li>
-                <Link to="/home" onClick={handleLinkClick} className="navlink">
+                <Link to="/" onClick={handleLinkClick} className="navlink">
                   Home
                 </Link>
               </li>
@@ -154,7 +154,7 @@ const UserSideNavigation = ({ handleLinkClick }) => {
               {user && (
                 <>
                   <li>
-                    <Dropdown className="navlink" style={{ marginTop: "10px" }}>
+                    <Dropdown className="" style={{ marginTop: "10px" }}>
                       <Dropdown.Toggle
                         variant="success"
                         id="dropdown-basic"
@@ -202,10 +202,9 @@ const UserSideNavigation = ({ handleLinkClick }) => {
                   </li>
                 </>
               )}
-            </ul>
-          </div>
-        </nav>
-        <Dialog open={open} onClose={handleClose}>
+
+              <li>
+              <Dialog open={open} onClose={handleClose}>
           <img
             src="https://cdn-icons-png.flaticon.com/512/3588/3588294.png"
             style={{ height: "50px", width: "50px", margin: "auto" }}
@@ -249,6 +248,12 @@ const UserSideNavigation = ({ handleLinkClick }) => {
 
           <DialogTitle>Account has been deleted</DialogTitle>
         </Dialog>
+              </li>
+
+            </ul>
+          </div>
+        </nav>
+        
         </div>
     );
 };

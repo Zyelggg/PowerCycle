@@ -16,9 +16,9 @@ module.exports = (sequelize, DataTypes) => {
             type: DataTypes.FLOAT,
             allowNull: false
         },
-        bikeId: {
-            type: DataTypes.INTEGER,
-            allowNull: false
+        serialno: {
+            type: DataTypes.STRING,
+            allowNull: false,
         },
         
     });

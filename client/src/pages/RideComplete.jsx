@@ -1,8 +1,9 @@
 import React, { useEffect, useState } from 'react';
 import './styles/Home.css';
+import { useLocation } from 'react-router'
 import { useNavigate } from 'react-router-dom';
 import ebike from './images/Ebike.png';
-import { Container, AppBar, Toolbar, Typography, Box, Grid, Button } from '@mui/material';
+import { Container, AppBar, Toolbar, Typography, Box, Grid, Button, duration } from '@mui/material';
 import { BrowserRouter as Router, Routes, Route, Link } from 'react-router-dom';
 import instagram from './images/instagram.png'
 import facebook from './images/facebook.png'
@@ -18,10 +19,20 @@ function RideComplete() {
   const [isImageShrunken, setIsImageShrunken] = useState(false);
 
   const queryParams = new URLSearchParams(location.search);
+  const userid = queryParams.get('userId');
   const serialno = queryParams.get('serialno');
   const mileage = queryParams.get('mileage');
   const electricity = queryParams.get('electricity');
-  const bikeId = queryParams.get('bikeId');
+  const duration = queryParams.get('duration');
+
+  let amount = 0;
+
+  if (duration === '0') {
+    amount = 3;
+  } else {
+    console.log(duration)
+    amount = parseInt(duration) * 3; // Convert to integer and then calculate
+  }
 
   useEffect(() => {
     if (localStorage.getItem("accessToken")) {
@@ -37,7 +48,6 @@ function RideComplete() {
         });
     }
 
-    setIsImageShrunken(true); 
   }, []);
 
   return (
@@ -55,26 +65,27 @@ function RideComplete() {
           <img
             src={ebike}
             alt="image"
-            className={`bike-image ${isImageShrunken ? 'bike-img-shrink' : ''}`}
+            className='bike-image'
           />
 
           <Typography variant='h4' style={{ marginBottom: "20px", color: "black" }}>Your Performance</Typography>
           {/* Render the received data */}
+          <p style={{ color: "black" }}>User ID: {userid}</p>
+          <p style={{ color: "black" }}>Ride Duration: {duration} minutes</p>
+          <p style={{ color: "black" }}>Mileage: {mileage} km</p>
+          <p style={{ color: "black" }}>Electricity {electricity}</p>
+          <p style={{ color: "black" }}>Bike Serial: {serialno}</p>
 
+          <br></br>
+          <Typography variant='h4' style={{ color: "black" }}>Payment Details</Typography>
+          <Typography variant="subtitle1" style={{ color: "black" }}>Charged To: THIS CREDIT CARD</Typography>
+          <Typography variant="subtitle1" style={{ color: "black" }}>Amount Charged: ${amount}.00</Typography>
 
-
-          <Typography variant='h4' style={{ marginBottom: "20px", color: "black" }}>Payment Details</Typography>
-
-          <Button variant="contained" type="button" className='home-btn' style={{ marginTop: "20px"}} onClick={ () => navigate('/reviews')}>Leave us a review</Button>
-
+          
         
         </div>
+        <Button variant="contained" type="button" className='home-btn' style={{ marginTop: "20px"}} onClick={ () => navigate('/reviews')}>Leave us a review</Button>
       </div>
-
-
-
-
-
 
 
 

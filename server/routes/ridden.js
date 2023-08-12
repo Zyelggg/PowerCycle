@@ -3,17 +3,10 @@ const router = express.Router();
 const { Ridden, Sequelize } = require('../models');
 const yup = require('yup');
 
-// Define the validation schema for the request body
-const schema = yup.object().shape({
-  userId: yup.number().required(),
-  mileage: yup.number().required(),
-  electricity: yup.number().required(),
-  bikeId: yup.number().required(),
-});
 
 // Define the POST route for creating a new Ridden instance
 router.post("/", async (req, res) => {
-  try {
+  
     // Validate the request body against the defined schema
     let data = req.body;
 
@@ -23,15 +16,13 @@ router.post("/", async (req, res) => {
       duration: data.duration,
       mileage: data.mileage,
       electricity: data.electricity,
-      bikeId: data.bikeId,
+      serialno: data.serialno,
+
     });
     
     // Respond with the newly created Ridden instance
     res.status(201).json(newRidden);
-  } catch (error) {
-    // If validation or database insertion fails, handle the error
-    res.status(400).json({ error: error.message });
-  }
+  
 });
 
 
