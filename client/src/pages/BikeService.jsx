@@ -14,15 +14,14 @@ import facebook from './images/facebook.png'
 import twitter from './images/twitter.png'
 import logo from './images/powerlogo.png';
 import bikeIOS from "../assets/Mountain_bike.usdz";
-import { AndroidRounded } from '@mui/icons-material';
-
-
+import AndroidIcon from '@mui/icons-material/Android';
+import AppleIcon from '@mui/icons-material/Apple';
 
 function BikeService() {
 
   var urlAndroid =
     "intent://arvr.google.com/scene-viewer/1.0?file=" +
-    'https://raw.githubusercontent.com/limcai21/gltf/main/bicycle/scene.gltf' +
+    'https://raw.githubusercontent.com/Zyelggg/PowerCycle/main/client/src/assets/bicycle/scene.gltf?token=GHSAT0AAAAAACGGFNJCAKME4TTCOL53H2I4ZGXVLWQ' +
     "&mode=ar_preferred#Intent;scheme=https;package=com.google.android.googlequicksearchbox;action=android.intent.action.VIEW;S.browser_fallback_url=https://developers.google.com/ar;end;";
 
   const [markerClicked, setMarkerClicked] = useState(null);
@@ -222,7 +221,15 @@ function BikeService() {
                 label="Try for Android"
                 component="a"
                 href={urlAndroid}
-                icon={<AndroidRounded />}
+                icon={<AndroidIcon />}
+                variant="outlined"
+                clickable
+              />
+               <Chip
+                label="Try for Apple"
+                component="a"
+                href={bikeIOS}
+                icon={<AppleIcon />}
                 variant="outlined"
                 clickable
               />
