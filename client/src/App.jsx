@@ -150,30 +150,19 @@ function App() {
             <AdminSideNavigation handleLinkClick={handleLinkClick} />
             <Container>
               <Routes>
-                
-              </Routes>
-            </Container>
-          </>
-        ) : (
-          // Render user side navigation if the user is not an admin
-          <>
-            <UserSideNavigation handleLinkClick={handleLinkClick} />
-            <Container>
-              <Routes>
-
-              <Route path="/bike" element={<Bikes />} />
-                <Route path="/bikestop" element={<BikeStop />} />
-                <Route path="/bikedash" element={<BikeDash />} />
-                <Route path="/addbike" element={<AddBikes />} />
-                <Route path="/addbikestop" element={<AddBikeStop />} />
-                <Route path="/editbike/:id" element={<EditBikes />} />
-                <Route path="/editbikestop/:id" element={<EditBikeStop />} />
-                <Route path={"/reward"} element={<RewardManagement />} />
-                <Route path={"/addreward"} element={<AddReward />} />
-                <Route path={"/getreward"} element={<RetrieveReward />} />
-                <Route path={"/editreward/:id"} element={<EditReward />} />
-                <Route path={"/delreward"} element={<DeleteReward />} />
-                <Route path={"/user"} element={<UserManagement />} />
+                <Route path="/admin/bike" element={<Bikes />} />
+                <Route path="/admin/bikestop" element={<BikeStop />} />
+                <Route path="/admin/bikedash" element={<BikeDash />} />
+                <Route path="/admin/addbike" element={<AddBikes />} />
+                <Route path="/admin/addbikestop" element={<AddBikeStop />} />
+                <Route path="/admin/editbike/:id" element={<EditBikes />} />
+                <Route path="/admin/editbikestop/:id" element={<EditBikeStop />} />
+                <Route path={"/admin/reward"} element={<RewardManagement />} />
+                <Route path={"/admin/addreward"} element={<AddReward />} />
+                <Route path={"/admin/getreward"} element={<RetrieveReward />} />
+                <Route path={"/admin/editreward/:id"} element={<EditReward />} />
+                <Route path={"/admin/delreward"} element={<DeleteReward />} />
+                <Route path={"/admin/user"} element={<UserManagement />} />
                 <Route path={"/adduser"} element={<AddUser />} />
                 <Route path={"/getuser"} element={<RetrieveUser />} />
                 <Route path={"/edituser/:id"} element={<EditUser />} />
@@ -199,7 +188,6 @@ function App() {
 
 
               <Routes>
-                <Route path="/" element={<Home />} />
                 <Route path="/home" element={<Home />} />
                 <Route path="/qrcode" element={<QRCode />} />
                 <Route path="/reviews" element={<Reviews />} />
