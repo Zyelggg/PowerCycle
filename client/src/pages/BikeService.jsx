@@ -195,15 +195,10 @@ function BikeService() {
               <Typography variant='h4' >Looks like you are not logged in</Typography>
               <Button variant="contained" type="button" className='home-btn' style={{ marginTop: "20px" }} onClick={handleLoginButton}>Log in here</Button>
             </Container>
-
-
           </Container>
         </MapContainer>
 
       )}
-
-
-
 
       <Container>
         <button className='scanqr-btn' onClick={handleScanButtonClick}>Scan QR Code</button>
