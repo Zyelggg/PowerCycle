@@ -32,22 +32,22 @@ const FAQItem = ({ question, answer }) => {
 const FAQ = () => {
   const faqData = [
     {
-      question: 'What is your return policy?',
-      answer: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. ...',
+      question: 'What payment methods are accepted on the app?',
+      answer: 'Visa, Mastercard, Paynow and Grap pay are all methods of payment.',
     },
     {
-      question: 'How can I track my order?',
-      answer: 'Sed euismod libero sit amet mauris egestas, ac vehicula nunc tincidunt.',
+      question: 'How do I unlock the bicycle?',
+      answer: 'Simply scan the QR Code on the bicycle, and you are on your way!',
     },
     {
-      question: 'How can I track my order?',
-      answer: 'Sed euismod libero sit amet mauris egestas, ac vehicula nunc tincidunt.',
+      question: 'How do i track my points?',
+      answer: 'Your points balance will be visible in your rewards program account dashboard on our website. Log in to your account to see your current points total.',
     },
     {
-      question: 'How can I track my order?',
-      answer: 'Sed euismod libero sit amet mauris egestas, ac vehicula nunc tincidunt.',
+      question: 'Can i earn points for rentals made offline?',
+      answer: 'Points can only be earned for rentals made through our official website or app. Rentals made offline are not eligible for reward points',
     },
-    // Add more FAQs as needed
+    
   ];
 
   return (
@@ -59,7 +59,14 @@ const FAQ = () => {
         <FAQItem key={index} question={faq.question} answer={faq.answer} />
       ))}
     </div>
-
+    <iframe
+        src="http://localhost:8501"  
+        width="100%"
+        height="800px"
+        style={{background:"#250D69"}}
+        frameBorder="0"
+        title="StreamlitApp"
+      />
     <AppBar position="static" className="Footer">
         <Container>
           <Toolbar disableGutters={true}>
@@ -101,7 +108,7 @@ const FAQ = () => {
           </Typography>
         </Container>
       </AppBar>
-
+      
     </div>
   
   );
