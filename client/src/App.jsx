@@ -155,6 +155,7 @@ function App() {
             <AdminSideNavigation handleLinkClick={handleLinkClick} />
             <Container>
               <Routes>
+              <Route path="/" element={<Home />} />
                 <Route path="/admin/adminhome" element={<AdminHome />} />
                 <Route path="/admin/bike" element={<Bikes />} />
                 <Route path="/admin/bikestop" element={<BikeStop />} />
