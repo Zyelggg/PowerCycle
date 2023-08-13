@@ -36,7 +36,6 @@ function AddReward() {
             console.log(res.data);
             navigate("/getreward");
           });
-          toast.success('Reward Added');
     }
   });
 

@@ -19,7 +19,7 @@ function UserManagement() {
               <Typography className="topheader">Add</Typography>
               <Box>
                 <Link onClick={() => {
-                  navigate("/adduser")}}>
+                  navigate("/admin/adduser")}}>
                   <IconButton className="changeicon">
                     <Add></Add>
                   </IconButton>
@@ -34,7 +34,7 @@ function UserManagement() {
               <Typography className="topheader">Retrieve</Typography>
               <Box>
               <Link onClick={() => {
-                  navigate("/getuser")}}>
+                  navigate("/admin/getuser")}}>
                   <IconButton className="changeicon">
                     <Search></Search>
                   </IconButton>
@@ -49,7 +49,7 @@ function UserManagement() {
               <Typography className="topheader">Update</Typography>
               <Box>
               <Link onClick={() => {
-                  navigate("/edituser/:id")}}>
+                  navigate("/admin/getuser")}}>
                   <IconButton className="changeicon">
                     <Edit></Edit>
                   </IconButton>
@@ -64,7 +64,7 @@ function UserManagement() {
               <Typography className="topheader">Delete</Typography>
               <Box>
               <Link onClick={() => {
-                  navigate("/deluser")}}>
+                  navigate("/admin/deluser")}}>
                   <IconButton className="changeicon">
                     <Delete></Delete>
                   </IconButton>

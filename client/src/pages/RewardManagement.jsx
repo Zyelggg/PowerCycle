@@ -19,7 +19,7 @@ function RewardManagement() {
               <Typography className="topheader">Add</Typography>
               <Box>
                 <Link onClick={() => {
-                  navigate("/addreward")}}>
+                  navigate("/admin/addreward")}}>
                   <IconButton className="changeicon">
                     <Add></Add>
                   </IconButton>
@@ -34,7 +34,7 @@ function RewardManagement() {
               <Typography className="topheader">Retrieve</Typography>
               <Box>
               <Link onClick={() => {
-                  navigate("/getreward")}}>
+                  navigate("/admin/getreward")}}>
                   <IconButton className="changeicon">
                     <Search></Search>
                   </IconButton>
@@ -49,7 +49,7 @@ function RewardManagement() {
               <Typography className="topheader">Update</Typography>
               <Box>
               <Link onClick={() => {
-                  navigate("/getreward")}}>
+                  navigate("/admin/getreward")}}>
                   <IconButton className="changeicon">
                     <Edit></Edit>
                   </IconButton>
@@ -64,7 +64,7 @@ function RewardManagement() {
               <Typography className="topheader">Delete</Typography>
               <Box>
               <Link onClick={() => {
-                  navigate("/delreward")}}>
+                  navigate("/admin/delreward")}}>
                   <IconButton className="changeicon">
                     <Delete></Delete>
                   </IconButton>

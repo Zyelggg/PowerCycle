@@ -34,7 +34,7 @@ import Register from "./pages/Register";
 import Login from "./pages/Login";
 import Verification from "./pages/verification";
 import Userdetails from "./pages/userdetails";
-import Securitydetails from "./pages/securitydetails";import RidingBike from "./pages/RidingBike";
+import Securitydetails from "./pages/securitydetails"; import RidingBike from "./pages/RidingBike";
 import RideComplete from "./pages/RideComplete";
 import "./App.css";
 import AddPayment from "./pages/AddPayment";
@@ -45,7 +45,7 @@ import human from "./pages/images/humanicon.png";
 import UserSideNavigation from "./UserSideNavigation";
 import AdminSideNavigation from "./AdminSideNavigation";
 import Reviews from "./pages/Reviews"
-import Augmented from "./pages/Augmented";
+// import Augmented from "./pages/Augmented";
 import Weather from "./pages/Weather";
 
 import {
@@ -73,7 +73,7 @@ function App() {
   const [isNavExpanded, setIsNavExpanded] = useState(false);
   const [isDeleted, setIsDeleted] = useState(false);
   // Hook from react-router-dom
-  const [isAdmin, setIsAdmin] = useState(true);
+  const [isAdmin, setIsAdmin] = useState(false); // CHANGE IF NEED TO TEST
 
   // Function to handle link click and close the navigation menu
   const handleLinkClick = () => {
@@ -105,15 +105,26 @@ function App() {
   }, []);
 
   useEffect(() => {
-    if (localStorage.getItem("accessToken")) {
-      http.get("/user/auth").then((res) => {
-        setUser(res.data.user);
-        setUserid(res.data.userid);
-        // Check if the user is an admin
-        setIsAdmin(res.data.user.admin === true);
-      });
+    async function fetchData() {
+      try {
+        if (localStorage.getItem("accessToken")) {
+          const authResponse = await http.get("/user/auth");
+          setUser(authResponse.data.user);
+          setUserid(authResponse.data.userid);
+  
+          const userDetailsResponse = await http.get(`user/userdetails/${authResponse.data.userid}`);
+          setIsAdmin(userDetailsResponse.data.admin === true);
+        }
+      } catch (error) {
+        console.error(error);
+      }
     }
+  
+    fetchData();
   }, []);
+  
+
+
 
   const deleteAccount = () => {
     http.delete(`/user/${userid}`).then((res) => {
@@ -143,8 +154,7 @@ function App() {
   return (
     <UserContext.Provider value={{ user, setUser }}>
       <Router>
-      {isAdmin && location.pathname.includes("/admin") ? (
-
+        {isAdmin && location.pathname.includes("/admin") ? (
           // Render admin side navigation if the user is an admin
           <>
             <AdminSideNavigation handleLinkClick={handleLinkClick} />
@@ -157,16 +167,16 @@ function App() {
                 <Route path="/admin/addbikestop" element={<AddBikeStop />} />
                 <Route path="/admin/editbike/:id" element={<EditBikes />} />
                 <Route path="/admin/editbikestop/:id" element={<EditBikeStop />} />
-                <Route path={"/admin/reward"} element={<RewardManagement />} />
+                <Route path={"/admin/rewards"} element={<RewardManagement />} />
                 <Route path={"/admin/addreward"} element={<AddReward />} />
                 <Route path={"/admin/getreward"} element={<RetrieveReward />} />
                 <Route path={"/admin/editreward/:id"} element={<EditReward />} />
                 <Route path={"/admin/delreward"} element={<DeleteReward />} />
                 <Route path={"/admin/user"} element={<UserManagement />} />
-                <Route path={"/adduser"} element={<AddUser />} />
-                <Route path={"/getuser"} element={<RetrieveUser />} />
-                <Route path={"/edituser/:id"} element={<EditUser />} />
-                <Route path={"/deluser"} element={<DeleteUser />} />
+                <Route path={"admin/adduser"} element={<AddUser />} />
+                <Route path={"admin/getuser"} element={<RetrieveUser />} />
+                <Route path={"admin/edituser/:id"} element={<EditUser />} />
+                <Route path={"admin/deluser"} element={<DeleteUser />} />
                 {/* <Route path={"/adminhome"} element={<AdminHome />} /> */}
                 <Route path={"/admin/admin"} element={<AdminManagement />} />
                 <Route path={"/admin/addadmin"} element={<AddAdmin />} />
@@ -181,7 +191,7 @@ function App() {
           <>
 
             <UserSideNavigation handleLinkClick={handleLinkClick} />
-            
+
             <Container>
 
               <Routes>
@@ -204,15 +214,15 @@ function App() {
                 <Route path={"/payment"} element={<PaymentMethods />} />
                 <Route path={"/addpayment"} element={<AddPayment />} />
                 <Route path={"/editpayment"} element={<EditPayment />} />
-                <Route path="/augmented" element={<Augmented />} />
+                {/* <Route path="/augmented" element={<Augmented />} /> */}
 
 
               </Routes>
             </Container>
           </>
         )}
-        </Router>
-        </UserContext.Provider>
+      </Router>
+    </UserContext.Provider>
   );
 }
 

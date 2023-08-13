@@ -100,6 +100,8 @@ const AdminSideNavigation = ({ handleLinkClick }) => {
           </Link>
         </Toolbar>
       </Container>
+
+      
     </AppBar>
   );
 };
