@@ -16,7 +16,7 @@ const Verification = () => {
   const [loading, setLoading] = useState(false);
   const [showOTP, setShowOTP] = useState(false);
   const [user, setUser] = useState(null);
-  // const [phoneNumber, setPhoneNumber] = useState("");
+  const [phoneNumber, setPhoneNumber] = useState("");
   useEffect(() => {
     if (user) {
       loginSuccess();
@@ -40,15 +40,16 @@ const Verification = () => {
   }
 
   function onSignup() {
-    // const item = localStorage.getItem("userData");
-    // if (item) {
-    //   const phone = JSON.parse(item).phone;
-    //   // phone =
-    //   const phoneInp = phoneNumber.replace(/^\d{2}/, "");
-    //   console.log(phone, phoneInp);
-    //   if (phone != phoneInp) {
-    //     toast.error("Please enter the same phone number you did just now");
-    //   } else {
+    const item = localStorage.getItem("userData");
+    if (item) {
+      const data = JSON.parse(item);
+      const phone = data.phone
+      // phone =
+      const phoneInp = phoneNumber.replace(/^\d{2}/, "");
+      console.log("data:",data ,"phone:" ,phone,"input:", ph);
+      if (!ph.includes(phone) ) {
+        toast.error("Please enter the same phone number you did just now");
+      } else {
     setLoading(true);
     onCaptchVerify();
 
@@ -68,8 +69,8 @@ const Verification = () => {
         setLoading(false);
       });
   }
-  //   }
-  // }
+    }
+  }
 
   function onOTPVerify() {
     setLoading(true);
@@ -95,7 +96,10 @@ const Verification = () => {
         .post("/user/verification", data)
         .then((res) => {
           console.log(res.data);
-          navigate("/login");
+          toast.success("Registration Successful")
+          setTimeout(() => {
+            window.location.href = 'http://localhost:3000/login'; // Replace with the URL you want to redirect to
+          }, 3000)
         })
         .catch(function (err) {
           toast.error(`${err.response.data.message}`);
@@ -125,7 +129,7 @@ const Verification = () => {
                 </div>
                 <label
                   htmlFor="otp"
-                  className="font-bold text-xl text-black text-center"
+                  className="font-bold text-xl text-white text-center"
                   style={{color:"white"}}
                 >
                   Enter your OTP

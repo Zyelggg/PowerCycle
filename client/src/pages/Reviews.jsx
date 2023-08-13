@@ -14,6 +14,7 @@ function Reviews() {
   const [isSent, setIsSent] = useState(false); // State to track if the message has been sent
   const [updateUI, setUpdateUI] = useState(false)
 
+  
   const handleChange = (event) => {
     setFeedbackText(event.target.value);
   };
@@ -156,6 +157,7 @@ function Reviews() {
 
       ))}
 
+<div className="page-container">
 <AppBar position="static" className="Footer">
         <Container>
           <Toolbar disableGutters={true}>
@@ -197,6 +199,7 @@ function Reviews() {
           </Typography>
         </Container>
       </AppBar>
+      </div>
       </div>
 
       

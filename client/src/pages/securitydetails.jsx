@@ -121,14 +121,14 @@ function securityDetails() {
   return (
     <div className={dashboard.purpleContainer}>
       <div className={dashboard.whiteContainer}>
-        <div className={dashboard.header} style={{ fontFamily: "Montserrat" }}>
+        <div className={dashboard.header} style={{ fontFamily: "Montserrat" ,color:"black"}}>
           Security Details
         </div>
         <div className={dashboard.form}>
           <Box component="form" onSubmit={formik.handleSubmit}>
             <label
               for="Password"
-              style={{ fontSize: "10px", fontFamily: "Montserrat" }}
+              style={{ fontSize: "10px", fontFamily: "Montserrat",color:"black" }}
             >
               Password
             </label>
@@ -170,7 +170,7 @@ function securityDetails() {
 
             <label
               for="confirmPassword"
-              style={{ fontSize: "10px", fontFamily: "Montserrat" }}
+              style={{ fontSize: "10px", fontFamily: "Montserrat" ,color:"black"}}
             >
               Confirm password
             </label>

@@ -43,3 +43,4 @@
   .question.expanded .arrow {
     transform: rotate(135deg); /* Rotate the arrow when the accordion is expanded */
   }
+

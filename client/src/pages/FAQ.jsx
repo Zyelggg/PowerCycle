@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState  } from 'react';
 import './styles/FAQ.css';
 
 import { useNavigate, Link } from 'react-router-dom';
@@ -7,13 +7,17 @@ import instagram from './images/instagram.png'
 import facebook from './images/facebook.png'
 import twitter from './images/twitter.png'
 import logo from './images/powerlogo.png';
+import http from "../http";
 
 const FAQItem = ({ question, answer }) => {
   const [isExpanded, setIsExpanded] = useState(false);
+  
 
   const toggleAccordion = () => {
     setIsExpanded(!isExpanded);
   };
+ 
+    
 
   return (
    
@@ -30,10 +34,23 @@ const FAQItem = ({ question, answer }) => {
 };
 
 const FAQ = () => {
+  const [user, setUser] = useState('');
+  const iframeSrc = `http://localhost:8501?user_input=${user}`;
+  useEffect(() => {
+    if (localStorage.getItem("accessToken")) {
+      http
+        .get("/user/auth")
+        .then((res) => {
+          setUser(res.data.userid);
+          console.log(res.data.userid); // Verify the user value here
+          return res.data.userid;
+        })
+      }
+    }, []);
   const faqData = [
     {
       question: 'What payment methods are accepted on the app?',
-      answer: 'Visa, Mastercard, Paynow and Grap pay are all methods of payment.',
+      answer: 'Visa, Mastercard, Paynow and Grap pay are all methods of payments.',
     },
     {
       question: 'How do I unlock the bicycle?',
@@ -49,7 +66,8 @@ const FAQ = () => {
     },
     
   ];
-
+ 
+  
   return (
     
     <div className='new'>
@@ -59,12 +77,21 @@ const FAQ = () => {
         <FAQItem key={index} question={faq.question} answer={faq.answer} />
       ))}
     </div>
+
+    <div className='button-container'>
+    <Button component={Link} to="/Reviews" variant="contained" color="primary">
+      Submit a Review
+    </Button>
+    </div>
+    
+
     <iframe
-        src="http://localhost:8501"  
+        src={iframeSrc}  
         width="100%"
         height="800px"
         style={{background:"#250D69"}}
         frameBorder="0"
+        className='streamlit-iframe'
         title="StreamlitApp"
       />
     <AppBar position="static" className="Footer">

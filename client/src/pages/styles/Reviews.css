@@ -33,4 +33,11 @@
   .message {
     margin-top: 5px;
   }
-  
+  .page-container {
+    display: flex;
+    flex-direction: column;
+    min-height: 58vh; /* Ensure the container takes up at least the full viewport height */
+  }
+  .Footer {
+    margin-top: auto; /* Push the footer to the bottom */
+  }

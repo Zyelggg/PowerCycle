@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import "./Admin.css";
+import "./Adminfeedback.css";
 import Modal from "react-modal";
 import Loader from "../components/Loader";
 
@@ -10,7 +10,6 @@ const Admin = () => {
   const [reply, setReply] = useState("");
   const [selectedFeedbackId, setSelectedFeedbackId] = useState(null);
   const [isModalOpen, setIsModalOpen] = useState(false); // State for the modal
-
   useEffect(() => {
     fetchFeedbacks();
   }, []);
