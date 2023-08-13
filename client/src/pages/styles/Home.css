@@ -143,10 +143,19 @@ html body {
     transform: scale(0.5);
 }
 
+.box1 {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
 
 @media screen and (max-width: 700px) {
     h3 {
         font-size: 2.5rem !important;
+    }
+
+    .box1 {
+        display: grid;
     }
 
     h4 {
