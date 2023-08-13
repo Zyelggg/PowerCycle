@@ -195,10 +195,10 @@ function userDetails() {
 
             <label
               for="name"
-              style={{ fontSize: "10px", fontFamily: "Montserrat" }}
+              style={{ fontSize: "10px", fontFamily: "Montserrat",color:"black" }}
             >
               Name
-            </label>``
+            </label>
 
             <br />
             <div className={dashboard.textwrap} style={{ background: backgroundColor }}>
@@ -223,7 +223,7 @@ function userDetails() {
 
             <label
               for="email"
-              style={{ fontSize: "10px", fontFamily: "Montserrat" }}
+              style={{ fontSize: "10px", fontFamily: "Montserrat" ,color:"black"}}
             >
               Email
             </label>
@@ -252,7 +252,7 @@ function userDetails() {
               <div style={{ width: "47%" }}>
                 <label
                   for="dob"
-                  style={{ fontSize: "10px", fontFamily: "Montserrat" }}
+                  style={{ fontSize: "10px", fontFamily: "Montserrat",color:"black" }}
                 >
                   Account Created on
                 </label>
@@ -281,7 +281,7 @@ function userDetails() {
               <div style={{ width: "47%" }}>
                 <label
                   for="phone"
-                  style={{ fontSize: "10px", fontFamily: "Montserrat" }}
+                  style={{ fontSize: "10px", fontFamily: "Montserrat" ,color:"black"}}
                 >
                   Phone Number
                 </label>
