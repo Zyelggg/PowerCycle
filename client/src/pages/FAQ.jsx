@@ -33,7 +33,7 @@ const FAQ = () => {
   const faqData = [
     {
       question: 'What payment methods are accepted on the app?',
-      answer: 'Visa, Mastercard, Paynow and Grap pay are all methods of payment.',
+      answer: 'Visa, Mastercard, Paynow and Grap pay are all methods of payments.',
     },
     {
       question: 'How do I unlock the bicycle?',
@@ -49,7 +49,8 @@ const FAQ = () => {
     },
     
   ];
-
+ 
+  
   return (
     
     <div className='new'>
@@ -59,6 +60,13 @@ const FAQ = () => {
         <FAQItem key={index} question={faq.question} answer={faq.answer} />
       ))}
     </div>
+
+    <div className='button-container'>
+    <Button component={Link} to="/Reviews" variant="contained" color="primary">
+      Submit a Review
+    </Button>
+    </div>
+
     <iframe
         src="http://localhost:8501"  
         width="100%"
