@@ -39,7 +39,7 @@ function AddBikeStop() {
             http.post("/bikestop", data)
                 .then((res) => {
                     console.log(res.data);
-                    navigate("/bikestop");
+                    navigate("/admin/bikestop");
                 })
         }
     })
@@ -71,14 +71,14 @@ function AddBikeStop() {
     };
 
     return (
-        <Box className="main-wrap admin-wrap" style={{ minHeight: "450px" }}>
+        <Box className="main-wrap" style={{ minHeight: "450px" }}>
             <div style={{ display: 'flex', alignItems: 'center' }}>
                 <img src={bikestopicon} className='crud-icons' />
                 <Typography variant="h5" sx={{ ml: 2 }} className="main-title">
                     Add Bikestop
                 </Typography>
             </div>
-            <Box component="form" onSubmit={formik.handleSubmit}>
+            <Box component="form" onSubmit={formik.handleSubmit} className='innerbox'>
 
                 <Box sx={{ textAlign: 'center', mt: 2 }} >
                 {

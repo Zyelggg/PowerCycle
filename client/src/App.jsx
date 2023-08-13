@@ -48,20 +48,13 @@ import Reviews from "./pages/Reviews";
 import AdminHome from "./pages/AdminHome";
 // import Augmented from "./pages/Augmented";
 import Weather from "./pages/Weather";
-
-import {
-  Button,
-  Container,
-  Dialog,
-  DialogTitle,
-  DialogContent,
-  DialogActions,
-  DialogContentText,
-} from "@mui/material";
+// import Checkout from "./pages/Checkout"
+import AdminFeedback from "./pages/AdminFeedback";
+import Footer from "./components/Footer";
+import { Container } from "@mui/material";
 import { BrowserRouter as Router, Routes, Route, Link } from "react-router-dom";
 import React, { useEffect, useState } from "react";
 import Dropdown from "react-bootstrap/Dropdown";
-
 import "bootstrap/dist/css/bootstrap.min.css";
 import { Add, Update } from "@mui/icons-material";
 
@@ -74,7 +67,7 @@ function App() {
   const [isNavExpanded, setIsNavExpanded] = useState(false);
   const [isDeleted, setIsDeleted] = useState(false);
   // Hook from react-router-dom
-  const [isAdmin, setIsAdmin] = useState(false); // CHANGE IF NEED TO TEST
+  const [isAdmin, setIsAdmin] = useState(true); // CHANGE IF NEED TO TEST
 
   // Function to handle link click and close the navigation menu
   const handleLinkClick = () => {
@@ -112,7 +105,7 @@ function App() {
           const authResponse = await http.get("/user/auth");
           setUser(authResponse.data.user);
           setUserid(authResponse.data.userid);
-  
+
           const userDetailsResponse = await http.get(`user/userdetails/${authResponse.data.userid}`);
           setIsAdmin(userDetailsResponse.data.admin === true);
         }
@@ -120,10 +113,10 @@ function App() {
         console.error(error);
       }
     }
-  
+
     fetchData();
   }, []);
-  
+
 
 
 
@@ -184,6 +177,7 @@ function App() {
                 <Route path={"/admin/addadmin"} element={<AddAdmin />} />
                 <Route path={"/admin/getadmin"} element={<RetrieveAdmin />} />
                 <Route path={"/admin/editadmin/:id"} element={<EditAdmin />} />
+                <Route path={"/admin/feedback"} element={<AdminFeedback />} />
                 <Route path={"/admin/deladmin"} element={<DeleteAdmin />} />
               </Routes>
             </Container>
@@ -193,12 +187,11 @@ function App() {
           <>
 
             <UserSideNavigation handleLinkClick={handleLinkClick} />
-
             <Container>
-
               <Routes>
                 <Route path="/" element={<Home />} />
                 <Route path="/weather" element={<Weather />} />
+                {/* <Route path="/checkout" element={<Checkout />} /> */}
                 <Route path="/qrcode" element={<QRCode />} />
                 <Route path="/reviews" element={<Reviews />} />
                 <Route path="/ridecomplete" element={<RideComplete />} />
@@ -218,9 +211,9 @@ function App() {
                 <Route path={"/editpayment"} element={<EditPayment />} />
                 {/* <Route path="/augmented" element={<Augmented />} /> */}
 
-
               </Routes>
             </Container>
+            <Footer />
           </>
         )}
       </Router>

@@ -8,23 +8,24 @@ import FAQ from './pages/FAQ';
 import Feedback from './components/Feedback';
 import Admin from './components/Admin';
 import Footer from './components/Footer';
+import Payment from "./pages/Checkout";
 
 
 const App = () => {
   return (
     <div className='body'>
-    <Router>
-      <Navbar />
-      <Routes>
-        
-        <Route path="/about" element={<About />} />
-        <Route path="/faqs" element={<FAQ />} />
-        <Route path="/feedback" element={<Feedback />} />
-        <Route path="/admin" element={<Admin />} />
-
-      </Routes>
-      <Footer/>
-    </Router>
+      <Router>
+        <Navbar />
+        <Routes>
+          <Route path="/about" element={<About />} />
+          <Route path="/faqs" element={<FAQ />} />
+          <Route path="/feedback" element={<Feedback />} />
+          <Route path="/admin" element={<Admin />} />
+          <Route path="/payment" element={<Payment />} />
+          <Route path="/completion" element={<Completion />} />
+        </Routes>
+        <Footer />
+      </Router>
     </div>
   );
 };

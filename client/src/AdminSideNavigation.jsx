@@ -3,6 +3,8 @@ import { Link } from "react-router-dom";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import logo from "./pages/images/powerlogo.png";
 import human from "./pages/images/humanicon.png";
+import Home from "./pages/Home";
+
 import "./App.css";
 import {
   Button,
@@ -92,11 +94,11 @@ const AdminSideNavigation = ({ handleLinkClick }) => {
           <Link to="/admin/bikedash">
             <Typography>Bikes</Typography>
           </Link>
-          <Link to="/admin/">
-            <Typography>Transactions</Typography>
-          </Link>
           <Link to="/admin/feedback">
             <Typography>Feedback</Typography>
+          </Link>
+          <Link to="/admin/feedback" style={{ bottom: 0}}>
+            <Typography>Logout</Typography>
           </Link>
         </Toolbar>
       </Container>

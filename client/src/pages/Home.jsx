@@ -1,6 +1,7 @@
 import React from 'react';
 import { Container, AppBar, Toolbar, Typography, Box, Button, Grid } from '@mui/material';
 import { BrowserRouter as Router, Routes, Route, Link } from 'react-router-dom';
+import { useNavigate, useLocation } from 'react-router-dom';
 import './styles/Home.css';
 import pic1 from './images/1.png'
 import pic2 from './images/2.png'
@@ -10,9 +11,10 @@ import facebook from './images/facebook.png'
 import twitter from './images/twitter.png'
 import logo from './images/powerlogo.png';
 import banner1 from './images/banner1.png'
-
+import Footer from "../components/Footer.jsx";
 
 function Home() {
+  const navigate = useNavigate();
   return (
     <Box>
       <Box className="landing-banner">
@@ -21,15 +23,14 @@ function Home() {
           <Typography variant='h3'>light up the city</Typography>
           <Typography variant='h5'> Ride with us now</Typography>
           <Box sx={{ mt: 2 }} style={{ display: 'flex', alignItems: 'center', gap: '5px' }}>
-            <Button variant="contained" type="button" className='home-btn'>
+            <Button variant="contained" type="button" className='home-btn' onClick={() => navigate('/bikeservice')}>
               Ride now
             </Button>
-            <Button variant="contained" type="button" className='home-btn'>
+            <Button variant="contained" type="button" className='home-btn' onClick={() => navigate('/faq')}>
               Learn more
             </Button>
           </Box>
         </Container>
-
       </Box>
 
       <Box className="wrap-div">
@@ -52,7 +53,6 @@ function Home() {
             <Typography style={{ color: "black", textAlign: "center" }}>Our cutting-edge bicycles are equipped with advanced technology that harnesses your pedaling energy and converts it into electricity. Every rotation of the pedals generates clean, sustainable power,
               which is stored and utilized to power various components of the bike and even charge electronic devices. </Typography>
           </Grid>
-
         </Grid>
       </Box>
 
@@ -60,7 +60,6 @@ function Home() {
         <Grid container spacing={5}>
           <Grid item xs={12} md={6}>
             <img src={banner1} alt="Banner" style={{ width: "100%" }} />
-
           </Grid>
 
           <Grid item xs={12} md={6}>
@@ -71,61 +70,11 @@ function Home() {
               With affordable rental prices, you can enjoy the thrill of cycling while making a positive impact on the environment.
               Join us today and embark on a renewable energy adventure that's both affordable and environmentally conscious
             </Typography>
-            <Typography variant="h5" style={{ color: "black", marginTop: "20px" }}>
-              Price: $3.00 / hour
-
-            </Typography>
-            <Typography variant="h5" style={{ color: "black", marginTop: "20px" }}>
-              Benefits: 10 points / km
-            </Typography>
+            <Typography variant="h5" style={{ color: "black", marginTop: "20px" }}>Price: $3.00 / hour</Typography>
+            <Typography variant="h5" style={{ color: "black", marginTop: "20px" }}>Benefits: 10 points / km</Typography>
           </Grid>
         </Grid>
-
-
       </Box>
-
-
-      <AppBar position="static" className="Footer">
-        <Container>
-          <Toolbar disableGutters={true}>
-            <Grid container spacing={3}>
-              <Grid item xs={12} md={3}>
-                <img src={logo} className="logo" alt="PowerLogo" />
-              </Grid>
-              <Grid item xs={12} md={3}>
-                <Typography variant="h6">Navigation</Typography>
-                <Link to="/home">
-                  <Typography>Home</Typography>
-                </Link>
-                <Link to="/bikeservice">
-                  <Typography>Bicycles</Typography>
-                </Link>
-                <Link to="/">
-                  <Typography>About</Typography>
-                </Link>
-              </Grid>
-              <Grid item xs={12} md={3}>
-                <Typography variant="h6">Customer Help</Typography>
-                <Link to="/">
-                  <Typography>FAQ</Typography>
-                </Link>
-                <Link to="/">
-                  <Typography>Message Us</Typography>
-                </Link>
-              </Grid>
-              <Grid item xs={12} md={3}>
-                <Typography variant="h6">Social Media</Typography>
-                <img src={instagram} className='socials'></img>
-                <img src={twitter} className='socials'></img>
-                <img src={facebook} className='socials'></img>
-              </Grid>
-            </Grid>
-          </Toolbar>
-          <Typography variant="body1" style={{ textAlign: "center", marginTop: "40px" }}>
-            © 2023 PowerRide. All rights reserved.
-          </Typography>
-        </Container>
-      </AppBar>
     </Box>
   );
 }

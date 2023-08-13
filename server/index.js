@@ -46,6 +46,9 @@ app.use("/feedback", feedbackRoute);
 const riddenRoute = require('./routes/ridden');
 app.use("/ridden", riddenRoute);
 
+const stripeRoute = require('./routes/stripe');
+app.use("/stripe", stripeRoute);
+
 //models seq
 const db = require('./models');
 db.sequelize.sync({ alter: true }).then(() => {

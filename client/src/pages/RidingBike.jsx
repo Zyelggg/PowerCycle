@@ -148,7 +148,7 @@ function RidingBike() {
 
             <Container>
                 <Typography variant='h4' style={{ marginBottom: "20px", color: "white", marginLeft: "20px", marginTop: "40px" }}>Stuck? Talk to our customer help</Typography>
-                <button type="submit" className='stuck-btn' onClick={ () => navigate('/contact')}>Contact Us</button>
+                <button type="submit" className='stuck-btn' onClick={ () => navigate('/faq')}>Contact Us</button>
             </Container>
 
 

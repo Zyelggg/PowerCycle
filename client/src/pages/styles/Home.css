@@ -1,16 +1,21 @@
-html body{
-    color: white!important;
+html body {
+    color: white !important;
 }
 
 
 .css-1oqqzyl-MuiContainer-root {
-    padding-right: 0px!important;
-    padding-left: 0px!important;
+    padding-right: 0px !important;
+    padding-left: 0px !important;
 }
 
+.checkoutContainer {
+    display: grid !important;
+    gap: 5px !important;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 300px)) !important;
+}
 
 .landing-banner {
-    background:   linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)),url("https://media.istockphoto.com/id/1050437392/photo/woman-feet-on-bycikle-pedal-in-sunset-light.jpg?s=1024x1024&w=is&k=20&c=YMElcoWzLAkxyU6jY2hj19CgpAXy2M3vGK0742HNC5g=");
+    background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url("https://media.istockphoto.com/id/1050437392/photo/woman-feet-on-bycikle-pedal-in-sunset-light.jpg?s=1024x1024&w=is&k=20&c=YMElcoWzLAkxyU6jY2hj19CgpAXy2M3vGK0742HNC5g=");
     background-repeat: no-repeat;
     background-size: cover;
     background-position: center center;
@@ -18,7 +23,7 @@ html body{
 }
 
 .landing-banner2 {
-    background:   linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)),url("https://www.visitsingapore.com/editorials/cycling-routes-in-singapore/_jcr_content/par/mobile_21_content_sl/sliderccpar1/editorial_generic_co.thumbnail.overview-image.730.411.jpg");
+    background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url("https://www.visitsingapore.com/editorials/cycling-routes-in-singapore/_jcr_content/par/mobile_21_content_sl/sliderccpar1/editorial_generic_co.thumbnail.overview-image.730.411.jpg");
     background-repeat: no-repeat;
     background-size: cover;
     background-position: center center;
@@ -29,11 +34,12 @@ html body{
     width: 100%;
     max-width: 200px;
     max-height: 200px;
-    margin:auto;
+    margin: auto;
     display: block;
 }
+
 .landing-content {
-    padding: 60px 40px!important;
+    padding: 60px 40px !important;
 }
 
 .wrap-div {
@@ -43,29 +49,28 @@ html body{
 }
 
 .main-btn {
-    background-color: #F2C086!important;
-    border-radius: 10px!important;
-    width: 100%;
-    color: black!important;
+    background-color: #F2C086 !important;
+    border-radius: 10px !important;
+    color: black !important;
 }
 
 .Footer {
-    background-color:#212121 ;
+    background-color: #212121;
     padding: 20px;
 }
 
 .leaflet-container {
-    height:600px;
+    height: 600px;
     background-color: red;
 }
 
 .title-wrap {
-    padding:20px;
-    margin-top: 20px!important;
+    padding: 20px;
+    margin-top: 20px !important;
 }
 
 .home-btn {
-    float:unset;
+    float: unset;
 }
 
 .bike-btn {
@@ -79,7 +84,7 @@ html body{
     border-radius: 15px;
     padding: 20px;
     margin-top: 20px;
-    margin-left:20px;
+    margin-left: 20px;
     margin-right: 20px;
 }
 
@@ -98,15 +103,15 @@ html body{
 }
 
 .scanqr-btn {
-    color:white;
+    color: white;
     width: -webkit-fill-available;
     margin: 20px;
 }
 
 .stuck-btn {
-    background-color: purple!important;
+    background-color: purple !important;
     color: white;
-    margin-left:20px;
+    margin-left: 20px;
     margin-bottom: 40px;
 }
 
@@ -128,28 +133,29 @@ html body{
 }
 
 .r-reader__scan_region img {
-    width: 200px!important;
+    width: 200px !important;
 }
 
 .leaflet-popup-content-wrapper {
     width: 200px;
 }
+
 .bike-img-shrink {
     width: 40%;
     transition: transform 2s ease-out;
-  }
-  
-  .bike-img-shrink.shrunken {
+}
+
+.bike-img-shrink.shrunken {
     transform: scale(0.5);
-  }
-  
+}
+
 
 @media screen and (max-width: 700px) {
     h3 {
-        font-size: 2.5rem!important;
+        font-size: 2.5rem !important;
     }
-    
+
     h4 {
-        font-size : 2rem!important;
+        font-size: 2rem !important;
     }
 }

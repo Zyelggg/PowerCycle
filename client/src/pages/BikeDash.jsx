@@ -6,12 +6,8 @@ import { Box, Typography, Grid, Card, CardContent, Input, IconButton, Button, Co
 
 import { BrowserRouter as Router, Routes, Route, Link } from 'react-router-dom';
 
-import AddBikes from './AddBikes';
-import AddBikeStop from './AddBikeStop';
-import EditBikeStop from './EditBikeStop';
-import EditBikes from './EditBikes';
-import DeleteBikes from './DeleteBikes';
-import DeleteBikeStop from './DeleteBikeStop';
+
+import bikeicon from './images/bikeicon.png';
 import http from '../http';
 
 function BikeDash() {
@@ -39,6 +35,7 @@ function BikeDash() {
 
       <Box className="main-wrap admin-wrap">
         <Typography variant="h5" sx={{ my: 2 }} className="main-title">
+        <img src={bikeicon} className='crud-icons' style={{float:"left", marginRight: "20px"}}/>
           Bicycle Management
         </Typography>
 
