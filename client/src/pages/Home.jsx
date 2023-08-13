@@ -23,12 +23,8 @@ function Home() {
           <Typography variant='h3'>light up the city</Typography>
           <Typography variant='h5'> Ride with us now</Typography>
           <Box sx={{ mt: 2 }} style={{ display: 'flex', alignItems: 'center', gap: '5px' }}>
-            <Button variant="contained" type="button" className='home-btn' onClick={() => navigate('/bikeservice')}>
-              Ride now
-            </Button>
-            <Button variant="contained" type="button" className='home-btn' onClick={() => navigate('/faq')}>
-              Learn more
-            </Button>
+            <Button variant="contained" type="button" className='home-btn' onClick={() => navigate('/bikeservice')}>Ride now</Button>
+            <Button variant="outlined" style={{ color: "#F2C086", borderColor: "#F2C086" }} type="button" className='home-btn' onClick={() => navigate('/faq')}>Learn more</Button>
           </Box>
         </Container>
       </Box>

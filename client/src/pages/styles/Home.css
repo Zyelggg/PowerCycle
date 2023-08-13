@@ -73,12 +73,6 @@ html body {
     float: unset;
 }
 
-.bike-btn {
-    background-color: #F2C086 !important;
-    color: white !important;
-
-}
-
 .user-records {
     background-color: black;
     border-radius: 15px;

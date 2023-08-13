@@ -133,13 +133,13 @@ function BikeService() {
         </Container>
       </Box>
 
-      <Typography variant='h3' className='title-wrap'>Find our nearest bikes</Typography>
+      <Typography variant='h3' className='title-wrap' style={{ width: '60%' }}>Find our nearest bikes</Typography>
+
+
 
       {user ? (
-
         <MapContainer center={[1.350270, 103.821959]} zoom={12}>
           <TileLayer url="https://api.maptiler.com/maps/basic-v2/256/{z}/{x}/{y}.png?key=vawTmn0mJjBwNQB6GFOe" />
-
           {userLocation && (
             <Marker position={userLocation}>
               <Popup>Your Location</Popup>
@@ -154,25 +154,15 @@ function BikeService() {
               icon={markerIcon}
             >
               <Popup>
-                {
-                  bikeStop.imageFile && (
-                    <AspectRatio>
-                      <Box component="img"
-                        src={`${import.meta.env.VITE_FILE_BASE_URL}${bikeStop.imageFile}`}
-                        alt="bikestop"
-                        className="popup-image"
-                      >
-
-                      </Box>
-                    </AspectRatio>
-                  )
-                }
-
+                {bikeStop.imageFile && (
+                  <AspectRatio>
+                    <Box component="img" src={`${import.meta.env.VITE_FILE_BASE_URL}${bikeStop.imageFile}`} alt="bikestop" className="popup-image" />
+                  </AspectRatio>
+                )}
                 {bikeStop.stopname}
                 <Typography variant="subtitle1" style={{ color: "black" }}>Bikes in this area: {stopRecords[bikeStop.stopname] || 0}</Typography>
-
+                <Button variant="contained" type="button" className='home-btn' style={{ margin: "5px 0" }} onClick={() => navigate("/weather")}>Check Weather</Button>
                 {/* Add amount of bikes */}
-
 
               </Popup>
             </Marker>
@@ -209,8 +199,6 @@ function BikeService() {
         <Container style={{ width: "-webkit-fill-available", margin: "20px" }}>
           <Grid container rowSpacing={1} columnSpacing={{ xs: 1, sm: 2, md: 3 }} >
             <Grid item xs={12} sm={6}>
-
-
               <Card>
                 <CardMedia
                   sx={{ height: 140 }}
@@ -267,9 +255,6 @@ function BikeService() {
 
       </Container>
 
-
-
-
       <Box className="wrap-div" style={{ marginTop: "40px" }}>
         <Grid container spacing={5}>
           <Grid item xs={12} md={6}>
@@ -294,7 +279,7 @@ function BikeService() {
         </Grid>
       </Box>
 
-    
+
     </Box>
   );
 }

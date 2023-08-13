@@ -34,7 +34,8 @@ import Register from "./pages/Register";
 import Login from "./pages/Login";
 import Verification from "./pages/verification";
 import Userdetails from "./pages/userdetails";
-import Securitydetails from "./pages/securitydetails"; import RidingBike from "./pages/RidingBike";
+import Securitydetails from "./pages/securitydetails";
+import RidingBike from "./pages/RidingBike";
 import RideComplete from "./pages/RideComplete";
 import "./App.css";
 import AddPayment from "./pages/AddPayment";
@@ -66,7 +67,7 @@ function App() {
   const [isNavExpanded, setIsNavExpanded] = useState(false);
   const [isDeleted, setIsDeleted] = useState(false);
   // Hook from react-router-dom
-  const [isAdmin, setIsAdmin] = useState(true); // CHANGE IF NEED TO TEST
+  const [isAdmin, setIsAdmin] = useState(false); // CHANGE IF NEED TO TEST
 
   // Function to handle link click and close the navigation menu
   const handleLinkClick = () => {
