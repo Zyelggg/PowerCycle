@@ -1,20 +1,40 @@
-import React, { useEffect, useState } from 'react';
-import { useParams, useNavigate, Link } from 'react-router-dom';
-import { Box, Typography, TextField, Button, Dialog, DialogTitle, DialogContent, DialogContentText, DialogActions } from '@mui/material';
-import ChevronLeftIcon from '@mui/icons-material/ChevronLeft';
-import { useFormik } from 'formik';
-import * as yup from 'yup';
-import rewardimg from './images/reward.png';
-import http from '../http';
-import './styles/adminCard.css';
+import React, { useEffect, useState } from "react";
+import { useParams, useNavigate, Link } from "react-router-dom";
+import {
+  Box,
+  Typography,
+  TextField,
+  Button,
+  Dialog,
+  DialogTitle,
+  DialogContent,
+  DialogContentText,
+  DialogActions,
+} from "@mui/material";
+import ChevronLeftIcon from "@mui/icons-material/ChevronLeft";
+import { useFormik } from "formik";
+import * as yup from "yup";
+import rewardimg from "./images/reward.png";
+import http from "../http";
+// import './styles/adminCard.css';
 
 function EditReward() {
   const { id } = useParams();
   const navigate = useNavigate();
 
+  useEffect(() => {
+    // Disable scrolling on mount
+    document.body.style.overflow = "hidden";
+
+    // Re-enable scrolling on unmount
+    return () => {
+      document.body.style.overflow = "visible";
+    };
+  }, []);
+
   const [reward, setReward] = useState({
     title: "",
-    description: ""
+    description: "",
   });
 
   useEffect(() => {
@@ -28,24 +48,27 @@ function EditReward() {
     initialValues: reward,
     enableReinitialize: true,
     validationSchema: yup.object({
-      title: yup.string().trim()
-          .min(5, "Reward Title must be at least 5 characters")
-          .max(100, "Reward Title must be at most 100 characters")
-          .required("Reward Title is required"),
-      description: yup.string().trim()
-          .min(5, "Reward Description must be at least 5 characters")
-          .max(100, "Reward Description must be at most 100 characters")
-          .required("Reward Description is required")
+      title: yup
+        .string()
+        .trim()
+        .min(5, "Reward Title must be at least 5 characters")
+        .max(100, "Reward Title must be at most 100 characters")
+        .required("Reward Title is required"),
+      description: yup
+        .string()
+        .trim()
+        .min(5, "Reward Description must be at least 5 characters")
+        .max(100, "Reward Description must be at most 100 characters")
+        .required("Reward Description is required"),
     }),
     onSubmit: (data) => {
       data.title = data.title.trim();
       data.description = data.description.trim();
-      http.put(`/reward/${id}`, data)
-          .then((res) => {
-            console.log(res.data);
-            navigate("/getreward");
-          });
-    }
+      http.put(`/reward/${id}`, data).then((res) => {
+        console.log(res.data);
+        navigate("/admin/getreward");
+      });
+    },
   });
 
   const [open, setOpen] = useState(false);
@@ -59,32 +82,36 @@ function EditReward() {
   };
 
   const deleteReward = () => {
-    http.delete(`/reward/${id}`)
-        .then((res) => {
-          console.log(res.data)
-          navigate("/getreward");
-        });
-  }
+    http.delete(`/reward/${id}`).then((res) => {
+      console.log(res.data);
+      navigate("/admin/getreward");
+    });
+  };
 
   return (
-    <Box className="main-wrap">
+    <Box
+      className="main-wrap"
+      sx={{ marginLeft: "250px", marginRight: "50px" }}
+    >
       <Box>
         <Box sx={{ mb: 2 }}>
-          <Link to="/reward" style={{ textDecoration: 'none' }}>
+          <Link to="/admin/rewards" style={{ textDecoration: "none" }}>
             <Button variant="contained">
               <ChevronLeftIcon></ChevronLeftIcon>
-                back
+              back
             </Button>
           </Link>
         </Box>
         <Typography className="main-title" variant="h5" sx={{ my: 2 }}>
-        <img className="main-icon" src={rewardimg} alt="reward" />
+          <img className="main-icon" src={rewardimg} alt="reward" />
           Edit Reward
         </Typography>
         <Box component="form" onSubmit={formik.handleSubmit}>
           <TextField
             className="main-tf"
-            fullWidth margin="normal" autoComplete="off"
+            fullWidth
+            margin="normal"
+            autoComplete="off"
             label="Reward Title"
             name="title"
             value={formik.values.title}
@@ -93,27 +120,43 @@ function EditReward() {
             helperText={formik.touched.title && formik.errors.title}
           />
           <TextField
-            fullWidth margin="normal" autoComplete="off"
-            multiline minRows={2}
+            fullWidth
+            margin="normal"
+            autoComplete="off"
+            multiline
+            minRows={2}
             label="Reward Description"
             name="description"
             value={formik.values.description}
             onChange={formik.handleChange}
-            error={formik.touched.description && Boolean(formik.errors.description)}
+            error={
+              formik.touched.description && Boolean(formik.errors.description)
+            }
             helperText={formik.touched.title && formik.errors.title}
           />
-          <Box sx={{ mt: 2 }}>
-            <Button className="main-btn" variant="contained" type="submit">
+          <Box
+            sx={{
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "flex-start",
+              mt: 2,
+            }}
+          >
+            <Button variant="contained" type="submit">
               Update
             </Button>
-            <Button variant="contained" sx={{ ml : 2 }} color="error" onClick={handleOpen}>
+            <Button
+              variant="contained"
+              color="error"
+              sx={{ ml: 2 }}
+              onClick={handleOpen}
+            >
               Delete
             </Button>
           </Box>
+
           <Dialog open={open} onClose={handleClose}>
-            <DialogTitle>
-              Delete Reward?
-            </DialogTitle>
+            <DialogTitle>Delete Reward?</DialogTitle>
             <DialogContent>
               <DialogContentText>
                 Are you want to delete this reward?
@@ -134,4 +177,4 @@ function EditReward() {
   );
 }
 
-export default EditReward
+export default EditReward;
