@@ -51,7 +51,7 @@ function EditBikes() {
             http.put(`/bike/${id}`, data)
                 .then((res) => {
                     console.log(res.data);
-                    navigate("/bike");
+                    navigate("/admin/bike");
                 });
         }
     })
@@ -73,7 +73,7 @@ function EditBikes() {
                 setOpen(false);
 
                 setTimeout(() => {
-                    navigate("/bike");
+                    navigate("/admin/bike");
                 }, 2000);
 
             });
@@ -88,7 +88,7 @@ function EditBikes() {
                     Edit Bikes
                 </Typography>
             </div>
-            <Box component="form" onSubmit={formik.handleSubmit}>
+            <Box component="form" onSubmit={formik.handleSubmit} className='innerbox'>
                 <InputLabel id="stop-label">Stop name</InputLabel>
 
                 <Select

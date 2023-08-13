@@ -17,13 +17,23 @@ import {
 import ChevronLeftIcon from "@mui/icons-material/ChevronLeft";
 import { useFormik } from "formik";
 import * as yup from "yup";
-import rewardimg from "./images/reward.png";
+import userimg from "./images/user.png";
 import http from "../http";
-import "./styles/adminCard.css";
+// import "./styles/adminCard.css";
 
 function EditUser() {
   const { id } = useParams();
   const navigate = useNavigate();
+
+  useEffect(() => {
+    // Disable scrolling on mount
+    document.body.style.overflow = "hidden";
+
+    // Re-enable scrolling on unmount
+    return () => {
+      document.body.style.overflow = "visible";
+    };
+  }, []);
 
   const [open, setOpen] = useState(false);
   const [isDeleted, setIsDeleted] = useState(false);
@@ -33,7 +43,7 @@ function EditUser() {
     password: "",
     name: "",
     phone: "",
-    admin: ""
+    admin: "",
   });
 
   useEffect(() => {
@@ -44,51 +54,48 @@ function EditUser() {
   }, []);
 
   const formik = useFormik({
-      initialValues: user,
-      enableReinitialize: true,
-      validationSchema: yup.object().shape({
-        email: yup
-          .string()
-          .trim()
-          .email("Invalid email address")
-          .required("Email is required"),
-        password: yup
-          .string()
-          .trim()
-          .min(8, "Password must be at least 8 characters")
-          .max(128, "Reward Description must be at most 128 characters")
-          .matches(
-            /^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!%*#?&]+$/,
-            "Password must contain at least one letter, one number, and one special character"
-          )
-          .required("Password is required"),
-        name: yup
-          .string()
-          .trim()
-          .min(5, "User name must be at least 5 characters")
-          .max(30, "User name must be at most 30 characters")
-          .required("User name is required"),
-        phone: yup
-          .string()
-          .trim()
-          .matches(/^\d{8}$/, "Invalid phone number")
-          .required("Phone number is required"),
-        admin: yup
-          .boolean()
-          .required("Admin field is required")
-      }),
-      onSubmit: (data) => {
-        data.email = data.email.trim();
-        data.password = data.password.trim();
-        data.name = data.name.trim();
-        data.phone = data.phone.trim();
-        http.put(`/userdetails/${id}`, data).then((res) => {
-          console.log(res.data);
-          navigate("/admin/getuser");
-        });
-      },
+    initialValues: user,
+    enableReinitialize: true,
+    validationSchema: yup.object().shape({
+      email: yup
+        .string()
+        .trim()
+        .email("Invalid email address")
+        .required("Email is required"),
+      password: yup
+        .string()
+        .trim()
+        .min(8, "Password must be at least 8 characters")
+        .max(128, "Reward Description must be at most 128 characters")
+        .matches(
+          /^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!%*#?&]+$/,
+          "Password must contain at least one letter, one number, and one special character"
+        )
+        .required("Password is required"),
+      name: yup
+        .string()
+        .trim()
+        .min(5, "User name must be at least 5 characters")
+        .max(30, "User name must be at most 30 characters")
+        .required("User name is required"),
+      phone: yup
+        .string()
+        .trim()
+        .matches(/^\d{8}$/, "Invalid phone number")
+        .required("Phone number is required"),
+      admin: yup.boolean().required("Admin field is required"),
+    }),
+    onSubmit: (data) => {
+      data.email = data.email.trim();
+      data.password = data.password.trim();
+      data.name = data.name.trim();
+      data.phone = data.phone.trim();
+      http.put(`/userdetails/${id}`, data).then((res) => {
+        console.log(res.data);
+        navigate("/admin/getuser");
+      });
+    },
   });
-
 
   const handleOpen = () => {
     setOpen(true);
@@ -104,17 +111,35 @@ function EditUser() {
       console.log(res.data);
       setIsDeleted(true);
       setOpen(false);
-      
-      setTimeout(() => {
-        navigate("/admin/getuser")
-      }, 2000);
 
+      setTimeout(() => {
+        navigate("/admin/getuser");
+      }, 2000);
     });
   };
 
   return (
-    <Box className="main-wrap admin-wrap">
-      <Box>
+    <Box
+      sx={{
+        display: "flex",
+        justifyContent: "center",
+        alignItems: "center",
+        backgroundColor: "#250D69",
+        minHeight: "100vh",
+      }}
+    >
+      <Box
+        sx={{
+          width: "100%",
+          maxWidth: "800px",
+          padding: "20px",
+          border: "1px solid #ccc",
+          borderRadius: "8px",
+          backgroundColor: "#fff",
+          boxShadow: "0px 2px 6px rgba(0, 0, 0, 0.1)",
+          maxHeight: "100vh", // Adjust maxHeight to make the box smaller in height
+        }}
+      >
         <Box sx={{ mb: 2 }}>
           <Link to="/admin/getuser" style={{ textDecoration: "none" }}>
             <Button variant="contained">
@@ -124,7 +149,7 @@ function EditUser() {
           </Link>
         </Box>
         <Typography className="main-title" variant="h5" sx={{ my: 2 }}>
-          <img className="main-icon" src={rewardimg} alt="user" />
+          <img className="main-icon" src={userimg} alt="user" />
           Edit User
         </Typography>
         <Box component="form" onSubmit={formik.handleSubmit}>
@@ -191,14 +216,21 @@ function EditUser() {
             <MenuItem value={false}>False</MenuItem>
             <MenuItem value={true}>True</MenuItem>
           </Select>
-          <Box sx={{ mt: 2 }}>
-            <Button className="main-btn" variant="contained" type="submit">
+          <Box
+            sx={{
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "flex-start",
+              mt: 2,
+            }}
+          >
+            <Button variant="contained" type="submit">
               Update
             </Button>
             <Button
               variant="contained"
-              sx={{ ml: 2 }}
               color="error"
+              sx={{ ml: 2 }}
               onClick={handleOpen}
             >
               Delete
@@ -226,4 +258,4 @@ function EditUser() {
   );
 }
 
-export default EditUser
+export default EditUser;

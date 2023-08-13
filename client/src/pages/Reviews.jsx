@@ -14,6 +14,7 @@ function Reviews() {
   const [isSent, setIsSent] = useState(false); // State to track if the message has been sent
   const [updateUI, setUpdateUI] = useState(false)
 
+
   const handleChange = (event) => {
     setFeedbackText(event.target.value);
   };
@@ -21,7 +22,7 @@ function Reviews() {
   const [user, setUser] = useState(null);
 
   useEffect(() => {
-    
+
     if (localStorage.getItem("accessToken")) {
       // Use axios instead of fetch to keep consistency with other requests
       http.get("/user/auth")
@@ -51,15 +52,15 @@ function Reviews() {
     console.log(user.name);
     console.log(feedbackText);
     http.post("/feedback/submit-feedback", feedbackData)
-            .then((res) => {
-                console.log("Backend Response:", res.status, res.data);
-            })
-            .catch((error) => {
-                console.error('Error submitting data:', error);
-            })
-            .finally(() => {
-              setIsLoading(false); // Set loading state to false after the request is completed
-            });
+      .then((res) => {
+        console.log("Backend Response:", res.status, res.data);
+      })
+      .catch((error) => {
+        console.error('Error submitting data:', error);
+      })
+      .finally(() => {
+        setIsLoading(false); // Set loading state to false after the request is completed
+      });
 
   };
 
@@ -80,7 +81,7 @@ function Reviews() {
       });
 
 
-      
+
   };
   const [selectedReview, setSelectedReview] = useState(null);
   //reviews
@@ -93,7 +94,7 @@ function Reviews() {
   }
 
     return (
-      <div className="backgroundF"style={{marginTop:"100px"}}>
+      <div className="backgroundF">
         <div className="newF" >
           <div className="feedback-container">
             <div style={{ display: "flex", justifyContent: "center" }}>
@@ -103,20 +104,20 @@ function Reviews() {
               <ReviewRow />
             </div>
 
-            <form onSubmit={handleSubmit}>
-              <textarea
-                className="feedback-textarea"
-                placeholder="Enter your feedback here..."
-                value={feedbackText}
-                onChange={handleChange}
-              />
-              <div style={{ display: "flex", justifyContent: "center" }}>
-                <button className="send-button" type='button' onClick={handleSubmit}>
-                  {isLoading ? "Sending..." : "Send Feedback"}
-                </button>
+          <form onSubmit={handleSubmit}>
+            <textarea
+              className="feedback-textarea"
+              placeholder="Enter your feedback here..."
+              value={feedbackText}
+              onChange={handleChange}
+            />
+            <div style={{ display: "flex", justifyContent: "center" }}>
+              <button className="send-button" type='button' onClick={handleSubmit}>
+                {isLoading ? "Sending..." : "Send Feedback"}
+              </button>
 
-              </div>
-            </form>
+            </div>
+          </form>
 
 
             {isSent && (
@@ -156,7 +157,7 @@ function Reviews() {
 
       ))}
 
-<AppBar position="static" className="Footer" style={{marginTop:"12.8%"}}>
+<AppBar position="static" className="Footer">
         <Container>
           <Toolbar disableGutters={true}>
             <Grid container spacing={3}>
@@ -203,4 +204,4 @@ function Reviews() {
     )
   }
 
-  export default Reviews;
+export default Reviews;

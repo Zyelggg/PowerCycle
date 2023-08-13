@@ -136,7 +136,8 @@ a {
   text-decoration: none;
   display: block;
   width: 100%;
-  font-family: 'Montserrat';
+  font-family: "Roboto","Helvetica","Arial",sans-serif;
+
 }
 
 .hamburger {
@@ -183,7 +184,8 @@ a {
 .socials {
   margin-top: 10px;
   padding-right: 20px;
-  max-width: 30px;
+  max-width: 50px;
+    display: initial;
 }
 .humannlogo{
   width:30px;
@@ -236,6 +238,8 @@ a {
     margin: 0;
   }
   .navigation-menu li a {
+    font-family: "Roboto","Helvetica","Arial",sans-serif!important;
+
     color: black;
     background-color: #212121;
     width: 100%;

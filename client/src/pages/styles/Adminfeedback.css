@@ -1,0 +1,120 @@
+@font-face { font-family: ‘Montserrat’; src: url(‘montserrat.ttf’); } 
+@import url(https://fonts.googleapis.com/css?family=Montserrat);
+
+.containerA{
+    background-color: rgba(37,13,105,255);
+    min-height: 100vh;
+    overflow: auto;
+    
+}
+
+
+.admin-feedbacks {
+
+    background-color: white;
+    max-width: 600px;
+    margin: 0 auto;
+    padding: 20px;
+    margin-top: 20px;
+    border-radius: 2%;
+    margin-bottom: 20px;
+  }
+  
+  .feedbackA-item {
+    color:black;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    padding: 10px;
+    margin-bottom: 10px;
+    transition: box-shadow 0.3s ease;
+    display: flex;
+    cursor: pointer;
+    width: 100%;
+    font-family: "Roboto","Helvetica","Arial",sans-serif;
+  }
+  
+  .feedbackA-item:hover {
+    box-shadow: 0px 2px 6px rgba(0, 0, 0, 0.2);
+    
+  }
+  
+  .feedbackA-item strong {
+    font-weight: bold;
+  }
+  
+  .feedback-list {
+    list-style: none;
+    padding: 0;
+  }
+  .status{
+    margin-left: auto;
+    font-size: larger;
+  }
+  .senderName{
+    font-weight: bolder;
+    font-size: x-large;
+  }
+  .reply-input {
+    width: 100%;
+    padding: 8px;
+    margin-bottom: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    background: wheat;
+  }
+  button {
+    background-color: green;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    margin-right: 10px;
+  }
+  
+  /* For the Cancel button */
+  button.cancel {
+    background-color: red; /* You can choose any color for the cancel button */
+  }
+  .disabled{
+    cursor: default;
+    pointer-events: none;
+    background-color: darkgray;
+    opacity: 0.8;
+  }
+  .disabled:hover{
+    box-shadow: none;
+  }
+.bx-trash{
+    color: red;
+    margin-right: 10px;
+    transform: scale(1);
+    transition: transform 0.3s ease; 
+    cursor: pointer;
+    margin-left: 10px;
+    font-size: xx-large;
+}
+.bx-trash:hover{
+    transform: scale(1.2);
+    cursor: pointer;
+    
+}
+.bxs-edit{
+    color: green;
+    margin-right: 10px;
+    transform: scale(1);
+    transition: transform 0.3s ease; 
+    cursor: pointer;
+    margin-left: 10px;
+    font-size: xx-large;
+}
+.bxs-edit:hover{
+    transform: scale(1.2);
+    cursor: pointer;
+}
+.list{
+    display: flex;
+    align-items: center;
+}
+
+  

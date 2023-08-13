@@ -33,7 +33,7 @@ function AddBikes() {
             http.post("/bike", data)
                 .then((res) => {
                     console.log(res.data);
-                    navigate("/bike");
+                    navigate("/admin/bike");
                 })
         }
     });
@@ -63,7 +63,7 @@ function AddBikes() {
                     Add Bikes
                 </Typography>
             </div>
-            <Box component="form" onSubmit={formik.handleSubmit}>
+            <Box component="form" onSubmit={formik.handleSubmit} className='innerbox'>
 
                 <TextField
                     fullWidth margin="normal" autoComplete="off"

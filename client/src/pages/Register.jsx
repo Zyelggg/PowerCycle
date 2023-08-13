@@ -107,7 +107,7 @@ function Register() {
   });
 
   return (
-    <div className={Registers.container}>
+    <div className={Registers.container} style={{marginBottom: "80px"}}>
       <div className={Registers.box}>
         <span className={Registers.borderLine}></span>
         <Box

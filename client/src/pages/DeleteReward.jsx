@@ -1,20 +1,41 @@
-import React, { useEffect, useState } from 'react';
-import { useNavigate } from 'react-router-dom';
-import { Box, Typography, TextField, Button, Dialog, DialogTitle, DialogContent, DialogContentText, DialogActions, IconButton } from '@mui/material';
-import { useFormik } from 'formik';
-import * as yup from 'yup';
-import { Link } from 'react-router-dom';
-import { ToastContainer, toast } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
-import rewardimg from './images/reward.png';
-import http from '../http';
-import './styles/adminCard.css';
-import ChevronLeftIcon from '@mui/icons-material/ChevronLeft';
+import React, { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
+import {
+  Box,
+  Typography,
+  TextField,
+  Button,
+  Dialog,
+  DialogTitle,
+  DialogContent,
+  DialogContentText,
+  DialogActions,
+  IconButton,
+} from "@mui/material";
+import { useFormik } from "formik";
+import * as yup from "yup";
+import { Link } from "react-router-dom";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+import rewardimg from "./images/reward.png";
+import http from "../http";
+// import "./styles/adminCard.css";
+import ChevronLeftIcon from "@mui/icons-material/ChevronLeft";
 
 function DeleteReward() {
   const [open, setOpen] = useState(false);
-  const [id, setId] = useState('');
+  const [id, setId] = useState("");
   const navigate = useNavigate();
+
+  useEffect(() => {
+    // Disable scrolling on mount
+    document.body.style.overflow = "hidden";
+
+    // Re-enable scrolling on unmount
+    return () => {
+      document.body.style.overflow = "visible";
+    };
+  }, []);
 
   const handleOpen = () => {
     setOpen(true);
@@ -25,16 +46,17 @@ function DeleteReward() {
   };
 
   const deleteReward = () => {
-    http.delete(`/reward/${id}`)
+    http
+      .delete(`/reward/${id}`)
       .then((res) => {
         console.log(res.data);
-        navigate("getreward");
-        toast.success('Reward deleted successfully!');
+        navigate("/admin/getreward");
+        toast.success("Reward deleted successfully!");
       })
       .catch((error) => {
         console.error(error);
         setOpen(false);
-        toast.error('Reward ID does not exist.');
+        toast.error("Reward ID does not exist.");
       });
   };
 
@@ -43,13 +65,16 @@ function DeleteReward() {
   };
 
   return (
-    <Box className="main-wrap">
+    <Box
+      className="main-wrap"
+      sx={{ marginLeft: "250px", marginRight: "50px" }}
+    >
       <Box>
-            <Box sx={{ mb: 2 }}>
-          <Link to="/reward" style={{ textDecoration: 'none' }}>
+        <Box sx={{ mb: 2 }}>
+          <Link to="/admin/rewards" style={{ textDecoration: "none" }}>
             <Button variant="contained">
               <ChevronLeftIcon></ChevronLeftIcon>
-                back
+              back
             </Button>
           </Link>
         </Box>
@@ -59,21 +84,34 @@ function DeleteReward() {
         </Typography>
         <Box component="form">
           <TextField
-            fullWidth margin="normal" autoComplete="off"
+            fullWidth
+            margin="normal"
+            autoComplete="off"
             label="Reward ID"
             name="id"
             value={id}
             onChange={handleIdChange}
           />
-          <Box sx={{ mt: 2, marginLeft: 'auto', display: 'flex', justifyContent: 'flex-end'}}>
-            <Button className="main-btn" variant="contained" color="error" onClick={handleOpen}>
+          <Box
+            sx={{
+              mt: 2,
+              marginRight: "auto", 
+              display: "flex",
+              justifyContent: "flex-start", 
+            }}
+          >
+            <Button
+              variant="contained"
+              color="error"
+              onClick={handleOpen}
+              sx={{ display: "block", mt: 2 }}
+            >
               Delete
             </Button>
           </Box>
+
           <Dialog open={open} onClose={handleClose}>
-            <DialogTitle>
-              Delete Reward?
-            </DialogTitle>
+            <DialogTitle>Delete Reward?</DialogTitle>
             <DialogContent>
               <DialogContentText>
                 Are you sure you want to delete this reward?
@@ -90,7 +128,16 @@ function DeleteReward() {
           </Dialog>
         </Box>
       </Box>
-      <ToastContainer position="top-right" autoClose={3000} hideProgressBar newestOnTop closeOnClick pauseOnFocusLoss draggable pauseOnHover />
+      <ToastContainer
+        position="top-right"
+        autoClose={3000}
+        hideProgressBar
+        newestOnTop
+        closeOnClick
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+      />
     </Box>
   );
 }

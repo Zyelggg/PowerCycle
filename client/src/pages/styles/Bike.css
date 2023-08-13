@@ -1,16 +1,22 @@
 .main-wrap {
     background-color: white;
     border-radius: 15px;
-    padding: 20px;
+    padding: 20px!important;
     padding-top: 10px;
     margin-top: 30px;
     min-height: 300px;
-
+    margin-left: 250px!important;
+    margin-right: 20px!important;
 }
 
+.innerbox {
+    margin-top: 20px;
+    width: 100%;
+    padding-bottom: 80px;
+}
 .admin-wrap {
     margin-top:80px;
-    margin-left:220px;
+    margin-left:240px;
     margin-right: 20px;
 }
 
@@ -87,7 +93,10 @@
 
 
 @media screen and (max-width: 700px) {
-
+    .main-wrap {
+        margin:20px !important;
+        margin-top:150px!important;
+    }
 
     .admin-wrap {
         margin-top: 20px;

@@ -17,7 +17,6 @@ function UserHistory() {
       http.get("/user/auth")
         .then((res) => {
           const userId = res.data.userid;
-          console.log(userId); // Verify the user value here
           fetchUserDetails(userId); // Fetch user details using the foreign key (userId)
         })
         .catch((error) => {
@@ -26,7 +25,7 @@ function UserHistory() {
     }
   }, []);
 
-  console.log('userDetails:', userDetails);
+
 
   const fetchUserDetails = (userId) => {
     http.get(`/ridden`)

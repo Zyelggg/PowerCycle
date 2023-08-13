@@ -34,13 +34,18 @@ app.use("/bikestop", bikestopRoute);
 const fileRoute = require('./routes/file');
 app.use("/file", fileRoute);
 
+const rewardRoute = require('./routes/reward');
+app.use("/reward", rewardRoute)
+
 const userRoute = require('./routes/user');
 app.use("/user", userRoute);
+
 const feedbackRoute = require('./routes/feedback');
 app.use("/feedback", feedbackRoute);
 
 const riddenRoute = require('./routes/ridden');
 app.use("/ridden", riddenRoute);
+
 
 //models seq
 const db = require('./models');
