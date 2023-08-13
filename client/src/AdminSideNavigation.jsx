@@ -21,6 +21,12 @@ import {
 
 const AdminSideNavigation = ({ handleLinkClick }) => {
   const [isNavExpanded, setIsNavExpanded] = useState(false);
+
+  const logout = () => {
+    localStorage.clear();
+    sessionStorage.clear();
+    window.location = "/";
+  };
   return (
     // <AppBar className='sidebar'>
     //   <Container>
@@ -97,7 +103,7 @@ const AdminSideNavigation = ({ handleLinkClick }) => {
           <Link to="/admin/feedback">
             <Typography>Feedback</Typography>
           </Link>
-          <Link to="/admin/feedback" style={{ bottom: 0}}>
+          <Link onClick={logout} style={{ position: "absolute", width: "100%", bottom: 0}}>
             <Typography>Logout</Typography>
           </Link>
         </Toolbar>
