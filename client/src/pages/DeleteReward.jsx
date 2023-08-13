@@ -28,7 +28,7 @@ function DeleteReward() {
     http.delete(`/reward/${id}`)
       .then((res) => {
         console.log(res.data);
-        navigate("/getreward");
+        navigate("getreward");
         toast.success('Reward deleted successfully!');
       })
       .catch((error) => {

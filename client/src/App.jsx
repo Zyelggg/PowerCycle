@@ -45,7 +45,7 @@ import human from "./pages/images/humanicon.png";
 import UserSideNavigation from "./UserSideNavigation";
 import AdminSideNavigation from "./AdminSideNavigation";
 import Reviews from "./pages/Reviews"
-import Augmented from "./pages/Augmented";
+// import Augmented from "./pages/Augmented";
 import Weather from "./pages/Weather";
 
 import {
@@ -157,16 +157,16 @@ function App() {
                 <Route path="/admin/addbikestop" element={<AddBikeStop />} />
                 <Route path="/admin/editbike/:id" element={<EditBikes />} />
                 <Route path="/admin/editbikestop/:id" element={<EditBikeStop />} />
-                <Route path={"/admin/reward"} element={<RewardManagement />} />
+                <Route path={"/admin/rewards"} element={<RewardManagement />} />
                 <Route path={"/admin/addreward"} element={<AddReward />} />
                 <Route path={"/admin/getreward"} element={<RetrieveReward />} />
                 <Route path={"/admin/editreward/:id"} element={<EditReward />} />
                 <Route path={"/admin/delreward"} element={<DeleteReward />} />
                 <Route path={"/admin/user"} element={<UserManagement />} />
-                <Route path={"/adduser"} element={<AddUser />} />
-                <Route path={"/getuser"} element={<RetrieveUser />} />
-                <Route path={"/edituser/:id"} element={<EditUser />} />
-                <Route path={"/deluser"} element={<DeleteUser />} />
+                <Route path={"admin/adduser"} element={<AddUser />} />
+                <Route path={"admin/getuser"} element={<RetrieveUser />} />
+                <Route path={"admin/edituser/:id"} element={<EditUser />} />
+                <Route path={"admin/deluser"} element={<DeleteUser />} />
                 {/* <Route path={"/adminhome"} element={<AdminHome />} /> */}
                 <Route path={"/admin/admin"} element={<AdminManagement />} />
                 <Route path={"/admin/addadmin"} element={<AddAdmin />} />
@@ -204,7 +204,7 @@ function App() {
                 <Route path={"/payment"} element={<PaymentMethods />} />
                 <Route path={"/addpayment"} element={<AddPayment />} />
                 <Route path={"/editpayment"} element={<EditPayment />} />
-                <Route path="/augmented" element={<Augmented />} />
+                {/* <Route path="/augmented" element={<Augmented />} /> */}
 
 
               </Routes>
