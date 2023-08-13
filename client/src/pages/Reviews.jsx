@@ -14,7 +14,7 @@ function Reviews() {
   const [isSent, setIsSent] = useState(false); // State to track if the message has been sent
   const [updateUI, setUpdateUI] = useState(false)
 
-  
+
   const handleChange = (event) => {
     setFeedbackText(event.target.value);
   };
@@ -127,78 +127,7 @@ function Reviews() {
           )}
         </div>
       </div>
-
-
-<<<<<<< Updated upstream
-        {feedbacks.map((detail) => (
-        <div className="feedback-item" style={{ width: '75%', cursor: 'default' }}>
-          {/* You can replace the below icon with your "bx-user-circle" icon */}
-          <i className="bx bx-user-circle"></i>
-
-          <div className="feedback-content">
-            <div style={{ display: 'flex' }}>
-              <div className="username">{detail.senderName}</div>
-              <div style={{ marginLeft: 'auto', marginTop: '10px' }} className="rating">Rating: {detail.review}</div>
-            </div>
-            <div className="message">{detail.message}</div>
-          </div>
-        </div>
-
-      ))}
-
-<div className="page-container">
-<AppBar position="static" className="Footer">
-=======
-      <AppBar position="static" className="Footer">
->>>>>>> Stashed changes
-        <Container>
-          <Toolbar disableGutters={true}>
-            <Grid container spacing={3}>
-              <Grid item xs={12} md={3}>
-                <img src={logo} className="logo" alt="PowerLogo" />
-              </Grid>
-              <Grid item xs={12} md={3}>
-                <Typography variant="h6">Navigation</Typography>
-                <Link to="/home">
-                  <Typography>Home</Typography>
-                </Link>
-                <Link to="/bikeservice">
-                  <Typography>Bicycles</Typography>
-                </Link>
-                <Link to="/">
-                  <Typography>About</Typography>
-                </Link>
-              </Grid>
-              <Grid item xs={12} md={3}>
-                <Typography variant="h6">Customer Help</Typography>
-                <Link to="/">
-                  <Typography>FAQ</Typography>
-                </Link>
-                <Link to="/">
-                  <Typography>Message Us</Typography>
-                </Link>
-              </Grid>
-              <Grid item xs={12} md={3}>
-                <Typography variant="h6">Social Media</Typography>
-                <img src={instagram} className='socials' alt="Instagram" />
-                <img src={twitter} className='socials' alt="Twitter" />
-                <img src={facebook} className='socials' alt="Facebook" />
-              </Grid>
-            </Grid>
-          </Toolbar>
-          <Typography variant="body1" style={{ textAlign: "center", marginTop: "40px" }}>
-            © 2023 PowerRide. All rights reserved.
-          </Typography>
-        </Container>
-      </AppBar>
-<<<<<<< Updated upstream
-      </div>
-      </div>
-=======
     </div>
->>>>>>> Stashed changes
-
-
   )
 }
 

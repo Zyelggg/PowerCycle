@@ -18,22 +18,22 @@ const Footer = () => {
             </Grid>
             <Grid item xs={12} md={3}>
               <Typography variant="h6">Navigation</Typography>
-              <Link to="/home">
+              <Link to="/">
                 <Typography>Home</Typography>
               </Link>
               <Link to="/bikeservice">
                 <Typography>Bicycles</Typography>
               </Link>
-              <Link to="/">
+              <Link to="/about">
                 <Typography>About</Typography>
               </Link>
             </Grid>
             <Grid item xs={12} md={3}>
               <Typography variant="h6">Customer Help</Typography>
-              <Link to="/">
+              <Link to="/faq">
                 <Typography>FAQ</Typography>
               </Link>
-              <Link to="/">
+              <Link to="/faq">
                 <Typography>Message Us</Typography>
               </Link>
             </Grid>
