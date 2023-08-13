@@ -45,7 +45,8 @@ import logo from "./pages/images/powerlogo.png";
 import human from "./pages/images/humanicon.png";
 import UserSideNavigation from "./UserSideNavigation";
 import AdminSideNavigation from "./AdminSideNavigation";
-import Reviews from "./pages/Reviews"
+import Reviews from "./pages/Reviews";
+import AdminHome from "./pages/AdminHome";
 // import Augmented from "./pages/Augmented";
 import Weather from "./pages/Weather";
 // import Checkout from "./pages/Checkout"
@@ -154,6 +155,7 @@ function App() {
             <AdminSideNavigation handleLinkClick={handleLinkClick} />
             <Container>
               <Routes>
+                <Route path="/admin/adminhome" element={<AdminHome />} />
                 <Route path="/admin/bike" element={<Bikes />} />
                 <Route path="/admin/bikestop" element={<BikeStop />} />
                 <Route path="/admin/bikedash" element={<BikeDash />} />

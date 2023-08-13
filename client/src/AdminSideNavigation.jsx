@@ -86,7 +86,7 @@ const AdminSideNavigation = ({ handleLinkClick }) => {
         <Toolbar disableGutters={true} className="nav-links">
         <Link to="/"><img src={logo} className="logo" /></Link>
 
-          <Link to="/admin/admin">
+          <Link to="/admin/adminhome">
             <Typography variant="h6" component="div" className="nav-title">
               Admin Dashboard
             </Typography>

@@ -153,6 +153,34 @@ router.get("/userdetails/:id", async (req, res) => {
     let userdetail = await User.findByPk(id)
     res.json(userdetail)
 })
+
+router.get("/findemail", async (req, res) => {
+    const email = req.query.email // Get email from query parameter
+    console.log(email)
+    try {
+        const userDetail = await User.findOne({
+            where: {
+                email: email
+            }
+        });
+
+        if (!userDetail) {
+            return res.json({
+                message: "No such Email registered."
+            });
+        }
+
+        return res.json(userDetail);
+    } catch (error) {
+        console.error("Error:", error);
+        return res.status(500).json({
+            message: "Internal server error."
+        });
+    }
+});
+
+
+
 router.get("/securitydetails/:id", async (req, res) => {
     let id = req.params.id;
     let userdetail = await User.findByPk(id)

@@ -340,10 +340,10 @@ function userDetails() {
                 Cancel
               </Button>
             </Box>
+      <ToastContainer />
           </Box>
         </div>
       </div>
-      <ToastContainer />
     </div>
   );
 }

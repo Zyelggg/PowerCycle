@@ -1,16 +1,35 @@
-import React, { useState } from "react";
-import { Box, Typography, TextField, Button, IconButton,InputLabel, Select, MenuItem } from "@mui/material";
+import React, { useEffect, useState } from "react";
+import {
+  Box,
+  Typography,
+  TextField,
+  Button,
+  IconButton,
+  InputLabel,
+  Select,
+  MenuItem,
+} from "@mui/material";
 import { useFormik } from "formik";
 import { useNavigate, Link } from "react-router-dom";
 import { ToastContainer, toast } from "react-toastify";
-import rewardimg from "./images/reward.png";
+import userimg from "./images/user.png";
 import * as yup from "yup";
 import http from "../http";
-import "./styles/adminCard.css";
+// import "./styles/adminCard.css";
 import ChevronLeftIcon from "@mui/icons-material/ChevronLeft";
 
 function AddUser() {
   const navigate = useNavigate();
+
+  useEffect(() => {
+    // Disable scrolling on mount
+    document.body.style.overflow = "hidden";
+
+    // Re-enable scrolling on unmount
+    return () => {
+      document.body.style.overflow = "visible";
+    };
+  }, []);
 
   const formik = useFormik({
     initialValues: {
@@ -18,7 +37,7 @@ function AddUser() {
       password: "",
       name: "",
       phone: "",
-      admin: true
+      admin: true,
     },
     validationSchema: yup.object({
       email: yup
@@ -56,7 +75,7 @@ function AddUser() {
       data.phone = data.phone.trim();
       http.post("/user/verification", data).then((res) => {
         console.log(res.data);
-        toast.success("User Added")
+        toast.success("User Added");
         navigate("/admin/getuser");
       });
     },
@@ -66,11 +85,30 @@ function AddUser() {
 
   const handleChangeAdmin = (event) => {
     setAdmin(event.target.value);
-  }
+  };
 
   return (
-    <Box className="main-wrap admin-wrap">
-      <Box>
+    <Box
+      sx={{
+        display: "flex",
+        justifyContent: "center",
+        alignItems: "center",
+        backgroundColor: "#250D69",
+        minHeight: "100vh",
+      }}
+    >
+      <Box
+        sx={{
+          width: "100%",
+          maxWidth: "800px",
+          padding: "20px",
+          border: "1px solid #ccc",
+          borderRadius: "8px",
+          backgroundColor: "#fff",
+          boxShadow: "0px 2px 6px rgba(0, 0, 0, 0.1)",
+          maxHeight: "100vh", // Adjust maxHeight to make the box smaller in height
+        }}
+      >
         <Box sx={{ mb: 2 }}>
           <Link to="/admin/user" style={{ textDecoration: "none" }}>
             <Button variant="contained">
@@ -80,7 +118,7 @@ function AddUser() {
           </Link>
         </Box>
         <Typography className="main-title" variant="h5" sx={{ my: 2 }}>
-          <img className="main-icon" src={rewardimg} alt="admin" />
+          <img className="main-icon" src={userimg} alt="admin" />
           Add User
         </Typography>
         <Box component="form" onSubmit={formik.handleSubmit}>
@@ -169,4 +207,4 @@ function AddUser() {
   );
 }
 
-export default AddUser
+export default AddUser;
