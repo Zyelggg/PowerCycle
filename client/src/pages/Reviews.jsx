@@ -93,7 +93,7 @@ function Reviews() {
   }
 
     return (
-      <div className="backgroundF">
+      <div className="backgroundF"style={{marginTop:"100px"}}>
         <div className="newF" >
           <div className="feedback-container">
             <div style={{ display: "flex", justifyContent: "center" }}>
@@ -156,7 +156,7 @@ function Reviews() {
 
       ))}
 
-<AppBar position="static" className="Footer">
+<AppBar position="static" className="Footer" style={{marginTop:"12.8%"}}>
         <Container>
           <Toolbar disableGutters={true}>
             <Grid container spacing={3}>
