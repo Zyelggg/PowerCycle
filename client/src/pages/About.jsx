@@ -6,7 +6,7 @@ export default function About() {
   return (
     <div className='container'>
         <div className='left'> <div className='title'>About us / Benefits</div>
-            <div className='desc' style={{color:'darkgray'}}>
+            <div className='desc' style={{color:'darkgray', fontSize:'20px'}}>
             We are strong believers of sustainable
             transportation, <br />
             our aim as a company is <br />
@@ -20,13 +20,13 @@ export default function About() {
             <img width={250} height={250}  src={image} alt="logo" />
         </div>
         <div className='right'>
-        <div style={{minHeight:'200px',background:"#4D3E72", padding:'20px'}}>
+        <div style={{minHeight:'200px',background:"#4D3E72", padding:'20px', borderRadius:'20px'}}>
         Minimizes pollution
         produces zero emissions
         <div style={{marginTop:'30px'}}>
-        Rewards such as:
-        Free rides
-        discounts
+        <p>Rewards such as:</p>
+        <p>Free rides</p>
+        <p>Discounts and More!</p>
         </div>
         </div>
         </div>
