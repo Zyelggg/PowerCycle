@@ -19,7 +19,7 @@ function AdminManagement() {
               <Typography className="topheader">Add</Typography>
               <Box>
                 <Link onClick={() => {
-                  navigate("/addadmin")}}>
+                  navigate("/admin/addadmin")}}>
                   <IconButton className="changeicon">
                     <Add></Add>
                   </IconButton>
@@ -34,7 +34,7 @@ function AdminManagement() {
               <Typography className="topheader">Retrieve</Typography>
               <Box>
               <Link onClick={() => {
-                  navigate("/getadmin")}}>
+                  navigate(".admin/getadmin")}}>
                   <IconButton className="changeicon">
                     <Search></Search>
                   </IconButton>
@@ -49,7 +49,7 @@ function AdminManagement() {
               <Typography className="topheader">Update</Typography>
               <Box>
               <Link onClick={() => {
-                  navigate("/getadmin")}}>
+                  navigate("/admin/getadmin")}}>
                   <IconButton className="changeicon">
                     <Edit></Edit>
                   </IconButton>
@@ -64,7 +64,7 @@ function AdminManagement() {
               <Typography className="topheader">Delete</Typography>
               <Box>
               <Link onClick={() => {
-                  navigate("/deladmin")}}>
+                  navigate("/admin/deladmin")}}>
                   <IconButton className="changeicon">
                     <Delete></Delete>
                   </IconButton>
