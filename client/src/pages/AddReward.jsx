@@ -34,7 +34,7 @@ function AddReward() {
       http.post("/reward", data)
           .then((res) => {
             console.log(res.data);
-            navigate("/getreward");
+            navigate("/admin/getreward");
           });
     }
   });

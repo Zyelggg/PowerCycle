@@ -101,20 +101,11 @@ function Rewards() {
                     <Typography variant="h6" sx={{ flexGrow: 1 }}>
                       {reward.title}
                     </Typography>
-                    {user && user.id === reward.userId && (
                       <Link to={`/editreward/${reward.id}`}>
                         <IconButton color="primary" sx={{ padding: "4px" }}>
                           <Edit />
                         </IconButton>
                       </Link>
-                    )}
-                  </Box>
-                  <Box
-                    sx={{ display: "flex", alignItems: "center", mb: 1 }}
-                    color="text.secondary"
-                  >
-                    <AccountCircle sx={{ mr: 1 }} />
-                    <Typography>{reward.user.name}</Typography>
                   </Box>
                   <Box
                     sx={{ display: "flex", alignItems: "center", mb: 1 }}

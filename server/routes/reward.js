@@ -22,6 +22,7 @@ router.post("/", async (req, res) => {
   let result = await Reward.create(data);
   res.json(result);
 });
+
 router.get("/", async (req, res) => {
   let condition = {};
   let search = req.query.search;
