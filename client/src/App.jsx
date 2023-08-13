@@ -34,7 +34,7 @@ import Register from "./pages/Register";
 import Login from "./pages/Login";
 import Verification from "./pages/verification";
 import Userdetails from "./pages/userdetails";
-import Securitydetails from "./pages/securitydetails";import RidingBike from "./pages/RidingBike";
+import Securitydetails from "./pages/securitydetails"; import RidingBike from "./pages/RidingBike";
 import RideComplete from "./pages/RideComplete";
 import "./App.css";
 import AddPayment from "./pages/AddPayment";
@@ -73,7 +73,7 @@ function App() {
   const [isNavExpanded, setIsNavExpanded] = useState(false);
   const [isDeleted, setIsDeleted] = useState(false);
   // Hook from react-router-dom
-  const [isAdmin, setIsAdmin] = useState(true);
+  const [isAdmin, setIsAdmin] = useState(false); // CHANGE IF NEED TO TEST
 
   // Function to handle link click and close the navigation menu
   const handleLinkClick = () => {
@@ -105,15 +105,26 @@ function App() {
   }, []);
 
   useEffect(() => {
-    if (localStorage.getItem("accessToken")) {
-      http.get("/user/auth").then((res) => {
-        setUser(res.data.user);
-        setUserid(res.data.userid);
-        // Check if the user is an admin
-        setIsAdmin(res.data.user.admin === true);
-      });
+    async function fetchData() {
+      try {
+        if (localStorage.getItem("accessToken")) {
+          const authResponse = await http.get("/user/auth");
+          setUser(authResponse.data.user);
+          setUserid(authResponse.data.userid);
+  
+          const userDetailsResponse = await http.get(`user/userdetails/${authResponse.data.userid}`);
+          setIsAdmin(userDetailsResponse.data.admin === true);
+        }
+      } catch (error) {
+        console.error(error);
+      }
     }
+  
+    fetchData();
   }, []);
+  
+
+
 
   const deleteAccount = () => {
     http.delete(`/user/${userid}`).then((res) => {
@@ -143,8 +154,7 @@ function App() {
   return (
     <UserContext.Provider value={{ user, setUser }}>
       <Router>
-      {isAdmin && location.pathname.includes("/admin") ? (
-
+        {isAdmin && location.pathname.includes("/admin") ? (
           // Render admin side navigation if the user is an admin
           <>
             <AdminSideNavigation handleLinkClick={handleLinkClick} />
@@ -181,7 +191,7 @@ function App() {
           <>
 
             <UserSideNavigation handleLinkClick={handleLinkClick} />
-            
+
             <Container>
 
               <Routes>
@@ -211,8 +221,8 @@ function App() {
             </Container>
           </>
         )}
-        </Router>
-        </UserContext.Provider>
+      </Router>
+    </UserContext.Provider>
   );
 }
 
