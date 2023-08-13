@@ -57,7 +57,7 @@ function AddUser() {
       http.post("/user/verification", data).then((res) => {
         console.log(res.data);
         toast.success("User Added")
-        navigate("/getuser");
+        navigate("/admin/getuser");
       });
     },
   });
@@ -72,7 +72,7 @@ function AddUser() {
     <Box className="main-wrap admin-wrap">
       <Box>
         <Box sx={{ mb: 2 }}>
-          <Link to="/user" style={{ textDecoration: "none" }}>
+          <Link to="/admin/user" style={{ textDecoration: "none" }}>
             <Button variant="contained">
               <ChevronLeftIcon></ChevronLeftIcon>
               back

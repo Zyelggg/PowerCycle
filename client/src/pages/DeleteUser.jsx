@@ -26,7 +26,7 @@ function DeleteUser() {
     http.delete(`/user/${id}`)
       .then((res) => {
         console.log(res.data);
-        navigate("/getuser");
+        navigate("/admin/getuser");
         toast.success('User account deleted successfully!');
       })
       .catch((error) => {
@@ -44,7 +44,7 @@ function DeleteUser() {
     <Box className="main-wrap">
       <Box>
             <Box sx={{ mb: 2 }}>
-          <Link to="/user" style={{ textDecoration: 'none' }}>
+          <Link to="/admin/user" style={{ textDecoration: 'none' }}>
             <Button variant="contained">
               <ChevronLeftIcon></ChevronLeftIcon>
                 back

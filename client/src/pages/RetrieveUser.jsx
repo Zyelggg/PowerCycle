@@ -50,7 +50,7 @@ function RetrieveUser() {
   return (
     <Box className="main-wrap">
         <Box sx={{ mb: 2 }}>
-          <Link to="/user" style={{ textDecoration: 'none' }}>
+          <Link to="/admin/user" style={{ textDecoration: 'none' }}>
             <Button variant="contained">
               <ChevronLeftIcon></ChevronLeftIcon>
                 back
@@ -103,7 +103,7 @@ function RetrieveUser() {
                         {user.email}
                       </Typography>
                       <Box sx={{ mt: 2 }}>
-                      <Link to={`/edituser/${user.id}`}>
+                      <Link to={`/admin/edituser/${user.id}`}>
                           <Button className="main-btn" variant="contained" type="submit">
                           Edit User
                           </Button>

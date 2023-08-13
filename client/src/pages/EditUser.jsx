@@ -84,7 +84,7 @@ function EditUser() {
         data.phone = data.phone.trim();
         http.put(`/userdetails/${id}`, data).then((res) => {
           console.log(res.data);
-          navigate("/getuser");
+          navigate("/admin/getuser");
         });
       },
   });
@@ -106,7 +106,7 @@ function EditUser() {
       setOpen(false);
       
       setTimeout(() => {
-        navigate("/getuser")
+        navigate("/admin/getuser")
       }, 2000);
 
     });
@@ -116,7 +116,7 @@ function EditUser() {
     <Box className="main-wrap admin-wrap">
       <Box>
         <Box sx={{ mb: 2 }}>
-          <Link to="/getuser" style={{ textDecoration: "none" }}>
+          <Link to="/admin/getuser" style={{ textDecoration: "none" }}>
             <Button variant="contained">
               <ChevronLeftIcon></ChevronLeftIcon>
               back
