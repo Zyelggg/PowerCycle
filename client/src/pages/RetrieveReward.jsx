@@ -12,7 +12,7 @@ import ChevronLeftIcon from '@mui/icons-material/ChevronLeft';
 function RetrieveReward() {
   const [rewardList, setRewardList] = useState([]);
   const [search, setSearch] = useState('');
-  
+
   const onSearchChange = (e) => {
     setSearch(e.target.value);
   };
@@ -28,7 +28,7 @@ function RetrieveReward() {
       setRewardList(res.data);
     });
   };
-  
+
   useEffect(() => {
     getRewards();
   }, []);
@@ -50,14 +50,14 @@ function RetrieveReward() {
 
   return (
     <Box className="main-wrap">
-        <Box sx={{ mb: 2 }}>
-          <Link to="/reward" style={{ textDecoration: 'none' }}>
-            <Button variant="contained">
-              <ChevronLeftIcon></ChevronLeftIcon>
-                back
-            </Button>
-          </Link>
-        </Box>
+      <Box sx={{ mb: 2 }}>
+        <Link to="/reward" style={{ textDecoration: 'none' }}>
+          <Button variant="contained">
+            <ChevronLeftIcon></ChevronLeftIcon>
+            back
+          </Button>
+        </Link>
+      </Box>
       <Box>
         <Typography className="main-title" variant="h5" sx={{ my: 2 }}>
           Rewards
@@ -73,7 +73,7 @@ function RetrieveReward() {
             onChange={onSearchChange}
             onKeyDown={onSearchKeyDown}
           />
-          <IconButton  className="main-icon" onClick={onClickSearch}>
+          <IconButton className="main-icon" onClick={onClickSearch}>
             <Search />
           </IconButton>
           <IconButton className="main-icon" onClick={onClickClear}>
@@ -92,7 +92,7 @@ function RetrieveReward() {
             rewardList.map((reward, i) => {
               return (
                 <Grid item xs={12} md={6} lg={4} key={reward.id}>
-                  <Card sx={{ border: '1px solid black'}}>
+                  <Card sx={{ border: '1px solid black' }}>
                     <CardContent>
                       <Box sx={{ display: 'flex', mb: 1 }}>
                         <Typography variant="h6" sx={{ flexGrow: 1 }}>
@@ -100,11 +100,11 @@ function RetrieveReward() {
                         </Typography>
                       </Box>
                       <Box sx={{ display: 'flex', alignItems: 'center', mb: 1 }}
-                          color="text.secondary">
-                            <AccessTime sx={{ mr: 1 }} />
-                            <Typography>
-                              {dayjs(reward.createdAt).format(global.datetimeFormat)}
-                            </Typography>
+                        color="text.secondary">
+                        <AccessTime sx={{ mr: 1 }} />
+                        <Typography>
+                          {dayjs(reward.createdAt).format(global.datetimeFormat)}
+                        </Typography>
                       </Box>
                       <Typography sx={{ whiteSpace: 'pre-wrap' }}>
                         {reward.description}
@@ -113,9 +113,9 @@ function RetrieveReward() {
                         Available
                       </Typography>
                       <Box sx={{ mt: 2 }}>
-                      <Link to={`/editreward/${reward.id}`}>
+                        <Link to={`/editreward/${reward.id}`}>
                           <Button className="main-btn" variant="contained" type="submit">
-                          Edit Reward
+                            Edit Reward
                           </Button>
                         </Link>
                       </Box>

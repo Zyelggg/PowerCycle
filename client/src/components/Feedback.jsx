@@ -1,4 +1,4 @@
-import React, { useState,useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import "./Feedback.css";
 import Reviews from "./Reviews";
 import { Http } from "@mui/icons-material";
@@ -8,9 +8,9 @@ const Feedback = () => {
   const [feedbackText, setFeedbackText] = useState("");
   const [isLoading, setIsLoading] = useState(false); // State to track loading state
   const [isSent, setIsSent] = useState(false); // State to track if the message has been sent
-  const [updateUI,setUpdateUI] = useState(false)
-  const [user,setUser] = useState("")
-  const[userid,setUserid] = useState("")
+  const [updateUI, setUpdateUI] = useState(false)
+  const [user, setUser] = useState("")
+  const [userid, setUserid] = useState("")
   const handleChange = (event) => {
     setFeedbackText(event.target.value);
   };
@@ -39,8 +39,8 @@ const Feedback = () => {
         console.log("Feedback submitted:", data); // Data received from the server
         setIsSent(true); // Set isSent state to true when the message is sent
         setFeedbackText(""); // Clear the textarea after submission
-        setTimeout(()=>{setIsSent(false)},2000)
-        updateUI?setUpdateUI(false):setUpdateUI(true)
+        setTimeout(() => { setIsSent(false) }, 2000)
+        updateUI ? setUpdateUI(false) : setUpdateUI(true)
       })
       .catch((error) => {
         console.error("Error submitting feedback:", error);
@@ -61,7 +61,7 @@ const Feedback = () => {
       });
     }
   }, [updateUI]);
-  
+
 
   const fetchFeedbacks = async () => {
     try {
@@ -78,12 +78,12 @@ const Feedback = () => {
   const [selectedReview, setSelectedReview] = useState(null);
   //reviews
   const ReviewRow = () => {
-  
+
     const handleReviewClick = (reviewNumber) => {
       setSelectedReview(reviewNumber);
       console.log(selectedReview)
     };
-  
+
     return (
       <div className="review-row">
         <div className={`review ${selectedReview === 1 ? "selected" : ""}`} onClick={() => handleReviewClick(1)}>
@@ -104,7 +104,7 @@ const Feedback = () => {
       </div>
     );
   };
-  
+
 
   return (
     <div className="backgroundF">
@@ -113,8 +113,8 @@ const Feedback = () => {
           <div style={{ display: "flex", justifyContent: "center" }}>
             <h2>Send Us Your Feedback!</h2>
           </div>
-          <div style={{display:'flex',justifyContent:'center',marginBottom:'10px'}}>
-          <ReviewRow/>
+          <div style={{ display: 'flex', justifyContent: 'center', marginBottom: '10px' }}>
+            <ReviewRow />
           </div>
           <textarea
             className="feedback-textarea"
@@ -135,12 +135,12 @@ const Feedback = () => {
         </div>
       </div>
       <div className="newRev">
-      {feedbacks.map((feedback) => (
-        <Reviews key={feedback.id} username={feedback.senderName} message={feedback.message} review={feedback.review} />
-      ))}
-    </div>
+        {feedbacks.map((feedback) => (
+          <Reviews key={feedback.id} username={feedback.senderName} message={feedback.message} review={feedback.review} />
+        ))}
+      </div>
     </div>
   );
 }
-  
+
 export default Feedback

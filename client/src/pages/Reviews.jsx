@@ -22,7 +22,7 @@ function Reviews() {
   const [user, setUser] = useState(null);
 
   useEffect(() => {
-    
+
     if (localStorage.getItem("accessToken")) {
       // Use axios instead of fetch to keep consistency with other requests
       http.get("/user/auth")
@@ -52,15 +52,15 @@ function Reviews() {
     console.log(user.name);
     console.log(feedbackText);
     http.post("/feedback/submit-feedback", feedbackData)
-            .then((res) => {
-                console.log("Backend Response:", res.status, res.data);
-            })
-            .catch((error) => {
-                console.error('Error submitting data:', error);
-            })
-            .finally(() => {
-              setIsLoading(false); // Set loading state to false after the request is completed
-            });
+      .then((res) => {
+        console.log("Backend Response:", res.status, res.data);
+      })
+      .catch((error) => {
+        console.error('Error submitting data:', error);
+      })
+      .finally(() => {
+        setIsLoading(false); // Set loading state to false after the request is completed
+      });
 
   };
 
@@ -81,7 +81,7 @@ function Reviews() {
       });
 
 
-      
+
   };
   const [selectedReview, setSelectedReview] = useState(null);
   //reviews
@@ -93,54 +93,43 @@ function Reviews() {
     };
   }
 
-    return (
-      <div className="backgroundF">
-        <div className="newF" >
-          <div className="feedback-container">
-            <div style={{ display: "flex", justifyContent: "center" }}>
-              <h2>Send Us Your Feedback!</h2>
-            </div>
-            <div style={{ display: 'flex', justifyContent: 'center', marginBottom: '10px' }}>
-              <ReviewRow />
-            </div>
-
-            <form onSubmit={handleSubmit}>
-              <textarea
-                className="feedback-textarea"
-                placeholder="Enter your feedback here..."
-                value={feedbackText}
-                onChange={handleChange}
-              />
-              <div style={{ display: "flex", justifyContent: "center" }}>
-                <button className="send-button" type='button' onClick={handleSubmit}>
-                  {isLoading ? "Sending..." : "Send Feedback"}
-                </button>
-
-              </div>
-            </form>
-
-
-            {isSent && (
-              <div style={{ display: "flex", justifyContent: "center" }}>
-                <p>Message has been sent!</p>
-              </div>
-            )}
+  return (
+    <div className="backgroundF">
+      <div className="newF" style={{ marginBottom: '40px' }} >
+        <div className="feedback-container">
+          <div style={{ display: "flex", justifyContent: "center" }}>
+            <h2>Send Us Your Feedback!</h2>
           </div>
-        </div>
-        <div >
-          {feedbacks.map((detail) => (
-            <Container className="newRev">
-            <Typography variant="h6" style={{ color: "white" }}>Review No.: #{detail.id}</Typography>
-            {/* <Typography variant="h6">Hours Ridden: {detail.hoursRidden}</Typography> */}
-            <Typography variant="h6" style={{ color: "white" }}>Username: {detail.senderName}</Typography>
-            <Typography variant="h6" style={{ color: "white" }}>User Message: {detail.message}</Typography>
-            {/* <Typography variant="h6" style={{ color: "white" }}>Electricity Generated: {detail.review}</Typography> */}
-            </Container>
+          <div style={{ display: 'flex', justifyContent: 'center', marginBottom: '10px' }}>
+            <ReviewRow />
+          </div>
 
-            
-          ))}
-        </div>
+          <form onSubmit={handleSubmit}>
+            <textarea
+              className="feedback-textarea"
+              placeholder="Enter your feedback here..."
+              value={feedbackText}
+              onChange={handleChange}
+            />
+            <div style={{ display: "flex", justifyContent: "center" }}>
+              <button className="send-button" type='button' onClick={handleSubmit}>
+                {isLoading ? "Sending..." : "Send Feedback"}
+              </button>
 
+            </div>
+          </form>
+
+
+          {isSent && (
+            <div style={{ display: "flex", justifyContent: "center" }}>
+              <p>Message has been sent!</p>
+            </div>
+          )}
+        </div>
+      </div>
+
+
+<<<<<<< Updated upstream
         {feedbacks.map((detail) => (
         <div className="feedback-item" style={{ width: '75%', cursor: 'default' }}>
           {/* You can replace the below icon with your "bx-user-circle" icon */}
@@ -159,6 +148,9 @@ function Reviews() {
 
 <div className="page-container">
 <AppBar position="static" className="Footer">
+=======
+      <AppBar position="static" className="Footer">
+>>>>>>> Stashed changes
         <Container>
           <Toolbar disableGutters={true}>
             <Grid container spacing={3}>
@@ -199,11 +191,15 @@ function Reviews() {
           </Typography>
         </Container>
       </AppBar>
+<<<<<<< Updated upstream
       </div>
       </div>
+=======
+    </div>
+>>>>>>> Stashed changes
 
-      
-    )
-  }
 
-  export default Reviews;
+  )
+}
+
+export default Reviews;

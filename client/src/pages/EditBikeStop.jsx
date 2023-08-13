@@ -108,7 +108,7 @@ function EditBikeStop() {
                     Edit Bikestop
                 </Typography>
             </div>
-            <Box component="form" onSubmit={formik.handleSubmit}>
+            <Box component="form" onSubmit={formik.handleSubmit} className='innerbox'>
             <Box sx={{ textAlign: 'center', mt: 2 }}  >
                 {
                         imageFile && (

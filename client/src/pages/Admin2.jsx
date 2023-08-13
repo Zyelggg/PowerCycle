@@ -1,13 +1,10 @@
 import React, { useState, useEffect } from "react";
-import "./styles/Adminfeedback.css";
-import "./styles/Bike.css";
+import "./Adminfeedback.css";
 import Modal from "react-modal";
 import Loader from "../components/Loader";
-import { Box, Typography, TextField, Button, InputLabel, Select, MenuItem, IconButton } from '@mui/material';
-import { AccessTime, Add, Search, Clear, Edit, Delete } from '@mui/icons-material';
-import http from '../http';
 
-const AdminFeedback = () => {
+
+const Admin = () => {
   const [feedbacks, setFeedbacks] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
   const [reply, setReply] = useState("");
@@ -18,7 +15,7 @@ const AdminFeedback = () => {
   }, []);
 
   const fetchFeedbacks = () => {
-    fetch("http://localhost:3001/feedback/feedbacks")
+    fetch("http://localhost:3001/feedback/replies")
       .then((response) => response.json())
       .then((data) => {
         setFeedbacks(data);
@@ -95,78 +92,66 @@ const AdminFeedback = () => {
     setIsModalOpen(true)
   }
 
-  const deleteBikeStop = () => {
-    http.delete(`/bikestop/${id}`)
-        .then((res) => {
-            console.log(res.data);
-            setIsDeleted(true);
-            setOpen(false);
-            
-            setTimeout(() => {
-                navigate("/bikestop");
-            }, 2000); 
-        });
-}
 
-function deleteHandler(id){
-
-  if (!id) {
-      console.error("No feedback selected.");
-      return;
-    }
-    setIsLoading(true)
+  function deleteHandler(id){
     
-    http.delete(`/feedback/delete-feedback/${id}`)
-    .then((res) => {
-      console.log("Feedback reply deleted:", data);
-      setSelectedFeedbackId(null);
-      fetchFeedbacks(); // Refresh the feedbacks after deletion
-      setIsLoading(false)
-        
-    })
-    .catch((error) => {
-      console.error("Error deleting feedback reply:", error);
-      setIsLoading(false)
-    });
-}
+    if (!id) {
+        console.error("No feedback selected.");
+        return;
+      }
+      setIsLoading(true)
+  
+      // Assuming you have an API endpoint to handle feedback deletion, e.g., /delete-reply/:feedbackId
+      fetch(`http://localhost:3001/feedback/delete-feedback/${id}`, {
+        method: "DELETE",
+      })
+        .then((response) => response.json())
+        .then((data) => {
+          console.log("Feedback reply deleted:", data);
+          setSelectedFeedbackId(null);
+          fetchFeedbacks(); // Refresh the feedbacks after deletion
+          setIsLoading(false)
+          
+        })
+        .catch((error) => {
+          console.error("Error deleting feedback reply:", error);
+          setIsLoading(false)
+        });
+
+  }
+
 
   return (
     <div className="containerA">
-
-    <div className="main-wrap">
+     <div className="sidebar"></div>   
+    <div className="admin-feedbacks">
     {isLoading&& <Loader/>}
-    <Typography variant="h5" sx={{ ml: 2 }} className="main-title" style={{ marginLeft: '0px'}}>
-          Users Feedbacks
-      </Typography>
+      <h2>Feedback Management</h2>
       <ul className={`feedback-list `}>
-
-        {feedbacks.map((detail) => (
+        {feedbacks.map((feedback) => (
             <><div className="list">
           <li
-            key={detail.id}
-            className={`feedbackA-item ${detail.reply?'disabled':''}`}
+            key={feedback.id}
+            className={`feedbackA-item ${feedback.reply?'disabled':''}`}
             onClick={() => {
-              setSelectedFeedbackId(detail.id);
+              setSelectedFeedbackId(feedback.id);
               setIsModalOpen(true); // Open the modal when a feedback is clicked
             }}
           >
             <div>
-              <div className="senderName">{detail.senderName}</div>
+              <div className="senderName">{feedback.senderName}</div>
 
               <div>
                 {" "}
-                <strong>Message: </strong> {detail.message}
+                <strong>Message: </strong> {feedback.message}
                 <br />
-                <strong> {detail.reply?`Reply:`:''} </strong> {detail.reply&&detail.reply.replyMessage}
+                <strong> {feedback.reply?`Reply:`:''} </strong> {feedback.reply&&feedback.reply.replyMessage}
               </div>
             </div>
-            <div className="status">  {detail.status}</div>
+            <div className="status">  {feedback.status}</div>
           </li>
-
-          <i onClick={()=>editHandler(detail.id)} className='bx bxs-edit' ><IconButton color="primary" sx={{ padding: '4px' }}>
-                      <Edit />
-                    </IconButton></i>
-          <i onClick = {()=>{ deleteHandler(detail.id)}} className='bx bx-trash'><IconButton className="changeicon"><Delete></Delete></IconButton></i>
+          <i onClick={()=>editHandler(feedback.id)} className='bx bxs-edit' ></i>
+        <i onClick = {()=>{ deleteHandler(feedback.id)}} className='bx bx-trash'></i>
     
           </div>
           </>
@@ -194,7 +179,7 @@ function deleteHandler(id){
           },
         }}
       >
-        <Typography variant="h5" sx={{ ml: 2 }} style={{ margin: 0}} className="main-title">Enter Reply </Typography>
+        <h2>Send Reply</h2>
         <textarea
           className="reply-input" // Add the CSS class for the input element
           type="text"
@@ -203,11 +188,11 @@ function deleteHandler(id){
           placeholder="Type your reply..."
         />
         <button onClick={handleReplySubmit}>Send Reply</button>
-        <button className="cancel" style={{ marginLeft: 10}} onClick={() => setIsModalOpen(false)}>Cancel</button>
+        <button className="cancel" onClick={() => setIsModalOpen(false)}>Cancel</button>
       </Modal>
     </div>
     </div>
   );
 };
 
-export default AdminFeedback;
+export default Admin;

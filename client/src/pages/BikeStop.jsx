@@ -85,7 +85,7 @@ function BikeStop() {
                       <Typography variant="h6" sx={{ flexGrow: 1 }}>
                         {bikeStop.stopname}
                       </Typography>
-                      <Link to={`/editbikestop/${bikeStop.id}`}>
+                      <Link to={`/admin/editbikestop/${bikeStop.id}`}>
                         <IconButton color="primary" sx={{ padding: '4px' }}>
                           <Edit />
                         </IconButton>

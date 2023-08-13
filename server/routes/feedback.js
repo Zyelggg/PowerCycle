@@ -156,36 +156,20 @@ router.delete("/delete-reply/:feedbackId", async (req, res) => {
 
   // 7) delete whole feedback
 router.delete("/delete-feedback/:feedbackId", async (req, res) => {
-    const feedbackId = req.params.feedbackId;
+    const id = req.params.feedbackId;
   
-    try {
-      // Start a transaction
-      await sequelize.transaction(async (t) => {
-        // Find the feedback and its reply associated with the feedback
-        const feedback = await Feedback.findOne({
-          where: { id: feedbackId },
-          transaction: t,
+    let num = await Feedback.destroy({
+        where: { id: id }
+    })
+    if (num == 1) {
+        res.json({
+            message: "Feedback was deleted successfully."
         });
-  
-        if (!feedback) {
-          return res.status(404).json({ error: "Feedback not found" });
-        }
-  
-        const feedbackReply = await FeedbackReply.findOne({
-          where: { feedbackId },
-          transaction: t,
+    }
+    else {
+        res.status(400).json({
+            message: `Cannot remove Feedback with id ${id}.`
         });
-  
-        // Delete the feedback and its reply
-        await feedbackReply?.destroy({ transaction: t });
-        await feedback.destroy({ transaction: t });
-      });
-  
-      // Send a response back to the client
-      res.status(200).json({ message: "Feedback and its reply deleted successfully" });
-    } catch (error) {
-      console.error("Error deleting feedback and reply:", error);
-      res.status(500).json({ error: "Internal Server Error" });
     }
   });
   
