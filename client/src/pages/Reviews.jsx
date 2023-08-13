@@ -156,6 +156,7 @@ function Reviews() {
 
       ))}
 
+<div className="page-container">
 <AppBar position="static" className="Footer">
         <Container>
           <Toolbar disableGutters={true}>
@@ -197,6 +198,7 @@ function Reviews() {
           </Typography>
         </Container>
       </AppBar>
+      </div>
       </div>
 
       
