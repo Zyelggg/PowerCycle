@@ -14,7 +14,18 @@ function BikeDash() {
 
   const [totalBikestop, setTotalBikestop] = useState(0);
   const [totalBikes, setTotalBikes] = useState(0);
-  
+
+  useEffect(() => {
+    // Disable scrolling on mount
+    document.body.style.overflow = "hidden";
+
+    // Re-enable scrolling on unmount
+    return () => {
+      document.body.style.overflow = "visible";
+    };
+  }, []);
+
+
   useEffect(() => {
     http.get('/bikestop').then((res) => {
       setTotalBikestop(res.data.length);
