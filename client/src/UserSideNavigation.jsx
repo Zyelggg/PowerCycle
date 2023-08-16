@@ -30,7 +30,7 @@ const UserSideNavigation = ({ handleLinkClick }) => {
   const [open, setOpen] = useState(false);
   const navigate = useNavigate();
   // Function to handle link click and close the navigation menu
-
+  
   useEffect(() => {
     const getUser = () => {
       fetch("http://localhost:3001/auth/login/success", {
@@ -61,7 +61,7 @@ const UserSideNavigation = ({ handleLinkClick }) => {
       http.get("/user/auth").then((res) => {
         setUser(res.data.user);
         // setUserid(res.data.userid);
-
+        console.log(user,"HI")
       });
 
     }
@@ -156,6 +156,8 @@ const UserSideNavigation = ({ handleLinkClick }) => {
                 FAQ
               </Link>
             </li>
+
+            
             {user && (
               <>
                 <li>
