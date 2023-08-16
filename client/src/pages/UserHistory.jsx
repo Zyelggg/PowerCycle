@@ -58,14 +58,15 @@ function UserHistory() {
                 <Box key={index} className="record-box">
                   <Grid container spacing={5}>
                     <Grid item xs={12} md={6}>
-                      <Typography variant="h6">Bike No.: #{detail.bikeId}</Typography>
+                      <Typography variant="h6" style={{ color: "black"}}>Bike No.: #{detail.serialno}</Typography>
                       {/* <Typography variant="h6">Hours Ridden: {detail.hoursRidden}</Typography> */}
-                      <Typography variant="h6">Distance: {detail.mileage}</Typography>
-                      <Typography variant="h6">Electricity Generated: {detail.electricity}</Typography>
+                      <Typography variant="h6" style={{ color: "black"}}>Distance: {detail.mileage}</Typography>
+                      <Typography variant="h6" style={{ color: "black"}}>Electricity Generated: {detail.electricity}</Typography>
+                      <Typography variant="h6" style={{ color: "black"}}>Date Ridden: {detail.createdAt}</Typography>
                       {/* <Typography variant="h6">Total Charged: {detail.totalCharged}</Typography> */}
                     </Grid>
                     <Grid item xs={12} md={6}>
-                      <img src={powercycle} alt="image" style={{ width: "40px" }} />
+                    
                     </Grid>
                   </Grid>
                 </Box>

@@ -44,11 +44,13 @@ function EditBikeStop() {
             coordy: yup.number().required('Coordinates Y is required')
         }),
         onSubmit: (data) => {
+            console.log(data);
+            data.imageFile = imageFile; // Add this line
             data.stopname = data.stopname.trim();
             http.put(`/bikestop/${id}`, data)
                 .then((res) => {
                     console.log(res.data);
-                    navigate("/bikestop");
+                    navigate("/admin/bikestop");
             })
         }
     })

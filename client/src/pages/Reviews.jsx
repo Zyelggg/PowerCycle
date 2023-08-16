@@ -1,5 +1,6 @@
 import './styles/Reviews.css'
 import React, { useState, useEffect } from "react";
+import { useNavigate, useLocation } from 'react-router-dom';
 import { Container, AppBar, Toolbar, Typography, Box, Grid, Link } from '@mui/material';
 import "./styles/Feedback.css";
 import http from '../http';
@@ -9,6 +10,8 @@ import facebook from './images/facebook.png'
 import twitter from './images/twitter.png'
 
 function Reviews() {
+  const navigate = useNavigate();
+
   const [feedbackText, setFeedbackText] = useState("");
   const [isLoading, setIsLoading] = useState(false); // State to track loading state
   const [isSent, setIsSent] = useState(false); // State to track if the message has been sent
@@ -46,6 +49,7 @@ function Reviews() {
       senderName: user.name,
       message: feedbackText,
       review: 1
+
     };
 
     console.log("press");
@@ -54,6 +58,7 @@ function Reviews() {
     http.post("/feedback/submit-feedback", feedbackData)
       .then((res) => {
         console.log("Backend Response:", res.status, res.data);
+        navigate(`/`);
       })
       .catch((error) => {
         console.error('Error submitting data:', error);
@@ -127,77 +132,8 @@ function Reviews() {
             )}
           </div>
         </div>
-        <div >
-          {feedbacks.map((detail) => (
-            <Container className="newRev">
-            <Typography variant="h6" style={{ color: "white" }}>Review No.: #{detail.id}</Typography>
-            {/* <Typography variant="h6">Hours Ridden: {detail.hoursRidden}</Typography> */}
-            <Typography variant="h6" style={{ color: "white" }}>Username: {detail.senderName}</Typography>
-            <Typography variant="h6" style={{ color: "white" }}>User Message: {detail.message}</Typography>
-            {/* <Typography variant="h6" style={{ color: "white" }}>Electricity Generated: {detail.review}</Typography> */}
-            </Container>
 
-            
-          ))}
-        </div>
 
-        {feedbacks.map((detail) => (
-        <div className="feedback-item" style={{ width: '75%', cursor: 'default' }}>
-          {/* You can replace the below icon with your "bx-user-circle" icon */}
-          <i className="bx bx-user-circle"></i>
-
-          <div className="feedback-content">
-            <div style={{ display: 'flex' }}>
-              <div className="username">{detail.senderName}</div>
-              <div style={{ marginLeft: 'auto', marginTop: '10px' }} className="rating">Rating: {detail.review}</div>
-            </div>
-            <div className="message">{detail.message}</div>
-          </div>
-        </div>
-
-      ))}
-
-<AppBar position="static" className="Footer">
-        <Container>
-          <Toolbar disableGutters={true}>
-            <Grid container spacing={3}>
-              <Grid item xs={12} md={3}>
-                <img src={logo} className="logo" alt="PowerLogo" />
-              </Grid>
-              <Grid item xs={12} md={3}>
-                <Typography variant="h6">Navigation</Typography>
-                <Link to="/home">
-                  <Typography>Home</Typography>
-                </Link>
-                <Link to="/bikeservice">
-                  <Typography>Bicycles</Typography>
-                </Link>
-                <Link to="/">
-                  <Typography>About</Typography>
-                </Link>
-              </Grid>
-              <Grid item xs={12} md={3}>
-                <Typography variant="h6">Customer Help</Typography>
-                <Link to="/">
-                  <Typography>FAQ</Typography>
-                </Link>
-                <Link to="/">
-                  <Typography>Message Us</Typography>
-                </Link>
-              </Grid>
-              <Grid item xs={12} md={3}>
-                <Typography variant="h6">Social Media</Typography>
-                <img src={instagram} className='socials' alt="Instagram" />
-                <img src={twitter} className='socials' alt="Twitter" />
-                <img src={facebook} className='socials' alt="Facebook" />
-              </Grid>
-            </Grid>
-          </Toolbar>
-          <Typography variant="body1" style={{ textAlign: "center", marginTop: "40px" }}>
-            © 2023 PowerRide. All rights reserved.
-          </Typography>
-        </Container>
-      </AppBar>
       </div>
 
       

@@ -161,7 +161,7 @@ const UserSideNavigation = ({ handleLinkClick }) => {
             {user && (
               <>
                 <li>
-                  <Dropdown className="" style={{ marginTop: "10px" }}>
+                  <Dropdown className="" style={{ marginTop: "10px", margin: "0px" }}>
                     <Dropdown.Toggle
                       variant="success"
                       id="dropdown-basic"

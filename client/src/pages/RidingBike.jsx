@@ -2,7 +2,7 @@ import React, { useEffect, useRef, useState } from 'react';
 import './styles/Home.css';
 import { useNavigate, useLocation } from 'react-router-dom';
 import ebike from './images/Ebike.png';
-import { Container, AppBar, Toolbar, Typography, Box, Button, Grid } from '@mui/material';
+import { Container, Typography, Box, Button, Card, CardMedia, CardContent, Divider, CardHeader, CardActions } from '@mui/material';
 import { BrowserRouter as Router, Routes, Route, Link } from 'react-router-dom';
 import instagram from './images/instagram.png'
 import facebook from './images/facebook.png'
@@ -27,20 +27,26 @@ function RidingBike() {
     // Parse the JSON string to a JavaScript object
     const qrCodeObject = JSON.parse(qrCodeParam);
 
-    // // Now you can access the properties of the parsed object
     const serialno = qrCodeObject.serialno;
 
+    const intervalRef = useRef(null);
 
     useEffect(() => {
-        const interval = setInterval(() => {
-            setCounter(prevCounter => prevCounter + 1);
-        }, 60000);
+        if (isPaused === true) {
+            console.log(intervalRef.current); // Access interval using the ref
+            clearInterval(intervalRef.current);
+        } else {
+            intervalRef.current = setInterval(() => {
+                setCounter(prevCounter => prevCounter + 1);
+            }, 60000);
 
-        // Clear the interval when the component unmounts
-        return () => {
-            clearInterval(interval);
-        };
-    }, []);
+            // Clear the interval when the component unmounts or isPaused changes to true
+            return () => {
+                clearInterval(intervalRef.current);
+            };
+        }
+    }, [isPaused]);
+
 
     useEffect(() => {
 
@@ -76,12 +82,10 @@ function RidingBike() {
     };
 
     const onSubmit = () => {
-
         http.post("/ridden", sampleData)
             .then((res) => {
                 console.log("Backend Response:", res.status, res.data);
                 navigate(`/ridecomplete?serialno=${sampleData.serialno}&duration=${sampleData.duration}&userId=${sampleData.userId}&mileage=${sampleData.mileage}&electricity=${sampleData.electricity}`);
-
             })
             .catch((error) => {
                 console.error('Error submitting data:', error);
@@ -93,7 +97,6 @@ function RidingBike() {
         http.post("/ridden", sampleData)
             .then((res) => {
                 navigate(`/ridecomplete?userId=${sampleData.userId}&mileage=${sampleData.mileage}&duration=${sampleData.duration}&electricity=${sampleData.electricity}&serialno=${sampleData.serialno}`);
-
             })
     }
 
@@ -104,98 +107,51 @@ function RidingBike() {
 
 
     return (
-        <div>
-
+        <>
             <Box className="landing-banner2">
                 <Container className='landing-content'>
                     <Typography variant='h3'>Bicycle Rental</Typography>
                 </Container>
-
             </Box>
+
             {/* Render the sampleData if it is available */}
             {isPaused ? (
-                <div className="user-records">
-                    {/* Content you want to display when the journey is paused */}
-                    <Typography variant='h4'>Journey Paused</Typography>
-                    <p>Your journey has been paused.</p>
-                    <button type="button" className='bike-btn' onClick={handlePauseButtonClick} style={{marginTop: "20px"}}>Resume Journey</button>
-
-                </div>
+                <>
+                    <Card style={{ borderRadius: "0", padding: "15px" }}>
+                        <CardHeader title="Journey Paused" subheader="Your journey has been paused" />
+                        <CardActions style={{ paddingLeft: "15px" }}>
+                            <Button variant="contained" className='bike-btn' onClick={handlePauseButtonClick} style={{ marginTop: "20px" }}>Resume Journey</Button>
+                        </CardActions>
+                    </Card>
+                </>
             ) : (
-                
-                <div className="user-records">
-
-                    <Typography variant='h4' style={{ marginBottom: "20px", color: "white" }}>You are now riding Bike #{sampleData.serialno}</Typography>
-
-                    <img src={ebike} alt="image" style={{ width: "40%" }} className='bike-image' />
-                    <div className='white-wrapper'>
-                        <p style={{ color: "black" }}>User ID: {sampleData.userId}</p>
-                        <p style={{ color: "black" }}>Time Elapsed: {counter} minutes</p>
-                        <p style={{ color: "black" }}>Mileage: {sampleData.mileage}</p>
-                        <p style={{ color: "black" }}>Electricity: {sampleData.electricity}</p>
-                    </div>
-
-                    {/* Buttons */}
-                    <form onSubmit={onSubmit} style={{ marginTop: "40px" }}>
-                        <button type="button" className='bike-btn' onClick={handlePauseButtonClick} >Pause Journey</button>
-                        <button type="button" className='bike-btn' style={{ float: "right" }} onClick={handleSubmitButtonClick}> End Journey</button>
-
-                    </form>
-
-                </div>
+                <>
+                    <Card style={{ borderRadius: "0", padding: "15px" }}>
+                        <CardHeader title={"You are now riding Bike #" + sampleData.serialno} />
+                        <CardMedia component="img" height="300" image={ebike} alt="Bike" style={{ width: "unset", margin: "0 auto" }} />
+                        <CardContent>
+                            <Typography gutterBottom variant="h5">Your Stats</Typography>
+                            <Typography variant="subtitle1" color="text.secondary">User ID: {sampleData.userId}</Typography>
+                            <Typography variant="subtitle1" color="text.secondary">Time Elapsed: {counter} minutes</Typography>
+                            <Typography variant="subtitle1" color="text.secondary">Mileage: {sampleData.mileage}</Typography>
+                            <Typography variant="subtitle1" color="text.secondary">Electricity {sampleData.electricity}</Typography>
+                        </CardContent>
+                        <CardActions style={{ paddingLeft: "15px" }}>
+                            <Button variant="contained" className='bike-btn' onClick={handlePauseButtonClick} >Pause Journey</Button>
+                            <Button variant='outlined' style={{ color: "#F2C086", borderColor: "#F2C086" }} className='bike-btn' onClick={handleSubmitButtonClick}> End Journey</Button>
+                        </CardActions>
+                    </Card>
+                </>
             )}
 
-
-            <Container>
-                <Typography variant='h4' style={{ marginBottom: "20px", color: "white", marginLeft: "20px", marginTop: "40px" }}>Stuck? Talk to our customer help</Typography>
-                <button type="submit" className='stuck-btn' onClick={ () => navigate('/faq')}>Contact Us</button>
-            </Container>
-
-
-            <AppBar position="static" className="Footer">
-                <Container>
-                    <Toolbar disableGutters={true}>
-                        <Grid container spacing={3}>
-                            <Grid item xs={12} md={3}>
-                                <img src={logo} className="logo" alt="PowerLogo" />
-                            </Grid>
-                            <Grid item xs={12} md={3}>
-                                <Typography variant="h6">Navigation</Typography>
-                                <Link to="/home">
-                                    <Typography>Home</Typography>
-                                </Link>
-                                <Link to="/bikeservice">
-                                    <Typography>Bicycles</Typography>
-                                </Link>
-                                <Link to="/">
-                                    <Typography>About</Typography>
-                                </Link>
-                            </Grid>
-                            <Grid item xs={12} md={3}>
-                                <Typography variant="h6">Customer Help</Typography>
-                                <Link to="/">
-                                    <Typography>FAQ</Typography>
-                                </Link>
-                                <Link to="/">
-                                    <Typography>Message Us</Typography>
-                                </Link>
-                            </Grid>
-                            <Grid item xs={12} md={3}>
-                                <Typography variant="h6">Social Media</Typography>
-                                <img src={instagram} className='socials'></img>
-                                <img src={twitter} className='socials'></img>
-                                <img src={facebook} className='socials'></img>
-                            </Grid>
-                        </Grid>
-                    </Toolbar>
-                    <Typography variant="body1" style={{ textAlign: "center", marginTop: "40px" }}>
-                        © 2023 PowerRide. All rights reserved.
-                    </Typography>
-                </Container>
-            </AppBar>
-        </div>
-
-
+            <div style={{ textAlign: 'left', padding: "60px 30px" }}>
+                <Typography variant='h4' style={{ marginBottom: "0px" }}>Stuck?</Typography>
+                <Typography variant='subtitle1'>Talk to our customer helpline</Typography>
+                <Button variant='outlined' style={{ backgroundColor: "white", marginTop: "20px" }} onClick={() => navigate("/faq")}>
+                    Chat with Us
+                </Button>
+            </div >
+        </>
     );
 }
 

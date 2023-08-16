@@ -27,6 +27,11 @@ const AdminSideNavigation = ({ handleLinkClick }) => {
     sessionStorage.clear();
     window.location = "/";
   };
+
+  const home = () => {
+
+    window.location = "/";
+  };
   return (
     // <AppBar className='sidebar'>
     //   <Container>
@@ -84,7 +89,7 @@ const AdminSideNavigation = ({ handleLinkClick }) => {
     <AppBar className="sidebar">
       <Container>
         <Toolbar disableGutters={true} className="nav-links">
-        <Link to="/"><img src={logo} className="logo" /></Link>
+        <Link onClick={home}><img src={logo} className="logo" /></Link>
 
           <Link to="/admin/adminhome">
             <Typography variant="h6" component="div" className="nav-title">

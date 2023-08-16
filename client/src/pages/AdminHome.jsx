@@ -13,16 +13,19 @@ import {
 
 const styles = {
   container: {
+    padding: "80px",
+  },
+  header: {
     display: "flex",
-    flexDirection: "column",
     alignItems: "center",
-    padding: "20px",
+    justifyContent: "center",
+    marginBottom: "20px",
   },
   tableContainer: {
-    flex: 1,
     width: "100%",
-    maxWidth: "800px",
+    maxWidth: "1000px",
     marginTop: "20px",
+    marginLeft: "200px",
   },
   table: {
     minWidth: 650,
@@ -44,7 +47,7 @@ const styles = {
   },
   repairStatus: {
     color: "#FFB157",
-  }
+  },
 };
 
 function AdminHome() {
@@ -113,14 +116,15 @@ function AdminHome() {
       dateTime: "-",
       status: "Repair",
     },
-    
   ];
 
   return (
     <Box sx={styles.container}>
-      <Typography variant="h4" gutterBottom>
-        Bike Rental Service Dashboard
-      </Typography>
+      <Box sx={styles.header}>
+        <Typography variant="h4" gutterBottom>
+          Bike Rental Service Dashboard
+        </Typography>
+      </Box>
       <Box sx={styles.tableContainer}>
         <TableContainer component={Paper}>
           <Table sx={styles.table}>

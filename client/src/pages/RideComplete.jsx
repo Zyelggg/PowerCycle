@@ -4,7 +4,7 @@ import { useLocation } from 'react-router'
 import { useNavigate } from 'react-router-dom';
 import ebike from './images/Ebike.png';
 import GooglePayButton from '@google-pay/button-react';
-import { Container, AppBar, Toolbar, Typography, Box, Grid, Button, Card, CardActions, CardMedia, CardContent, Divider, CardHeader } from '@mui/material';
+import { Container, Typography, Box, Button, Card, CardMedia, CardContent, Divider, CardHeader } from '@mui/material';
 import { BrowserRouter as Router, Routes, Link } from 'react-router-dom';
 import instagram from './images/instagram.png'
 import facebook from './images/facebook.png'
@@ -28,18 +28,21 @@ function RideComplete() {
   const electricity = queryParams.get('electricity');
   const duration = queryParams.get('duration');
 
-  let amount = 0.0;
-  if (duration === '0') {
-    amount = 3.0;
-    console.log(amount);
-  }
-  else if (duration == null) {
-    amount = 3.0;
-    console.log(amount);
-  }
-  else {
-    console.log(duration)
-    amount = parseInt(duration) * 3;
+  const durationInMinutes = parseInt(duration);
+
+  // Calculate the amount based on $3 per hour
+  let amount = 3.0 * (durationInMinutes / 60);
+
+  if (durationInMinutes < 60) {
+    amount = 3.0; // Minimum charge of $3
+  } else {
+    // Calculate the remaining minutes after removing complete hours
+    const remainingMinutes = durationInMinutes % 60;
+
+    // If there are remaining minutes, add an extra $3
+    if (remainingMinutes > 0) {
+      amount += 3.0;
+    }
   }
 
   useEffect(() => {
@@ -92,7 +95,7 @@ function RideComplete() {
           <Container>
             <Typography gutterBottom variant="h5">Payment Details</Typography>
             <Typography variant="subtitle1" color="text.secondary">Card: 1111-1111-1111-1111</Typography>
-            <Typography variant="subtitle1" color="text.secondary">Amount Payable: ${parseFloat(amount)}.00</Typography>
+            <Typography variant="subtitle1" color="text.secondary">Amount Payable: ${parseFloat(amount)}</Typography>
           </Container>
 
           <Box sx={{ height: 10 }} />
