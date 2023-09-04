@@ -118,9 +118,6 @@ function App() {
     fetchData();
   }, []);
 
-
-
-
   const deleteAccount = () => {
     http.delete(`/user/${userid}`).then((res) => {
       console.log(res.data);

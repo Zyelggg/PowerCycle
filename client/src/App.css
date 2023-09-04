@@ -191,7 +191,7 @@ a {
   width:30px;
   height:30px;
 }
-@media screen and (max-width: 700px) {
+@media screen and (max-width: 600px) {
 
   .dropdown {
     margin-top: 0px !important;
