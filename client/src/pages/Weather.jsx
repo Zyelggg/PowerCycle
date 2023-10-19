@@ -107,7 +107,7 @@ function Weather() {
                         modifier: 2,
                         slideShadows: true,
                     }}
-                >
+                > 
 
                     {weatherData.map((forecast, index) => (
 

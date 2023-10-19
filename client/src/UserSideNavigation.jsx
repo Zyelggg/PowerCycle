@@ -61,7 +61,7 @@ const UserSideNavigation = ({ handleLinkClick }) => {
       http.get("/user/auth").then((res) => {
         setUser(res.data.user);
         // setUserid(res.data.userid);
-        console.log(user,"HI")
+        console.log("user:" ,user)
       });
 
     }
